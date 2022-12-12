@@ -20,6 +20,7 @@
     "chart.js": "2.8.0",
     "date-fns": "2.0.0-alpha.27",
     "downshift": "3.2.10",
+    "env-cmd": "^10.1.0",
     "firebase": "^9.6.1",
     "formsy-react": "1.1.5",
     "framer-motion": "^4.0.3",
@@ -96,8 +97,8 @@
     "webpack-bundle-analyzer": "3.3.2"
   },
   "scripts": {
-    "start": "yarn run tailwind && react-scripts start",
-    "build": "yarn run tailwind && node ./purge-tailwindcss.js && cross-env GENERATE_SOURCEMAP=false react-scripts build",
+    "start": "env-cmd -f .env yarn run tailwind && react-scripts start",
+    "build": "env-cmd -f .env yarn run tailwind && node ./purge-tailwindcss.js && cross-env GENERATE_SOURCEMAP=false react-scripts build",
     "tailwind": "./node_modules/.bin/tailwind build ./src/styles/tailwind.base.css -c ./tailwind.js -o ./src/styles/tailwind.css",
     "test": "react-scripts test --env=node",
     "eject": "react-scripts eject",
