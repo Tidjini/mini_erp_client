@@ -10,5 +10,9 @@ export const StockConfig = {
       path: "/categories/",
       component: React.lazy(() => import("./CategoryCollection")),
     },
+    {
+      path: "/unites/",
+      component: React.lazy(() => import("./UnitesCollection")),
+    },
   ],
 };
