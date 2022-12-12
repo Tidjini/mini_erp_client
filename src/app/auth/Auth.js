@@ -4,24 +4,14 @@ import * as userActions from "app/auth/store/actions";
 import { bindActionCreators } from "redux";
 import * as Actions from "app/store/actions";
 import authService from "app/services/AuthService";
+import apiService from "app/services/ApiService";
 
 class Auth extends Component {
   /*eslint-disable-next-line no-useless-constructor*/
   constructor(props) {
     super(props);
-
-    // this.infrabitumCheck();
     this.checkAuthService();
-
-    /**
-     * Comment the line if you do not use Auth0
-     */
-    //this.auth0Check();
-
-    /**
-     * Comment the line if you do not use Firebase
-     */
-    //this.firebaseCheck();
+    this.apiServiceListener();
   }
 
   checkAuthService = () => {
@@ -50,6 +40,27 @@ class Auth extends Component {
       this.props.logout();
     });
     authService.initialize();
+  };
+  apiServiceListener = () => {
+    apiService.on("loading", (loading) => {
+      let message = "IS LOADING";
+      let color = "success";
+      if (!loading) {
+        message = "IS NOT LOADING";
+        color = "danger";
+      }
+      this.props.showMessage({
+        message: message,
+        variant: color,
+        autoHideDuration: 600,
+        anchorOrigin: {
+          vertical: "bottom", //top bottom
+          horizontal: "right", //left center right
+        },
+      });
+    });
+
+    apiService.initialize();
   };
 
   render() {
