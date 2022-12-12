@@ -1,0 +1,7 @@
+export const URGENCE_COLLECTION = "[URGENCE] COLLECTION";
+export const LOADING = "[URGENCE] LOADING";
+export const ERROR = "[URGENCE] COLLECTION ERROR";
+export const SAVE = "[URGENCE] SAVE";
+export const SAVE_ERROR = "[URGENCE] SAVE ERROR";
+export const DELETE = "[URGENCE] DELETE";
+export const DELETE_ERROR = "[URGENCE] DELETE ERROR";
