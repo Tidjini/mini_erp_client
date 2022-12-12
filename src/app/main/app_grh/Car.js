@@ -1,5 +1,4 @@
 import React from "react";
-import config from "app/services/firebaseService/firebaseServiceConfig";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 import { collection, getDocs, onSnapshot, doc } from "firebase/firestore";

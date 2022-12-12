@@ -9,7 +9,7 @@ import reducer from "./store/reducer";
 import * as Actions from "./store/actions";
 import { useDispatch, useSelector } from "react-redux";
 
-import config from "app/services/firebaseService/firebaseServiceConfig";
+// import config from "app/services/firebaseService/firebaseServiceConfig";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 import { collection, getDocs, onSnapshot, doc } from "firebase/firestore";
@@ -19,8 +19,8 @@ const styles = (theme) => ({
   layoutRoot: {},
 });
 
-const app = initializeApp(config);
-const db = getFirestore(app);
+// const app = initializeApp(config);
+// const db = getFirestore(app);
 
 function EmployeTasksCollectionView() {
   const dispatch = useDispatch();

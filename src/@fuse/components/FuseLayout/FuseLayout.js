@@ -7,7 +7,7 @@ import * as Actions from "app/store/actions";
 import { FuseLayouts } from "@fuse";
 import _ from "@lodash";
 import AppContext from "app/AppContext";
-import firebaseConfig from "app/services/firebaseService/firebaseServiceConfig";
+// import firebaseConfig from "app/services/firebaseService/firebaseServiceConfig";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 import { collection, onSnapshot, doc, deleteDoc } from "firebase/firestore";
@@ -130,33 +130,33 @@ function FuseLayout(props) {
   const constructor = () => {
     if (constructorHasRun) return;
     setConstructorHasRun(true);
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    // const app = initializeApp(firebaseConfig);
+    // const db = getFirestore(app);
 
-    setFiredb(db);
-    onSnapshot(collection(db, "tasks_done"), (data) => {
-      data.docChanges().forEach(async (change) => {
-        if (change.type === "added") {
-          // console.log("New city: ", change.doc.data());
-          // notify(change.doc.data());
-        }
-        if (change.type === "modified") {
-          console.log("Modified city: ", change.doc.data());
-        }
-        if (change.type === "removed") {
-          console.log("Removed city: ", change.doc.data());
-        }
-        // const id = change.doc.data().id;
-        // const docRef = doc(db, "tasks_done", id);
-        // deleteDoc(docRef)
-        //   .then(() => {
-        //     console.log("Entire Document has been deleted successfully.");
-        //   })
-        //   .catch((error) => {
-        //     console.log(error);
-        //   });
-      });
-    });
+    // setFiredb(db);
+    // onSnapshot(collection(db, "tasks_done"), (data) => {
+    //   data.docChanges().forEach(async (change) => {
+    //     if (change.type === "added") {
+    //       // console.log("New city: ", change.doc.data());
+    //       // notify(change.doc.data());
+    //     }
+    //     if (change.type === "modified") {
+    //       console.log("Modified city: ", change.doc.data());
+    //     }
+    //     if (change.type === "removed") {
+    //       console.log("Removed city: ", change.doc.data());
+    //     }
+    //     // const id = change.doc.data().id;
+    //     // const docRef = doc(db, "tasks_done", id);
+    //     // deleteDoc(docRef)
+    //     //   .then(() => {
+    //     //     console.log("Entire Document has been deleted successfully.");
+    //     //   })
+    //     //   .catch((error) => {
+    //     //     console.log(error);
+    //     //   });
+    //   });
+    // });
   };
   constructor();
 

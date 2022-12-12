@@ -9,7 +9,6 @@ import reducer from "./store/reducer";
 import * as Actions from "./store/actions";
 import { useDispatch, useSelector } from "react-redux";
 
-import config from "app/services/firebaseService/firebaseServiceConfig";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 import { collection, getDocs, onSnapshot, doc } from "firebase/firestore";
@@ -19,30 +18,30 @@ const styles = (theme) => ({
   layoutRoot: {},
 });
 
-const app = initializeApp(config);
-const db = getFirestore(app);
+// const app = initializeApp(config);
+// const db = getFirestore(app);
 
 function EmployeCollectionView() {
   const dispatch = useDispatch();
   const employees = useSelector(({ employe }) => employe.employees);
 
   const [tasks, setTasks] = useState([]);
-  const tasksCollectionRef = collection(db, "tasks");
-  const unsubscribe = onSnapshot(collection(db, "tasks"), (data) => {
-    data.docs.map((doc) => {
-      // dispatch(
-      //   showMessage({
-      //     message: `Le Devis N°${doc.id} a été modifier avec sucess`,
-      //     variant: "success",
-      //     anchorOrigin: {
-      //       vertical: "center", //top bottom
-      //       horizontal: "right", //left center right
-      //     },
-      //     autoHideDuration: 1200,
-      //   })
-      // );
-    });
-  });
+  // const tasksCollectionRef = collection(db, "tasks");
+  // const unsubscribe = onSnapshot(collection(db, "tasks"), (data) => {
+  //   data.docs.map((doc) => {
+  //     // dispatch(
+  //     //   showMessage({
+  //     //     message: `Le Devis N°${doc.id} a été modifier avec sucess`,
+  //     //     variant: "success",
+  //     //     anchorOrigin: {
+  //     //       vertical: "center", //top bottom
+  //     //       horizontal: "right", //left center right
+  //     //     },
+  //     //     autoHideDuration: 1200,
+  //     //   })
+  //     // );
+  //   });
+  // });
   useEffect(() => {
     dispatch(Actions.getEmployees());
 

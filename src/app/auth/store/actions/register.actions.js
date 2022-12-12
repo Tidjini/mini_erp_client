@@ -1,6 +1,4 @@
-import firebaseService from "app/services/firebaseService";
 import * as UserActions from "./user.actions";
-import * as Actions from "app/store/actions";
 import infrabitumService from "app/services/infrabitumService";
 
 export const REGISTER_ERROR = "REGISTER_ERROR";

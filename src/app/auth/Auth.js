@@ -3,17 +3,16 @@ import { connect } from "react-redux";
 import * as userActions from "app/auth/store/actions";
 import { bindActionCreators } from "redux";
 import * as Actions from "app/store/actions";
-import firebaseService from "app/services/firebaseService";
-import auth0Service from "app/services/auth0Service";
-import jwtService from "app/services/jwtService";
 import infrabitumService from "app/services/infrabitumService";
+import authService from "app/services/AuthService";
 
 class Auth extends Component {
   /*eslint-disable-next-line no-useless-constructor*/
   constructor(props) {
     super(props);
 
-    this.infrabitumCheck();
+    // this.infrabitumCheck();
+    this.checkAuthService();
 
     /**
      * Comment the line if you do not use Auth0
@@ -26,6 +25,32 @@ class Auth extends Component {
     //this.firebaseCheck();
   }
 
+  checkAuthService = () => {
+    authService.on("onAutoLogin", () => {
+      authService
+        .signInToken()
+        .then((user) => {
+          this.props.setUserData(user);
+
+          this.props.showMessage({
+            message: "Logged in successful",
+            variant: "success",
+            autoHideDuration: 600,
+            anchorOrigin: {
+              vertical: "bottom", //top bottom
+              horizontal: "right", //left center right
+            },
+          });
+        })
+        .catch((error) => {});
+    });
+    authService.on("onAutoLogout", (message) => {
+      if (message) {
+        this.props.showMessage({ message });
+      }
+      this.props.logout();
+    });
+  };
   infrabitumCheck = () => {
     infrabitumService.on("onAutoLogin", () => {
       infrabitumService
@@ -57,70 +82,6 @@ class Auth extends Component {
 
     infrabitumService.init();
   };
-  jwtCheck = () => {
-    jwtService.on("onAutoLogin", () => {
-      this.props.showMessage({ message: "Logging in with JWT" });
-
-      /**
-       * Sign in and retrieve user data from Api
-       */
-      jwtService
-        .signInWithToken()
-        .then((user) => {
-          this.props.setUserData(user);
-
-          this.props.showMessage({ message: "Logged in with JWT" });
-        })
-        .catch((error) => {
-          this.props.showMessage({ message: error });
-        });
-    });
-
-    jwtService.on("onAutoLogout", (message) => {
-      if (message) {
-        this.props.showMessage({ message });
-      }
-      this.props.logout();
-    });
-
-    jwtService.init();
-  };
-
-  auth0Check = () => {
-    auth0Service.init();
-
-    if (auth0Service.isAuthenticated()) {
-      this.props.showMessage({ message: "Logging in with Auth0" });
-
-      /**
-       * Retrieve user data from Auth0
-       */
-      auth0Service.getUserData().then((tokenData) => {
-        this.props.setUserDataAuth0(tokenData);
-
-        this.props.showMessage({ message: "Logged in with Auth0" });
-      });
-    }
-  };
-
-  firebaseCheck = () => {
-    firebaseService.init();
-
-    firebaseService.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        this.props.showMessage({ message: "Logging in with Firebase" });
-
-        /**
-         * Retrieve user data from Firebase
-         */
-        firebaseService.getUserData(authUser.uid).then((user) => {
-          this.props.setUserDataFirebase(user, authUser);
-
-          this.props.showMessage({ message: "Logged in with Firebase" });
-        });
-      }
-    });
-  };
 
   render() {
     const { children } = this.props;
@@ -134,8 +95,8 @@ function mapDispatchToProps(dispatch) {
     {
       logout: userActions.logoutUser,
       setUserData: userActions.setUserData,
-      setUserDataAuth0: userActions.setUserDataAuth0,
-      setUserDataFirebase: userActions.setUserDataFirebase,
+      // setUserDataAuth0: userActions.setUserDataAuth0,
+      // setUserDataFirebase: userActions.setUserDataFirebase,
       showMessage: Actions.showMessage,
       hideMessage: Actions.hideMessage,
     },
