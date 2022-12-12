@@ -1,18 +1,17 @@
 import { setUserData } from "./user.actions";
-import infrabitumService from "app/services/infrabitumService";
+import authService from "app/services/AuthService";
 import * as Actions from "app/store/actions";
 import { showMessage } from "app/store/actions/fuse";
 import * as AppActions from "app/store/actions";
-
 
 export const LOGIN_ERROR = "LOGIN_ERROR";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 
 export function submitLogin({ username, password }) {
-  console.log("LOGIN")
+  console.log("LOGIN", username, password);
   return (dispatch) =>
-    infrabitumService
-      .signInWithUsernameAndPassword(username, password)
+    authService
+      .signIn({ username, password })
       .then((user) => {
         dispatch(setUserData(user));
         return dispatch({
@@ -20,7 +19,6 @@ export function submitLogin({ username, password }) {
         });
       })
       .catch((error) => {
-
         dispatch(
           AppActions.showMessage({
             message: "empty_fields_error",
@@ -37,7 +35,5 @@ export function submitLogin({ username, password }) {
           type: LOGIN_ERROR,
           payload: error,
         });
-
-
       });
 }

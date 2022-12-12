@@ -3,6 +3,10 @@ import axios from "axios";
 import FuseUtils from "@fuse/FuseUtils";
 
 class AuthService extends FuseUtils.EventEmitter {
+  API_URL = "http://localhost:8000/api";
+  AUTH_TOKEN_URL = "http://localhost:8000/api/auth/token";
+  AUTH_USER_URL = "http://localhost:8000/api/auth/username";
+
   initialize() {
     this.setInterceptors();
     this.checkAuth();
@@ -48,31 +52,30 @@ class AuthService extends FuseUtils.EventEmitter {
 
   createUser = (data) => {
     return new Promise((resolve, reject) => {
-      axios
-        .post(`${process.env.API_URL}/utilisateurs/`, data)
-        .then((response) => {
-          if (response.data) {
-            this.setSession(response.data.token);
-            resolve(response.data);
-          } else {
-            reject(response.data.error);
-          }
-        });
+      axios.post(`${this.API_URL}/utilisateurs/`, data).then((response) => {
+        if (response.data) {
+          this.setSession(response.data.token);
+          resolve(response.data);
+        } else {
+          reject(response.data.error);
+        }
+      });
     });
   };
   signIn = (credentials) => {
     return new Promise((resolve, reject) => {
-      axios
-        .post(`${process.env.AUTH_USER_URL}/`, credentials)
-        .then((response) => {
-          if (response.data) {
-            this.setSession(response.data.token);
-            resolve(response.data);
-          } else {
-            reject(response.data.error);
-          }
-        });
+      axios.post(`${this.AUTH_USER_URL}/`, credentials).then((response) => {
+        if (response.data) {
+          this.setSession(response.data.token);
+          resolve(response.data);
+        } else {
+          reject(response.data.error);
+        }
+      });
     });
+  };
+  logout = () => {
+    this.setSession(null);
   };
 
   signInToken = () => {
@@ -80,7 +83,7 @@ class AuthService extends FuseUtils.EventEmitter {
       axios.defaults.headers.common["Authorization"] =
         "token " + this.getAccessToken();
 
-      axios.get(`${process.env.AUTH_TOKEN_URL}/`).then((response) => {
+      axios.get(`${this.AUTH_TOKEN_URL}/`).then((response) => {
         if (response.data) {
           this.setSession(response.data.token);
           resolve(response.data);
@@ -111,3 +114,34 @@ class AuthService extends FuseUtils.EventEmitter {
 const instance = new AuthService();
 
 export default instance;
+
+// saveAttachements = (model, id, liste, deleted = []) => {
+//   let promises = [];
+//   liste.map(({ fichier_upload, type, name }) => {
+//     var formData = new FormData();
+//     formData.append("fichier", fichier_upload);
+//     formData.append("type", type);
+//     formData.append(model, id);
+//     formData.append("name", name);
+//     promises.push(
+//       axios.post(`${DATA_SERVICE_URL}attachements/?model=${model}`, formData)
+//     );
+//   });
+
+//   deleted.map(({ id }) => {
+//     if (id !== undefined && id !== null && id !== "")
+//       promises.push(
+//         axios.delete(`${DATA_SERVICE_URL}attachements/?model=${model}${id}/`)
+//       );
+//   });
+
+//   return new Promise((resolve, reject) => {
+//     Promise.all(promises)
+//       .then(function (values) {
+//         resolve(values);
+//       })
+//       .catch((errs) => {
+//         reject(errs);
+//       });
+//   });
+// };
