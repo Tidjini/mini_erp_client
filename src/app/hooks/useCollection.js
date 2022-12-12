@@ -21,8 +21,6 @@ export default function useCollection(name, pk = "id") {
       .catch((exception) => {});
   }, [page, filters, ordering]);
 
-  React.useEffect(() => {}, []);
-
   const deleteItem = (item) => {
     const clean = data.filter((value, index, arr) => item[pk] != value[pk]);
     setData(clean);

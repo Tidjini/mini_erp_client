@@ -2,7 +2,7 @@ import axios from "axios";
 import FuseUtils from "@fuse/FuseUtils";
 
 class ApiService extends FuseUtils.EventEmitter {
-  API_URL = "http://localhost:8000/api";
+  API_URL = "http://10.0.0.21:8000/api";
 
   initialize(collection, pk = "id") {
     this.loading = false;
