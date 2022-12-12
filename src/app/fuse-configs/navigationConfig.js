@@ -18,6 +18,13 @@ const navigationConfig = [
         type: "group",
         children: [
           {
+            id: "stock-category",
+            title: "Category",
+            icon: "Item",
+            type: "item",
+            url: "/categories/",
+          },
+          {
             id: "achat_stock",
             title: "Articles",
             icon: "description",

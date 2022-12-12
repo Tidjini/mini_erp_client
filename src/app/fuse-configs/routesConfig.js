@@ -35,10 +35,12 @@ import { ProductionOperationConfig } from "app/main/app_production/operations/Op
 
 //grh
 import { GestionResourceHumaineConfig } from "app/main/app_grh/Config";
+import { StockConfig } from "app/stock/Config";
 
 import { TacheConfig } from "app/main/app_tache/TacheConfig";
 
 const routeConfigs = [
+  StockConfig,
   ArticleConfig,
   DemandeAchatConfig,
   DevisAchatConfig,
