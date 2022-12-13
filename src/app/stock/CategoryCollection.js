@@ -49,9 +49,9 @@ export default function CategoryCollection() {
         style={{ margin: 5 }}
         horizontal={true}
         type="number"
-        label="Tva"
+        label={"Tva".toUpperCase()}
         xs={0}
-        smDown={true}
+        mdDown
       />
     </div>
   );
