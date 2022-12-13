@@ -33,5 +33,15 @@ export default function useCollection(name, pk = "id") {
       .catch((exception) => {});
   };
 
-  return { data, setPage, setFilters, setOrdering, deleteItem };
+  const onRefresh = React.useCallback(() => {
+    apiService
+      .getCollection(page, filters, ordering)
+      .then((response) => {
+        setData(response);
+        console.log(response);
+      })
+      .catch((exception) => {});
+  }, [page, filters, ordering]);
+
+  return { data, setPage, setFilters, setOrdering, onRefresh, deleteItem };
 }
