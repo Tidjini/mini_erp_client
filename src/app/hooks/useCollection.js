@@ -7,6 +7,17 @@ export default function useCollection(name, pk = "id") {
   const [page, setPage] = React.useState(1);
   const [ordering, setOrdering] = React.useState({});
 
+  const onFilterChange = (event) => {
+    if (event.target.value === "Non Définie") {
+      event.target.value = null;
+    }
+    if (event.target.value === "Tous") {
+      event.target.value = null;
+    }
+
+    setFilters({ ...filters, [event.target.name]: event.target.value });
+  };
+
   React.useEffect(() => {
     apiService.initialize(name, pk);
   }, []);
@@ -43,5 +54,14 @@ export default function useCollection(name, pk = "id") {
       .catch((exception) => {});
   }, [page, filters, ordering]);
 
-  return { data, setPage, setFilters, setOrdering, onRefresh, deleteItem };
+  return {
+    data,
+    setPage,
+    filters,
+    setFilters,
+    onFilterChange,
+    setOrdering,
+    onRefresh,
+    deleteItem,
+  };
 }

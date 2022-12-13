@@ -5,8 +5,8 @@ import apiService from "app/services/ApiService";
 export default function useView(
   name,
   defaultData = {},
-  pk = "id",
-  primary = undefined
+  primary = undefined,
+  pk = "id"
 ) {
   const { form, handleChange, setForm } = useForm(defaultData);
 
@@ -17,7 +17,7 @@ export default function useView(
         .getItem(primary)
         .then((data) => {
           setForm(data);
-          console.log(response);
+          console.log(data);
         })
         .catch((exception) => {});
     }
