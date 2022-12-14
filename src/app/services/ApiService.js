@@ -2,7 +2,7 @@ import axios from "axios";
 import FuseUtils from "@fuse/FuseUtils";
 
 class ApiService extends FuseUtils.EventEmitter {
-  API_URL = "http://10.0.0.21:8000/api";
+  API_URL = process.env.REACT_APP_API_URL;
 
   initialize(collection, pk = "id") {
     this.loading = false;

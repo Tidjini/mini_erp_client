@@ -31,9 +31,9 @@ export default function Input(props) {
         item
         xs={xs || 12}
         sm={sm || 6}
-        md={md || 6}
-        lg={lg || 4}
-        xl={xl || 4}
+        md={md || 4}
+        lg={lg || 3}
+        xl={xl || 2}
         style={{
           ...style,
         }}

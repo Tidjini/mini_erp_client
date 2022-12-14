@@ -3,6 +3,8 @@ import React from "react";
 import useCollection from "app/hooks/useCollection";
 import useView from "app/hooks/useView";
 import Input from "app/composants.v2/Input";
+import Container from "app/composants.v2/Container";
+import { Grid } from "@material-ui/core";
 
 export default function CategoryCollection() {
   const unites = useCollection("unites");
@@ -34,25 +36,31 @@ export default function CategoryCollection() {
   // const { tvas } = useCollection({ name: "tvas" });
 
   return (
-    <div>
-      <div>{unites.data.length}</div>
-      <div>{categories.data.length}</div>
-      <div>{tvas.data.length}</div>
-      <div>{form.id}</div>
-      <div>{form.tva}</div>
-      <div>{form.value}</div>
-      <Input
-        name="value"
-        placeholder="value"
-        handleChange={handleChange}
-        value={form.value}
-        style={{ margin: 5 }}
-        horizontal={true}
-        type="number"
-        label={"Tva".toUpperCase()}
-        xs={0}
-        mdDown
-      />
-    </div>
+    <Container>
+      <Container md={4}>
+        <Input label="TVA" style={{}} />
+        <Input label="TVA" style={{}} />
+      </Container>
+      <Container md={4}>
+        <Input label="TVA2" style={{}} lg={6} />
+        <Input label="TVA2" style={{}} lg={6} />
+        <Input label="TVA2" style={{}} lg={6} />
+        <Input label="TVA2" style={{}} lg={6} />
+      </Container>
+      <Container>
+        <Input label="TVA3" style={{}} />
+        <Input label="TVA3" style={{}} />
+      </Container>
+      {/* <Grid
+        item
+        md={3}
+        contianer
+        direction="row"
+        style={{ background: "#00000030" }}
+      >
+        <Input label="TVA4" style={{}} md={6} />
+        <Input label="TVA4" style={{}} md={6} />
+      </Grid> */}
+    </Container>
   );
 }
