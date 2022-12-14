@@ -3,9 +3,9 @@ import axios from "axios";
 import FuseUtils from "@fuse/FuseUtils";
 
 class AuthService extends FuseUtils.EventEmitter {
-  API_URL = "http://10.0.0.21:8000/api";
-  AUTH_TOKEN_URL = "http://10.0.0.21:8000/api/auth/token";
-  AUTH_USER_URL = "http://10.0.0.21:8000/api/auth/username";
+  API_URL = process.env.REACT_APP_API_URL;
+  AUTH_TOKEN_URL = process.env.REACT_APP_AUTH_TOKEN_URL;
+  AUTH_USER_URL = process.env.REACT_APP_AUTH_USER_URL;
 
   initialize() {
     this.setInterceptors();
