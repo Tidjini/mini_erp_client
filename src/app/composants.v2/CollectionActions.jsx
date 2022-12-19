@@ -1,13 +1,21 @@
 import React from "react";
 import useBreakPoints from "app/hooks/useBreakPoints";
 import Button from "./Button";
+import {
+  Icon,
+  ListItemIcon,
+  ListItemText,
+  MenuItem,
+  Popover,
+} from "@material-ui/core";
 
 export default function CollectionActions(props) {
   const size = useBreakPoints();
   const [display, setDisplay] = React.useState("flex");
+  const [actionMenu, setActionMenu] = React.useState(null);
   const actions = [
     {
-      label: "Ajouter",
+      label: "Add",
       style: {
         backgroundColor: "#2a9d8f",
       },
@@ -24,7 +32,7 @@ export default function CollectionActions(props) {
       callback: function (event) {
         console.log(event.target);
       },
-      icon: "add",
+      icon: "edit",
     },
     {
       label: "Delete",
@@ -34,7 +42,7 @@ export default function CollectionActions(props) {
       callback: function (event) {
         console.log(event.target);
       },
-      icon: "add",
+      icon: "delete",
     },
   ];
   React.useEffect(() => {
@@ -46,11 +54,19 @@ export default function CollectionActions(props) {
 
         default:
           setDisplay("flex");
+          setActionMenu(null);
           break;
       }
     }
     changeDisplay();
   }, [size]);
+
+  const onActionsClicked = (event) => {
+    setActionMenu(event.currentTarget);
+  };
+  const onCloseMenu = (event) => {
+    setActionMenu(null);
+  };
 
   return (
     <React.Fragment>
@@ -65,6 +81,39 @@ export default function CollectionActions(props) {
             {item.label}
           </Button>
         ))}
+      </div>
+      <div
+        style={{
+          display: display === "none" ? "flex" : "none",
+          alignItems: "center",
+        }}
+      >
+        <Button
+          content="Edition"
+          style={{ backgroundColor: "#4a4e69" }}
+          onClick={onActionsClicked}
+        ></Button>
+        <Popover
+          open={Boolean(actionMenu)}
+          anchorEl={actionMenu}
+          onClose={onCloseMenu}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+          style={{ marginTop: 4 }}
+        >
+          <React.Fragment>
+            {actions.map((item, id) => (
+              <MenuItem style={{ ...item.style, color: "white" }}>
+                <ListItemIcon>
+                  <Icon style={{ color: "white" }}>{item.icon}</Icon>
+                </ListItemIcon>
+                <ListItemText>{item.label}</ListItemText>
+              </MenuItem>
+            ))}
+          </React.Fragment>
+        </Popover>
       </div>
     </React.Fragment>
   );
