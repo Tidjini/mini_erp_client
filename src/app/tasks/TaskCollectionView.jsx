@@ -1,13 +1,17 @@
 import React from "react";
 
-import { Typography } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 
 import Header from "app/composants.v2/Header";
+import CollectionActions from "app/composants.v2/CollectionActions";
 
 export default function TaskCollectionView(props) {
   return (
     <div>
-      <Header title="Collection des Tâches" />
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Header title="Collection des Tâches" />
+        <CollectionActions />
+      </div>
       <h1>filters</h1>
       <div>
         <h1>collection header</h1>
