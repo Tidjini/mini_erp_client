@@ -1,3 +1,7 @@
+import { TaskConfig } from "../tasks/Config";
+
+const { navigation: tasks } = TaskConfig;
+
 const navigationConfig = [
   {
     id: "applications",
@@ -197,28 +201,7 @@ const navigationConfig = [
           // },
         ],
       },
-      // {
-      //   id: "employes_app",
-      //   title: "Gestion Employe",
-      //   type: "group",
-      //   children: [
-      //     {
-      //       id: "employes",
-      //       title: "Employés",
-      //       icon: "assignment_ind",
-      //       type: "item",
-      //       url: "/employe_collection/",
-      //     },
-      //     {
-      //       id: "taches",
-      //       title: "Tâches",
-      //       icon: "add_task",
-      //       type: "item",
-      //       url: "/tasks_collection/",
-      //     },
-      //   ],
-      // },
-
+      tasks,
       {
         id: "transit",
         title: "Transit",

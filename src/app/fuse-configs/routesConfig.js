@@ -38,6 +38,7 @@ import { GestionResourceHumaineConfig } from "app/main/app_grh/Config";
 import { StockConfig } from "app/stock/Config";
 
 import { TacheConfig } from "app/main/app_tache/TacheConfig";
+import { TaskConfig } from "app/tasks/Config";
 
 const routeConfigs = [
   StockConfig,
@@ -68,6 +69,7 @@ const routeConfigs = [
   GestionResourceHumaineConfig,
   TacheConfig,
   AppDashboardConfig,
+  TaskConfig,
 ];
 
 const routes = [
