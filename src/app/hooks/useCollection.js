@@ -38,13 +38,10 @@ export default function useCollection(
   });
 
   const onFilterChange = (event) => {
-    if (event.target.value === "Non Définie") {
+    if (event.target.value === "Non Définie" || event.target.value === "Tous") {
       event.target.value = null;
     }
-    if (event.target.value === "Tous") {
-      event.target.value = null;
-    }
-
+    if (!Boolean(event.target.value)) return;
     setFilters({ ...filters, [event.target.name]: event.target.value });
   };
 
@@ -56,8 +53,8 @@ export default function useCollection(
     apiService
       .getCollection(page, filters, ordering)
       .then((response) => {
-        setData(response);
         console.log(response);
+        setData(response);
       })
       .catch((exception) => {});
   }, [page, filters, ordering]);

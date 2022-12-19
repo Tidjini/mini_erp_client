@@ -31,7 +31,6 @@ export default function BaseButton(props) {
         textTransform: "uppercase",
         backgroundColor: "#2b2d42",
         color: "white",
-        marginRight: margins.default,
         ...style,
       }}
     >
