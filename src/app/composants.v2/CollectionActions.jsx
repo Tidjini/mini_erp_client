@@ -60,10 +60,11 @@ export default function CollectionActions(props) {
         }}
       >
         <Button
-          content="Edition"
           style={{ backgroundColor: "#4a4e69" }}
           onClick={onActionsClicked}
-        ></Button>
+        >
+          Edition
+        </Button>
         <Popover
           open={Boolean(actionMenu)}
           anchorEl={actionMenu}
@@ -78,6 +79,7 @@ export default function CollectionActions(props) {
             {actions &&
               actions.map((item, id) => (
                 <MenuItem
+                  key={id}
                   style={{ ...item.style, color: "white" }}
                   onClick={item.callback}
                 >

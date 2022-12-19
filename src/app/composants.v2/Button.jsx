@@ -4,7 +4,7 @@ import { margins } from "./constants";
 import useBreakPoints from "app/hooks/useBreakPoints";
 
 export default function BaseButton(props) {
-  const { content, style } = props;
+  const { children, style } = props;
   const [fontSize, setFontSize] = React.useState(14);
   const size = useBreakPoints();
 
@@ -29,13 +29,13 @@ export default function BaseButton(props) {
       style={{
         fontSize: fontSize,
         textTransform: "uppercase",
-        backgroundColor: "blue",
+        backgroundColor: "#2b2d42",
         color: "white",
         marginRight: margins.default,
         ...style,
       }}
     >
-      {content}
+      {children}
     </Button>
   );
 }

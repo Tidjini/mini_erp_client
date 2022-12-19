@@ -11,9 +11,13 @@ class Action {
   }
 }
 
-export default function useCollection(name, pk = "id") {
+export default function useCollection(
+  params = { name, pk: "id", filters: {} }
+) {
+  const { name, pk, filters: defaultFilters } = params;
+
   const [data, setData] = React.useState([]);
-  const [filters, setFilters] = React.useState({});
+  const [filters, setFilters] = React.useState(defaultFilters);
   const [page, setPage] = React.useState(1);
   const [ordering, setOrdering] = React.useState({});
   const [selectedItem, setSelectedItem] = React.useState();

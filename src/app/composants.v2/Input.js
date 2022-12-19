@@ -83,12 +83,14 @@ export default function Input(props) {
               handleChange(e);
             }}
             value={value || ""}
-            autoFocus={style.autoFocus}
-            inputProps={{ maxLength: style.maxLength }}
-            pattern={style.onlyDigit && style.onlyDigit === true && "[0-9]*"}
+            autoFocus={style && style.autoFocus}
+            inputProps={{ maxLength: style && style.maxLength }}
+            pattern={
+              style && style.onlyDigit && style.onlyDigit === true && "[0-9]*"
+            }
             autoComplete="off"
-            multiline={style.multiline}
-            rows={style.rows}
+            multiline={style && style.multiline}
+            rows={style && style.rows}
           />
         </div>
       </Grid>

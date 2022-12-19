@@ -34,9 +34,7 @@ export default function Header(props) {
   }, [size]);
 
   return (
-    <div
-      style={{ display: "flex", alignItems: "center", margin: margins.default }}
-    >
+    <div style={{ display: "flex", alignItems: "center" }}>
       <img
         src={icon || "assets/images/logos/logo.svg"}
         style={{ ...iconSize }}
