@@ -10,46 +10,16 @@ import {
 } from "@material-ui/core";
 
 export default function CollectionActions(props) {
+  const { actions } = props;
   const size = useBreakPoints();
   const [display, setDisplay] = React.useState("flex");
   const [actionMenu, setActionMenu] = React.useState(null);
-  const actions = [
-    {
-      label: "Add",
-      style: {
-        backgroundColor: "#2a9d8f",
-      },
-      callback: function (event) {
-        console.log(event.target);
-      },
-      icon: "add",
-    },
-    {
-      label: "Edit",
-      style: {
-        backgroundColor: "#219ebc",
-      },
-      callback: function (event) {
-        console.log(event.target);
-      },
-      icon: "edit",
-    },
-    {
-      label: "Delete",
-      style: {
-        backgroundColor: "#ef233c",
-      },
-      callback: function (event) {
-        console.log(event.target);
-      },
-      icon: "delete",
-    },
-  ];
+
   React.useEffect(() => {
     function changeDisplay() {
       switch (size) {
         case "xs":
-          if (actions.length > 1) setDisplay("none");
+          if (actions && actions.length > 1) setDisplay("none");
           break;
 
         default:
@@ -71,16 +41,17 @@ export default function CollectionActions(props) {
   return (
     <React.Fragment>
       <div style={{ display: display, alignItems: "center" }}>
-        {actions.map((item, id) => (
-          <Button
-            key={id}
-            style={{ ...item.style }}
-            onClick={item.callback}
-            content={item.label}
-          >
-            {item.label}
-          </Button>
-        ))}
+        {actions &&
+          actions.map((item, id) => (
+            <Button
+              key={id}
+              style={{ ...item.style }}
+              onClick={item.callback}
+              content={item.label}
+            >
+              {item.label}
+            </Button>
+          ))}
       </div>
       <div
         style={{
@@ -104,14 +75,18 @@ export default function CollectionActions(props) {
           style={{ marginTop: 4 }}
         >
           <React.Fragment>
-            {actions.map((item, id) => (
-              <MenuItem style={{ ...item.style, color: "white" }}>
-                <ListItemIcon>
-                  <Icon style={{ color: "white" }}>{item.icon}</Icon>
-                </ListItemIcon>
-                <ListItemText>{item.label}</ListItemText>
-              </MenuItem>
-            ))}
+            {actions &&
+              actions.map((item, id) => (
+                <MenuItem
+                  style={{ ...item.style, color: "white" }}
+                  onClick={item.callback}
+                >
+                  <ListItemIcon>
+                    <Icon style={{ color: "white" }}>{item.icon}</Icon>
+                  </ListItemIcon>
+                  <ListItemText>{item.label}</ListItemText>
+                </MenuItem>
+              ))}
           </React.Fragment>
         </Popover>
       </div>

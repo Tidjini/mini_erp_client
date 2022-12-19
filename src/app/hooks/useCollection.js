@@ -1,11 +1,37 @@
 import React from "react";
 import apiService from "app/services/ApiService";
 
+import { backcolors } from "app/composants.v2/constants";
+class Action {
+  constructor(label, callback, icon, style) {
+    this.label = label;
+    this.callback = callback;
+    this.icon = icon;
+    this.style = style;
+  }
+}
+
 export default function useCollection(name, pk = "id") {
   const [data, setData] = React.useState([]);
   const [filters, setFilters] = React.useState({});
   const [page, setPage] = React.useState(1);
   const [ordering, setOrdering] = React.useState({});
+  const [selectedItem, setSelectedItem] = React.useState();
+
+  const addAction = new Action(
+    "Ajouter",
+    () => console.log("on add callback"),
+    "add",
+    { backgroundColor: backcolors.add }
+  );
+
+  const editAction = new Action("Editer", () => editItem(), "edit", {
+    backgroundColor: backcolors.edit,
+  });
+
+  const deleteAction = new Action("Supprimer", () => deleteItem(), "delete", {
+    backgroundColor: backcolors.delete,
+  });
 
   const onFilterChange = (event) => {
     if (event.target.value === "Non Définie") {
@@ -32,17 +58,25 @@ export default function useCollection(name, pk = "id") {
       .catch((exception) => {});
   }, [page, filters, ordering]);
 
-  const deleteItem = (item) => {
-    const clean = data.filter((value, index, arr) => item[pk] != value[pk]);
+  const deleteItem = React.useCallback(() => {
+    console.log("on deleteItem callback", selectedItem);
+    if (!Boolean(selectedItem)) return;
+    const clean = data.filter(
+      (value, index, arr) => selectedItem[pk] != value[pk]
+    );
     setData(clean);
     apiService
-      .deleteItem(item)
+      .deleteItem(selectedItem)
       .then((response) => {
         setData(response);
         console.log(response);
       })
       .catch((exception) => {});
-  };
+  }, [selectedItem]);
+
+  const editItem = React.useCallback(() => {
+    console.log("on editItem callback", selectedItem);
+  }, [selectedItem]);
 
   const onRefresh = React.useCallback(() => {
     apiService
@@ -63,5 +97,9 @@ export default function useCollection(name, pk = "id") {
     setOrdering,
     onRefresh,
     deleteItem,
+    addAction,
+    editAction,
+    deleteAction,
+    setSelectedItem,
   };
 }
