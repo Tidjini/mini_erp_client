@@ -42,11 +42,11 @@ export default function TaskCollectionView(props) {
         FilterContent={<Filters setFilters={setFilters} filters={filters} />}
       />
       {/*  */}
-      <div>
+      {/* <div>
         <h1>collection header</h1>
         <h1>collection body</h1>
         <h1>collection pagination</h1>
-      </div>
+      </div> */}
     </div>
   );
 }
