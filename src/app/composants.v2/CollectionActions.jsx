@@ -8,6 +8,7 @@ import {
   MenuItem,
   Popover,
 } from "@material-ui/core";
+import { margins } from "./constants";
 
 export default function CollectionActions(props) {
   const { actions } = props;
@@ -45,7 +46,7 @@ export default function CollectionActions(props) {
           actions.map((item, id) => (
             <Button
               key={id}
-              style={{ ...item.style }}
+              style={{ ...item.style, marginRight: margins.default }}
               onClick={item.callback}
               content={item.label}
             >
