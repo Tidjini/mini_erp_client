@@ -3,6 +3,7 @@ import React from "react";
 import { Typography } from "@material-ui/core";
 
 import useBreakPoints from "app/hooks/useBreakPoints";
+import { margins } from "./constants";
 
 export default function Header(props) {
   const { icon, title } = props;
@@ -16,8 +17,6 @@ export default function Header(props) {
 
   React.useEffect(() => {
     function changeDisplaySize() {
-      switch (size) {
-      }
       switch (size) {
         case "xs":
         case "sm":
@@ -35,14 +34,20 @@ export default function Header(props) {
   }, [size]);
 
   return (
-    <div style={{ display: "flex", alignItems: "center", margin: 16 }}>
+    <div
+      style={{ display: "flex", alignItems: "center", margin: margins.default }}
+    >
       <img
         src={icon || "assets/images/logos/logo.svg"}
         style={{ ...iconSize }}
       />
 
       <Typography
-        style={{ fontSize: titleSize, marginLeft: 14, fontWeight: "600" }}
+        style={{
+          fontSize: titleSize,
+          marginLeft: margins.default,
+          fontWeight: "600",
+        }}
       >
         {title}
       </Typography>
