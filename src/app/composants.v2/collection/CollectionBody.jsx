@@ -44,11 +44,12 @@ function setRow(CustomRow, item, cells, eventHandlers, pk = "id") {
       {cells &&
         cells.map((cell) => (
           <StyledTableCell
+            key={cell.id}
             component={cell.component}
             scope={cell.scope}
             align={cell.align || "left"}
           >
-            {item[cell.name]}
+            {item[cell.id]}
           </StyledTableCell>
         ))}
     </StyledTableRow>

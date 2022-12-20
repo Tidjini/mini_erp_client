@@ -16,7 +16,7 @@ const cells = [
     scope: "row",
     ordering: true,
     label: "Caption",
-    id: "Caption",
+    id: "caption",
   },
   { label: "Intitule", id: "Label" },
   { label: "Description", id: "Description" },
