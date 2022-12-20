@@ -54,7 +54,8 @@ export default function CollectionFilters(props) {
         open={open}
         onClose={onClose}
         TransitionComponent={Transition}
-        maxWidth="md"
+        maxWidth="xs"
+        fullWidth
       >
         <DialogContent>{FilterContent}</DialogContent>
         <DialogActions>
