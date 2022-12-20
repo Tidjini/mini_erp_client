@@ -24,10 +24,10 @@ const cells = [
     scope: "row",
     style: { minWidth: 200 },
   },
-  { ordering: true, label: "Responsable", id: "creator" },
-  { ordering: true, label: "Affectation", id: "receiver" },
+  { ordering: true, label: "Responsable", id: "creator_name" },
+  { ordering: true, label: "Affectation", id: "receiver_name" },
   { ordering: true, label: "Statue", id: "statue_label" },
-  { ordering: true, label: "Created", id: "created_at" },
+  { ordering: true, label: "Created", id: "created" },
   { label: "Categorie", id: "closed" },
 ];
 
