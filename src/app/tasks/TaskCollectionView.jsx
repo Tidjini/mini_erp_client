@@ -9,6 +9,7 @@ import CollectionFilters from "app/composants.v2/collection/CollectionFilters";
 import Filters from "app/tasks/Filters";
 import Input from "app/composants.v2/Input";
 import CollectionTable from "app/composants.v2/collection/CollectionTable";
+import TaskRow from "./TaskRow";
 
 const cells = [
   {
@@ -91,7 +92,9 @@ export default function TaskCollectionView(props) {
           order={order}
           orderBy={orderBy}
           data={data.results}
-        />
+        >
+          {TaskRow}
+        </CollectionTable>
       </div>
       {/*  */}
       {/* <div>

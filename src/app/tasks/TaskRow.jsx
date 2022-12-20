@@ -18,22 +18,13 @@ const StyledTableCell = withStyles((theme) => ({
 }))(TableCell);
 
 export default function TaskRow(props) {
-  const { data } = props;
+  const { data: item } = props;
 
   return (
-    <StyledTableRow key={item[pk]} {...eventHandlers}>
-      {cells &&
-        cells.map((cell) => (
-          <StyledTableCell
-            key={cell.id}
-            component={cell.component}
-            scope={cell.scope}
-            align={cell.align || "left"}
-            style={{ ...cell.style }}
-          >
-            {"" + item[cell.id]}
-          </StyledTableCell>
-        ))}
+    <StyledTableRow key={item["id"]}>
+      <StyledTableCell key="item" align={"left"}>
+        {"" + item["id"]}
+      </StyledTableCell>
     </StyledTableRow>
   );
 }
