@@ -20,7 +20,7 @@ export default function useCollection(
   const [filters, setFilters] = React.useState(defaultFilters);
   const [page, setPage] = React.useState(1);
   const [ordering, setOrdering] = React.useState({});
-  const [selectedItem, setSelectedItem] = React.useState();
+  const [selectedItem, setSelectedItem] = React.useState(null);
 
   const addAction = new Action(
     "Ajouter",
@@ -55,7 +55,8 @@ export default function useCollection(
     apiService.initialize(name, pk);
   }, []);
 
-  React.useEffect(() => {
+  const getCollection = (page, filters, ordering) => {
+    setSelectedItem(null);
     apiService
       .getCollection(page, filters, ordering)
       .then((response) => {
@@ -63,6 +64,9 @@ export default function useCollection(
         setData(response);
       })
       .catch((exception) => {});
+  };
+  React.useEffect(() => {
+    getCollection(page, filters, ordering);
   }, [page, filters, ordering]);
 
   const handleEdit = React.useCallback(() => {
@@ -86,13 +90,7 @@ export default function useCollection(
   }, [selectedItem]);
 
   const handleRefresh = React.useCallback(() => {
-    apiService
-      .getCollection(page, filters, ordering)
-      .then((response) => {
-        setData(response);
-        console.log(response);
-      })
-      .catch((exception) => {});
+    getCollection(page, filters, ordering);
   }, [page, filters, ordering]);
 
   const handleSelection = (item) => {
@@ -111,5 +109,6 @@ export default function useCollection(
     addAction,
     editAction,
     deleteAction,
+    selectedItem,
   };
 }

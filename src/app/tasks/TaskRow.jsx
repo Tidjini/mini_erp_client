@@ -164,10 +164,22 @@ function Closed({ item }) {
 }
 
 export default function TaskRow(props) {
-  const { data: item, onClick } = props;
+  const { data: item, onClick, selectedItem } = props;
 
   return (
-    <StyledTableRow onClick={() => onClick(item)}>
+    <TableRow
+      onClick={() => onClick(item)}
+      style={{
+        cursor: "pointer",
+        "&:nth-of-type(odd)": {
+          backgroundColor: "#F5F4F5",
+        },
+        backgroundColor:
+          selectedItem && selectedItem.id === item.id
+            ? "#F5F4F5"
+            : "transparent",
+      }}
+    >
       <Caption item={item} />
       <TableCell align={"left"} style={{ minWidth: 100 }}>
         <Typography style={{ fontSize: 12, fontWeight: "700" }}>
@@ -196,6 +208,6 @@ export default function TaskRow(props) {
       <StatueComponent item={item} />
       <DateTime item={item} />
       <Closed item={item} />
-    </StyledTableRow>
+    </TableRow>
   );
 }

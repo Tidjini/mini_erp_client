@@ -52,6 +52,7 @@ export default function TaskCollectionView(props) {
     handleSelection: onSelect,
     filters,
     data,
+    selectedItem,
   } = tasks;
 
   const actions = [addAction, editAction, deleteAction];
@@ -94,6 +95,7 @@ export default function TaskCollectionView(props) {
           orderBy={orderBy}
           data={data.results}
           itemHandlers={{ onClick: onSelect }}
+          selectedItem={selectedItem}
         >
           {TaskRow}
         </CollectionTable>

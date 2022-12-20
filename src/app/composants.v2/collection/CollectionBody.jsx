@@ -22,17 +22,34 @@ const StyledTableCell = withStyles((theme) => ({
 }))(TableCell);
 
 export default function CollectionBody(props) {
-  const { data, cells, eventHandlers, children } = props;
+  const { data, cells, eventHandlers, children, selectedItem } = props;
   return (
     <TableBody>
-      {data && data.map((row) => setRow(children, row, cells, eventHandlers))}
+      {data &&
+        data.map((row) =>
+          setRow(children, row, cells, eventHandlers, selectedItem)
+        )}
     </TableBody>
   );
 }
 
-function setRow(CustomRow, item, cells, eventHandlers, pk = "id") {
+function setRow(
+  CustomRow,
+  item,
+  cells,
+  eventHandlers,
+  selectedItem,
+  pk = "id"
+) {
   if (Boolean(CustomRow))
-    return <CustomRow key={item[pk]} data={item} {...eventHandlers} />;
+    return (
+      <CustomRow
+        key={item[pk]}
+        data={item}
+        {...eventHandlers}
+        selectedItem={selectedItem}
+      />
+    );
   return (
     <StyledTableRow key={item[pk]} {...eventHandlers}>
       {cells &&
