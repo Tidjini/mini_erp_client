@@ -99,7 +99,6 @@ export default function useCollection(
     data,
     filters,
     setPage,
-    setFilters,
     setOrdering,
     setSelectedItem,
     handleFilter,

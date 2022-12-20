@@ -8,7 +8,6 @@ import { margins } from "app/composants.v2/constants";
 import CollectionFilters from "app/composants.v2/collection/CollectionFilters";
 import Filters from "app/tasks/Filters";
 import Input from "app/composants.v2/Input";
-import CustomizedTables from "./sample";
 import CollectionTable from "app/composants.v2/collection/CollectionTable";
 
 const cells = [
@@ -31,7 +30,13 @@ export default function TaskCollectionView(props) {
     },
   });
 
-  const { addAction, editAction, deleteAction, setFilters, filters } = tasks;
+  const {
+    addAction,
+    editAction,
+    deleteAction,
+    handleFilter: onFilter,
+    filters,
+  } = tasks;
 
   const actions = [addAction, editAction, deleteAction];
 
@@ -61,12 +66,17 @@ export default function TaskCollectionView(props) {
         <CollectionActions actions={actions} />
       </div>
       <CollectionFilters
-        setFilters={setFilters}
+        onFilter={onFilter}
         filters={filters}
-        FilterContent={<Filters setFilters={setFilters} filters={filters} />}
+        FilterContent={<Filters onFilter={onFilter} filters={filters} />}
       />
       <div style={{ marginTop: 10 }}>
-        <CollectionTable cells={cells} onSort={handleSorting} />
+        <CollectionTable
+          cells={cells}
+          onSort={handleSorting}
+          order={order}
+          orderBy={orderBy}
+        />
       </div>
       {/*  */}
       {/* <div>

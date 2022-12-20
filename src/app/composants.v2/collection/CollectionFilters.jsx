@@ -10,7 +10,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 export default function CollectionFilters(props) {
-  const { setFilters, filters, FilterContent } = props;
+  const { onFilter, filters, FilterContent } = props;
 
   const [open, setOpen] = React.useState(false);
 
@@ -32,12 +32,7 @@ export default function CollectionFilters(props) {
       <Input
         name="search"
         placeholder="Rechercher des task"
-        handleChange={(event) => {
-          setFilters({
-            ...filters,
-            search: event.target.value,
-          });
-        }}
+        handleChange={onFilter}
         value={filters.search}
       />
       <Button
