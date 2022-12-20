@@ -18,13 +18,13 @@ const cells = [
     label: "Caption",
     id: "caption",
   },
-  { label: "Intitule", id: "Label" },
-  { label: "Description", id: "Description" },
-  { ordering: true, label: "Responsable", id: "Responsable" },
-  { ordering: true, label: "Affectation", id: "Affectation" },
-  { ordering: true, label: "Statue", id: "Statue" },
-  { ordering: true, label: "Created", id: "Created" },
-  { label: "Categorie", id: "Categorie" },
+  { label: "Intitule", id: "label" },
+  { label: "Description", id: "description" },
+  { ordering: true, label: "Responsable", id: "creator" },
+  { ordering: true, label: "Affectation", id: "receiver" },
+  { ordering: true, label: "Statue", id: "statue" },
+  { ordering: true, label: "Created", id: "created_at" },
+  { label: "Categorie", id: "closed" },
 ];
 
 export default function TaskCollectionView(props) {
