@@ -154,7 +154,7 @@ function Closed({ item }) {
             ? item.statue === "c"
               ? "#E63946"
               : "#2A9D8F"
-            : "#E76F51",
+            : "#414962",
         }}
       >
         {item.closed ? (item.statue === "c" ? "cancel" : "done_all") : "cached"}
