@@ -24,7 +24,7 @@ export default function CollectionTable(props) {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper} style={{ maxHeight: 200 }}>
+    <TableContainer component={Paper} style={{ maxHeight: 900 }}>
       <Table
         className={classes.table}
         stickyHeader

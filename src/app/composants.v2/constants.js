@@ -11,4 +11,5 @@ export const backcolors = {
 
 export const forecolors = {
   default: "#2b2d42",
+  second: "#414962",
 };
