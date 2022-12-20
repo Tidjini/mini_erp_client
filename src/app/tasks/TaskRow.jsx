@@ -3,7 +3,7 @@ import React from "react";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import { withStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
+import { Icon, Typography } from "@material-ui/core";
 import { forecolors } from "app/composants.v2/constants";
 
 const StyledTableRow = withStyles((theme) => ({
@@ -145,6 +145,24 @@ function StatueComponent({ item }) {
   );
 }
 
+function Closed({ item }) {
+  return (
+    <TableCell align={"right"}>
+      <Icon
+        style={{
+          color: item.closed
+            ? item.statue === "c"
+              ? "#E63946"
+              : "#2A9D8F"
+            : "#E76F51",
+        }}
+      >
+        {item.closed ? (item.statue === "c" ? "cancel" : "done_all") : "cached"}
+      </Icon>
+    </TableCell>
+  );
+}
+
 export default function TaskRow(props) {
   const { data: item } = props;
 
@@ -177,6 +195,7 @@ export default function TaskRow(props) {
       </TableCell>
       <StatueComponent item={item} />
       <DateTime item={item} />
+      <Closed item={item} />
     </StyledTableRow>
   );
 }

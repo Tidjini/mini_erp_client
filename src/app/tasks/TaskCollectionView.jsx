@@ -29,7 +29,7 @@ const cells = [
   { ordering: true, label: "Affectation", id: "receiver_name" },
   { ordering: true, label: "Statue", id: "statue_label" },
   { ordering: true, label: "Created", id: "created" },
-  { label: "Categorie", id: "closed" },
+  { label: "Categorie", id: "closed", align: "right" },
 ];
 
 export default function TaskCollectionView(props) {
