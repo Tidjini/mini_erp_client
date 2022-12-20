@@ -11,7 +11,13 @@ import Input from "app/composants.v2/Input";
 import CollectionTable from "app/composants.v2/collection/CollectionTable";
 
 const cells = [
-  { ordering: true, label: "Caption", id: "Caption" },
+  {
+    component: "th",
+    scope: "row",
+    ordering: true,
+    label: "Caption",
+    id: "Caption",
+  },
   { label: "Intitule", id: "Label" },
   { label: "Description", id: "Description" },
   { ordering: true, label: "Responsable", id: "Responsable" },
