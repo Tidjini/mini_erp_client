@@ -14,9 +14,19 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function Caption({ item }) {
+function Caption({ item, selectedItem }) {
   return (
-    <TableCell align={"left"} style={{ width: 60 }}>
+    <TableCell align={"left"} style={{ display: "flex", alignItems: "center" }}>
+      {selectedItem && selectedItem.id === item.id && (
+        <Icon
+          style={{
+            color: "#2FB1A0",
+            marginRight: 14,
+          }}
+        >
+          check_circle
+        </Icon>
+      )}
       <div
         style={{
           display: "flex",
@@ -171,16 +181,13 @@ export default function TaskRow(props) {
       onClick={() => onClick(item)}
       style={{
         cursor: "pointer",
-        "&:nth-of-type(odd)": {
-          backgroundColor: "#F5F4F5",
-        },
         backgroundColor:
           selectedItem && selectedItem.id === item.id
-            ? "#F5F4F5"
+            ? "#2FB1A040"
             : "transparent",
       }}
     >
-      <Caption item={item} />
+      <Caption item={item} selectedItem={selectedItem} />
       <TableCell align={"left"} style={{ minWidth: 100 }}>
         <Typography style={{ fontSize: 12, fontWeight: "700" }}>
           {item.label}
