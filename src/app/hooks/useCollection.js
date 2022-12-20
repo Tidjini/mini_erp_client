@@ -29,7 +29,7 @@ export default function useCollection(
     { backgroundColor: backcolors.add }
   );
 
-  const editAction = new Action("Editer", () => editItem(), "edit", {
+  const editAction = new Action("Editer", () => handleEdit(), "edit", {
     backgroundColor: backcolors.edit,
   });
 
@@ -60,7 +60,7 @@ export default function useCollection(
   }, [page, filters, ordering]);
 
   const handleEdit = React.useCallback(() => {
-    console.log("on editItem callback", selectedItem);
+    console.log("on handleEdit callback", selectedItem);
   }, [selectedItem]);
 
   const handleDelete = React.useCallback(() => {

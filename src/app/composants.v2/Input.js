@@ -30,10 +30,10 @@ export default function Input(props) {
       <Grid
         item
         xs={xs || 12}
-        sm={sm || 6}
-        md={md || 4}
-        lg={lg || 3}
-        xl={xl || 2}
+        sm={sm || 12}
+        md={md || 12}
+        lg={lg || 12}
+        xl={xl || 12}
         style={{
           ...style,
         }}
