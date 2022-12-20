@@ -14,44 +14,74 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
+function Caption({ item }) {
+  return (
+    <TableCell align={"left"} style={{ width: 60 }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          width: 48,
+          height: 48,
+          borderRadius: 40,
+          borderWidth: 4,
+          borderColor: item.backcolor,
+        }}
+      >
+        <Typography
+          style={{
+            fontSize: 12,
+            fontWeight: "700",
+            color: item.forecolor,
+          }}
+        >
+          {item.caption}
+        </Typography>
+        <span
+          style={{
+            fontSize: 11,
+            fontWeight: "300",
+            color: item.forecolor,
+          }}
+        >
+          {item.id}
+        </span>
+      </div>
+    </TableCell>
+  );
+}
+
 export default function TaskRow(props) {
   const { data: item } = props;
 
   return (
     <StyledTableRow>
-      <TableCell align={"left"} style={{ width: 60 }}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            width: 56,
-            height: 56,
-            borderRadius: 40,
-            borderWidth: 4,
-            borderColor: item.backcolor,
-          }}
+      <Caption item={item} />
+      <TableCell align={"left"} style={{ minWidth: 100 }}>
+        <Typography style={{ fontSize: 12, fontWeight: "700" }}>
+          {item.label}
+        </Typography>
+      </TableCell>
+      <TableCell align={"left"} style={{ minWidth: 200 }}>
+        <Typography style={{ fontSize: 12, fontWeight: "600" }}>
+          {item.description}
+        </Typography>
+      </TableCell>
+      <TableCell align={"left"}>
+        <Typography
+          style={{ fontSize: 12, fontWeight: "700", color: "#414962" }}
         >
-          <Typography
-            style={{
-              fontSize: 14,
-              fontWeight: "700",
-              color: item.forecolor,
-            }}
-          >
-            {item.caption}
-          </Typography>
-          <span
-            style={{
-              fontSize: 11,
-              fontWeight: "300",
-              color: item.forecolor,
-            }}
-          >
-            {item.id}
-          </span>
-        </div>
+          {item.creator_name}
+        </Typography>
+      </TableCell>
+      <TableCell align={"left"}>
+        <Typography
+          style={{ fontSize: 12, fontWeight: "700", color: "#B61F1F" }}
+        >
+          {item.receiver_name}
+        </Typography>
       </TableCell>
     </StyledTableRow>
   );
