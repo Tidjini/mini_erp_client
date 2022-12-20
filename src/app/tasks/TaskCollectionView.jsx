@@ -11,11 +11,14 @@ import Input from "app/composants.v2/Input";
 import CollectionTable from "app/composants.v2/collection/CollectionTable";
 
 const cells = [
-  { ordering: true, label: "Dessert (100g serving)", id: 1 },
-  { ordering: true, label: "Calories", align: "right", id: 2 },
-  { label: "Fat&nbsp;(g)", align: "right", id: 3 },
-  { ordering: true, label: "Carbs&nbsp;(g)", align: "right", id: 4 },
-  { label: "Protein&nbsp;(g)", align: "right", id: 5 },
+  { ordering: true, label: "Caption", id: "Caption" },
+  { label: "Intitule", id: "Label" },
+  { label: "Description", id: "Description" },
+  { ordering: true, label: "Responsable", id: "Responsable" },
+  { ordering: true, label: "Affectation", id: "Affectation" },
+  { ordering: true, label: "Statue", id: "Statue" },
+  { ordering: true, label: "Created", id: "Created" },
+  { label: "Categorie", id: "Categorie" },
 ];
 
 export default function TaskCollectionView(props) {
