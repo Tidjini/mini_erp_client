@@ -41,7 +41,13 @@ export default function useCollection(
     if (event.target.value === "Non Définie" || event.target.value === "Tous") {
       event.target.value = null;
     }
-    if (!Boolean(event.target.value)) return;
+
+    if (!Boolean(event.target.value)) {
+      const filter = { ...filters };
+      delete filter[event.target.name];
+      setFilters({ ...filter });
+      return;
+    }
     setFilters({ ...filters, [event.target.name]: event.target.value });
   };
 
