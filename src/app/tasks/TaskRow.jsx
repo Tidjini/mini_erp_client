@@ -53,6 +53,64 @@ function Caption({ item }) {
   );
 }
 
+function StatueComponent({ item }) {
+  const { statue, statue_label } = item;
+
+  const [color, setColor] = React.useState("#414962");
+  const [backcolor, setBackcolor] = React.useState("#E7E9EF");
+
+  React.useEffect(() => {
+    switch (statue) {
+      case "a":
+        setColor("#FFB703");
+        setBackcolor("#FFE8AD");
+        break;
+      case "p":
+        setColor("#E76F51");
+        setBackcolor("#F5C4B7");
+        break;
+      case "t":
+        setColor("#2A9D8F");
+        setBackcolor("#AEEAE3");
+        break;
+      case "c":
+        setColor("#E63946");
+        setBackcolor("#F8C9CD");
+        break;
+
+      default:
+        setColor("#414962");
+        setBackcolor("#E7E9EF");
+        break;
+    }
+  }, [statue]);
+  return (
+    <TableCell align="center">
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 8,
+          backgroundColor: backcolor,
+          padding: "7px 20px",
+        }}
+      >
+        <Typography
+          style={{
+            fontSize: 14,
+            fontWeight: "600",
+            color: color,
+          }}
+        >
+          {statue_label}
+        </Typography>
+      </div>
+    </TableCell>
+  );
+}
+
 export default function TaskRow(props) {
   const { data: item } = props;
 
@@ -83,6 +141,7 @@ export default function TaskRow(props) {
           {item.receiver_name}
         </Typography>
       </TableCell>
+      <StatueComponent item={item} />
     </StyledTableRow>
   );
 }
