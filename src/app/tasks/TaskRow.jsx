@@ -53,34 +53,68 @@ function Caption({ item }) {
   );
 }
 
+function DateTime({ item }) {
+  const { created_date, created_time } = item;
+  return (
+    <TableCell align={"left"} style={{ width: 60 }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Typography
+          style={{
+            fontSize: 12,
+            fontWeight: "700",
+            color: forecolors.default,
+          }}
+        >
+          {created_date}
+        </Typography>
+        <span
+          style={{
+            fontSize: 11,
+            fontWeight: "300",
+            color: forecolors.second,
+          }}
+        >
+          {created_time}
+        </span>
+      </div>
+    </TableCell>
+  );
+}
 function StatueComponent({ item }) {
   const { statue, statue_label } = item;
 
   const [color, setColor] = React.useState("#414962");
-  const [backcolor, setBackcolor] = React.useState("#E7E9EF");
+  const [backcolor, setBackcolor] = React.useState("#41496220");
 
   React.useEffect(() => {
     switch (statue) {
       case "a":
         setColor("#FFB703");
-        setBackcolor("#FFE8AD");
+        setBackcolor("#FFB70320");
         break;
       case "p":
         setColor("#E76F51");
-        setBackcolor("#F5C4B7");
+        setBackcolor("#E76F5120");
         break;
       case "t":
         setColor("#2A9D8F");
-        setBackcolor("#AEEAE3");
+        setBackcolor("#2A9D8F20");
         break;
       case "c":
         setColor("#E63946");
-        setBackcolor("#F8C9CD");
+        setBackcolor("#E6394620");
         break;
 
       default:
         setColor("#414962");
-        setBackcolor("#E7E9EF");
+        setBackcolor("#41496220");
         break;
     }
   }, [statue]);
@@ -142,6 +176,7 @@ export default function TaskRow(props) {
         </Typography>
       </TableCell>
       <StatueComponent item={item} />
+      <DateTime item={item} />
     </StyledTableRow>
   );
 }
