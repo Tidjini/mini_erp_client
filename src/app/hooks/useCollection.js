@@ -33,11 +33,11 @@ export default function useCollection(
     backgroundColor: backcolors.edit,
   });
 
-  const deleteAction = new Action("Supprimer", () => deleteItem(), "delete", {
+  const deleteAction = new Action("Supprimer", () => handleDelete(), "delete", {
     backgroundColor: backcolors.delete,
   });
 
-  const onFilterChange = (event) => {
+  const handleFilter = (event) => {
     if (event.target.value === "Non Définie" || event.target.value === "Tous") {
       event.target.value = null;
     }
@@ -59,15 +59,19 @@ export default function useCollection(
       .catch((exception) => {});
   }, [page, filters, ordering]);
 
-  const deleteItem = React.useCallback(() => {
-    console.log("on deleteItem callback", selectedItem);
+  const handleEdit = React.useCallback(() => {
+    console.log("on editItem callback", selectedItem);
+  }, [selectedItem]);
+
+  const handleDelete = React.useCallback(() => {
+    console.log("on handleDelete callback", selectedItem);
     if (!Boolean(selectedItem)) return;
     const clean = data.filter(
       (value, index, arr) => selectedItem[pk] != value[pk]
     );
     setData(clean);
     apiService
-      .deleteItem(selectedItem)
+      .handleDelete(selectedItem)
       .then((response) => {
         setData(response);
         console.log(response);
@@ -75,11 +79,7 @@ export default function useCollection(
       .catch((exception) => {});
   }, [selectedItem]);
 
-  const editItem = React.useCallback(() => {
-    console.log("on editItem callback", selectedItem);
-  }, [selectedItem]);
-
-  const onRefresh = React.useCallback(() => {
+  const handleRefresh = React.useCallback(() => {
     apiService
       .getCollection(page, filters, ordering)
       .then((response) => {
@@ -91,16 +91,16 @@ export default function useCollection(
 
   return {
     data,
-    setPage,
     filters,
+    setPage,
     setFilters,
-    onFilterChange,
     setOrdering,
-    onRefresh,
-    deleteItem,
+    setSelectedItem,
+    handleFilter,
+    handleRefresh,
+    handleDelete,
     addAction,
     editAction,
     deleteAction,
-    setSelectedItem,
   };
 }
