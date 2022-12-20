@@ -1,16 +1,12 @@
 import React from "react";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
 import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
+import TablePagination from "@material-ui/core/TablePagination";
 import Paper from "@material-ui/core/Paper";
-import { forecolors } from "app/composants.v2/constants";
 import CollectionHeader from "app/composants.v2/collection/CollectionHeader";
 import CollectionBody from "./CollectionBody";
+import CollectionPagination from "./CollectionPagination";
 
 const useStyles = makeStyles({
   table: {
@@ -33,27 +29,30 @@ export default function CollectionTable(props) {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper} style={{ maxHeight: 900 }}>
-      <Table
-        className={classes.table}
-        stickyHeader
-        aria-label="customized table"
-      >
-        <CollectionHeader
-          cells={cells}
-          orderBy={orderBy}
-          order={order}
-          onSort={onSort}
-        />
-        <CollectionBody
-          cells={cells}
-          data={data}
-          eventHandlers={itemHandlers}
-          selectedItem={selectedItem}
+    <Paper>
+      <TableContainer style={{ maxHeight: 900 }}>
+        <Table
+          className={classes.table}
+          stickyHeader
+          aria-label="customized table"
         >
-          {children}
-        </CollectionBody>
-      </Table>
-    </TableContainer>
+          <CollectionHeader
+            cells={cells}
+            orderBy={orderBy}
+            order={order}
+            onSort={onSort}
+          />
+          <CollectionBody
+            cells={cells}
+            data={data}
+            eventHandlers={itemHandlers}
+            selectedItem={selectedItem}
+          >
+            {children}
+          </CollectionBody>
+          <CollectionPagination />
+        </Table>
+      </TableContainer>
+    </Paper>
   );
 }

@@ -11,6 +11,7 @@ class Action {
   }
 }
 
+//todo rememeber to use Page Response, And Response with simple Collection
 export default function useCollection(
   params = { name, pk: "id", filters: {} }
 ) {
