@@ -70,20 +70,33 @@ export default function useCollection(
   }, [page, filters, ordering]);
 
   const handleEdit = React.useCallback(() => {
-    console.log("on handleEdit callback", selectedItem);
+    if (selectedItem) {
+      console.log("on handleEdit callback with Selected item", selectedItem.id);
+      setSelectedItem(null);
+      return;
+    }
+
+    console.log("no item selected");
   }, [selectedItem]);
 
   const handleDelete = React.useCallback(() => {
     console.log("on handleDelete callback", selectedItem);
     if (!Boolean(selectedItem)) return;
-    const clean = data.filter(
+    const clean = data.results.filter(
       (value, index, arr) => selectedItem[pk] != value[pk]
     );
-    setData(clean);
+    console.log(clean);
+    setData({
+      count: 2,
+      next: null,
+      previous: null,
+      results: [...clean],
+    });
     apiService
-      .handleDelete(selectedItem)
+      .deleteItem(selectedItem)
       .then((response) => {
-        setData(response);
+        // setData(response);
+        setSelectedItem(null);
         console.log(response);
       })
       .catch((exception) => {});
@@ -106,6 +119,7 @@ export default function useCollection(
     handleFilter,
     handleRefresh,
     handleDelete,
+    handleEdit,
     addAction,
     editAction,
     deleteAction,

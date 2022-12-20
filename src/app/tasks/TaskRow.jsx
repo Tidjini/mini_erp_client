@@ -174,11 +174,12 @@ function Closed({ item }) {
 }
 
 export default function TaskRow(props) {
-  const { data: item, onClick, selectedItem } = props;
+  const { data: item, onClick, onDoubleClick, selectedItem } = props;
 
   return (
     <TableRow
       onClick={() => onClick(item)}
+      onDoubleClick={() => onDoubleClick()}
       style={{
         cursor: "pointer",
         backgroundColor:

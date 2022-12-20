@@ -50,6 +50,7 @@ export default function TaskCollectionView(props) {
     deleteAction,
     handleFilter: onFilter,
     handleSelection: onSelect,
+    handleEdit: onEdit,
     filters,
     data,
     selectedItem,
@@ -94,7 +95,7 @@ export default function TaskCollectionView(props) {
           order={order}
           orderBy={orderBy}
           data={data.results}
-          itemHandlers={{ onClick: onSelect }}
+          itemHandlers={{ onClick: onSelect, onDoubleClick: onEdit }}
           selectedItem={selectedItem}
         >
           {TaskRow}
