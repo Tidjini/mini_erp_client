@@ -95,12 +95,16 @@ export default function useCollection(
       .catch((exception) => {});
   }, [page, filters, ordering]);
 
+  const handleSelection = (item) => {
+    setSelectedItem(item);
+  };
+
   return {
     data,
     filters,
     setPage,
     setOrdering,
-    setSelectedItem,
+    handleSelection,
     handleFilter,
     handleRefresh,
     handleDelete,

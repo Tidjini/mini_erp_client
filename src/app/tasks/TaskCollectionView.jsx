@@ -28,7 +28,7 @@ const cells = [
   { ordering: true, label: "Responsable", id: "creator_name" },
   { ordering: true, label: "Affectation", id: "receiver_name" },
   { ordering: true, label: "Statue", id: "statue_label" },
-  { ordering: true, label: "Created", id: "created" },
+  { ordering: true, label: "Created", id: "created_date" },
   { label: "Categorie", id: "closed", align: "right" },
 ];
 
@@ -49,6 +49,7 @@ export default function TaskCollectionView(props) {
     editAction,
     deleteAction,
     handleFilter: onFilter,
+    handleSelection: onSelect,
     filters,
     data,
   } = tasks;
@@ -92,6 +93,7 @@ export default function TaskCollectionView(props) {
           order={order}
           orderBy={orderBy}
           data={data.results}
+          itemHandlers={{ onClick: onSelect }}
         >
           {TaskRow}
         </CollectionTable>

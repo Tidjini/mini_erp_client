@@ -164,10 +164,10 @@ function Closed({ item }) {
 }
 
 export default function TaskRow(props) {
-  const { data: item } = props;
+  const { data: item, onClick } = props;
 
   return (
-    <StyledTableRow>
+    <StyledTableRow onClick={() => onClick(item)}>
       <Caption item={item} />
       <TableCell align={"left"} style={{ minWidth: 100 }}>
         <Typography style={{ fontSize: 12, fontWeight: "700" }}>

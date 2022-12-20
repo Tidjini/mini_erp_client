@@ -31,7 +31,8 @@ export default function CollectionBody(props) {
 }
 
 function setRow(CustomRow, item, cells, eventHandlers, pk = "id") {
-  if (Boolean(CustomRow)) return <CustomRow key={item[pk]} data={item} />;
+  if (Boolean(CustomRow))
+    return <CustomRow key={item[pk]} data={item} {...eventHandlers} />;
   return (
     <StyledTableRow key={item[pk]} {...eventHandlers}>
       {cells &&
