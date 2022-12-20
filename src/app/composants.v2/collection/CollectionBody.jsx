@@ -28,11 +28,10 @@ const StyledTableCell = withStyles((theme) => ({
 }))(TableCell);
 
 export default function CollectionBody(props) {
-  const { children, cells, data, eventHandlers } = props;
+  const { data, cells, eventHandlers, children } = props;
   return (
     <TableBody>
-      {data &&
-        data.map((row) => setRow(children, row, cells, eventHandlers, "name"))}
+      {data && data.map((row) => setRow(children, row, cells, eventHandlers))}
     </TableBody>
   );
 }
@@ -48,8 +47,9 @@ function setRow(CustomRow, item, cells, eventHandlers, pk = "id") {
             component={cell.component}
             scope={cell.scope}
             align={cell.align || "left"}
+            style={{ ...cell.style }}
           >
-            {item[cell.id]}
+            {"" + item[cell.id]}
           </StyledTableCell>
         ))}
     </StyledTableRow>

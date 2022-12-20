@@ -12,17 +12,21 @@ import CollectionTable from "app/composants.v2/collection/CollectionTable";
 
 const cells = [
   {
-    component: "th",
-    scope: "row",
     ordering: true,
     label: "Caption",
     id: "caption",
   },
-  { label: "Intitule", id: "label" },
-  { label: "Description", id: "description" },
+  { label: "Intitule", id: "label", style: { minWidth: 100 } },
+  {
+    label: "Description",
+    id: "description",
+    component: "th",
+    scope: "row",
+    style: { minWidth: 200 },
+  },
   { ordering: true, label: "Responsable", id: "creator" },
   { ordering: true, label: "Affectation", id: "receiver" },
-  { ordering: true, label: "Statue", id: "statue" },
+  { ordering: true, label: "Statue", id: "statue_label" },
   { ordering: true, label: "Created", id: "created_at" },
   { label: "Categorie", id: "closed" },
 ];
@@ -45,6 +49,7 @@ export default function TaskCollectionView(props) {
     deleteAction,
     handleFilter: onFilter,
     filters,
+    data,
   } = tasks;
 
   const actions = [addAction, editAction, deleteAction];
@@ -85,6 +90,7 @@ export default function TaskCollectionView(props) {
           onSort={handleSorting}
           order={order}
           orderBy={orderBy}
+          data={data.results}
         />
       </div>
       {/*  */}

@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 });
 
 export default function CollectionTable(props) {
-  const { cells, orderBy, order, onSort } = props;
+  const { cells, orderBy, order, onSort, data } = props;
 
   const classes = useStyles();
 
@@ -36,7 +36,7 @@ export default function CollectionTable(props) {
           order={order}
           onSort={onSort}
         />
-        <CollectionBody />
+        <CollectionBody cells={cells} data={data} />
       </Table>
     </TableContainer>
   );
