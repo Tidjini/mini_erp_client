@@ -8,6 +8,16 @@ import { margins } from "app/composants.v2/constants";
 import CollectionFilters from "app/composants.v2/collection/CollectionFilters";
 import Filters from "app/tasks/Filters";
 import Input from "app/composants.v2/Input";
+import CustomizedTables from "./sample";
+import CollectionTable from "app/composants.v2/collection/CollectionTable";
+
+const cells = [
+  { ordering: true, label: "Dessert (100g serving)", id: 1 },
+  { ordering: true, label: "Calories", align: "right", id: 2 },
+  { label: "Fat&nbsp;(g)", align: "right", id: 3 },
+  { ordering: true, label: "Carbs&nbsp;(g)", align: "right", id: 4 },
+  { label: "Protein&nbsp;(g)", align: "right", id: 5 },
+];
 
 export default function TaskCollectionView(props) {
   const tasks = useCollection({
@@ -25,6 +35,20 @@ export default function TaskCollectionView(props) {
 
   const actions = [addAction, editAction, deleteAction];
 
+  const [orderBy, setOrderBy] = React.useState(null);
+  const [order, setOrder] = React.useState("asc");
+  const handleSorting = (id) => (event) => {
+    if (orderBy === id) {
+      const o = order === "asc" ? "desc" : "asc";
+      setOrder(o);
+    } else {
+      setOrderBy(id);
+      setOrder("asc");
+    }
+
+    //todo perform the real sorting from server
+  };
+
   return (
     <div style={{ margin: margins.default }}>
       <div
@@ -41,6 +65,9 @@ export default function TaskCollectionView(props) {
         filters={filters}
         FilterContent={<Filters setFilters={setFilters} filters={filters} />}
       />
+      <div style={{ marginTop: 10 }}>
+        <CollectionTable cells={cells} onSort={handleSorting} />
+      </div>
       {/*  */}
       {/* <div>
         <h1>collection header</h1>
