@@ -8,6 +8,7 @@ import InputSelector from "app/composants.v2/InputSelector";
 import { defaultItem, statues } from "./Config";
 import InputCollection from "app/composants.v2/InputCollection";
 import useLookupCollection from "app/hooks/useLookupCollection";
+import { Grid } from "@material-ui/core";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -57,14 +58,53 @@ export default function TaskView(props) {
         <Header title={title} goBack={goBack} />
         <CollectionActions actions={actions} />
       </div>
-      <div>
-        <Input
-          label="Intitule"
-          placeholder="Tâche Intitule"
-          name="label"
-          onChange={onFormChanged}
-          value={form.label}
-        />
+      <Grid container spacing={1} style={{ alignItems: "flex-start" }}>
+        <Grid item container spacing={1} xl={6} lg={6} md={6} sm={12} xs={12}>
+          <Input
+            label="Intitule"
+            placeholder="Tâche Intitule"
+            name="label"
+            onChange={onFormChanged}
+            value={form.label}
+          />
+          <InputCollection
+            label="Affecter A"
+            name="receiver"
+            value={form.receiver}
+            selected={selected}
+            options={data}
+            open={open}
+            onChange={onFormChanged}
+            onInputChange={onInputChange}
+            onSelect={(event, item) => {
+              onSelect(item);
+              //todo review this
+              event.target.name = "receiver";
+              event.target.value = item ? item.value : null;
+              onFormChanged(event);
+            }}
+            onOpen={onOpen}
+            onClose={onClose}
+            xl={6}
+            lg={6}
+            md={6}
+            sm={6}
+            xs={12}
+          />
+          <InputSelector
+            label="Statue"
+            name="statue"
+            value={form.statue}
+            options={statues}
+            onChange={onFormChanged}
+            xl={6}
+            lg={6}
+            md={6}
+            sm={6}
+            xs={12}
+          />
+        </Grid>
+
         <Input
           label="Description"
           placeholder="Description de cette tâche"
@@ -73,38 +113,13 @@ export default function TaskView(props) {
           value={form.description}
           style={{
             multiline: true,
-            rows: 5,
+            rows: 10,
           }}
+          xl={6}
+          lg={6}
+          md={6}
         />
-        <InputSelector
-          label="Statue"
-          name="statue"
-          value={form.statue}
-          options={statues}
-          onChange={onFormChanged}
-        />
-        <InputCollection
-          label="Affecter A"
-          name="receiver"
-          value={form.receiver}
-          selected={selected}
-          options={data}
-          open={open}
-          onChange={onFormChanged}
-          onInputChange={onInputChange}
-          onSelect={(event, item) => {
-            onSelect(item);
-            //todo review this
-            if (item) {
-              event.target.name = "receiver";
-              event.target.value = item.value;
-              onFormChanged(event);
-            }
-          }}
-          onOpen={onOpen}
-          onClose={onClose}
-        />
-      </div>
+      </Grid>
     </div>
   );
 }
