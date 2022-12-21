@@ -4,6 +4,7 @@ import CollectionActions from "app/composants.v2/collection/CollectionActions";
 import { margins } from "app/composants.v2/constants";
 import useView from "app/hooks/useView";
 import Input from "app/composants.v2/Input";
+import InputSelector from "app/composants.v2/InputSelector";
 
 const task = {
   id: 0,
@@ -25,6 +26,14 @@ const task = {
   creator: 1,
   receiver: 2,
 };
+
+const statues = [
+  { display: "Instance", value: "i" },
+  { display: "accepted", value: "a" },
+  { display: "in progress", value: "p" },
+  { display: "terminated", value: "t" },
+  { display: "canceled", value: "c" },
+];
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -74,6 +83,13 @@ export default function TaskView(props) {
             multiline: true,
             rows: 5,
           }}
+        />
+        <InputSelector
+          label="Statue"
+          name="statue"
+          value={form.statue}
+          options={statues}
+          onChange={onFormChanged}
         />
       </div>
     </div>

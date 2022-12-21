@@ -1,12 +1,14 @@
 import React from "react";
-import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import InputBase from "@material-ui/core/InputBase";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
+import Hidden from "@material-ui/core/Hidden";
+import Grid from "@material-ui/core/Grid";
 
 const BootstrapInput = withStyles((theme) => ({
   root: {
+    width: "100%",
     "label + &": {
       marginTop: theme.spacing(3),
     },
@@ -19,7 +21,6 @@ const BootstrapInput = withStyles((theme) => ({
     fontSize: 14,
     padding: "10px 26px 10px 12px",
     transition: theme.transitions.create(["border-color", "box-shadow"]),
-    // Use the system font instead of the default Roboto font.
     fontFamily: [
       "-apple-system",
       "BlinkMacSystemFont",
@@ -46,56 +47,52 @@ export default function InputSelector(props) {
     label,
     value,
     options,
-    handleChange,
-    horizontal,
-    width,
-    height,
+    onChange,
     style,
+    xs,
+    sm,
+    md,
+    lg,
+    xl,
+    smDown,
+    mdDown,
+    lgDown,
+    xlDown,
   } = props;
 
   return (
-    <FormControl
-      //   className={classes.margin}
-      style={{
-        display: "flex",
-        flexDirection: horizontal ? "row" : "column",
-        alignItems: horizontal ? "center" : "left",
-        borderRadius: "4px 4px 4px 4px",
-        width: width,
-        marginRight: "10px",
-        height: height,
-        margin: "5px 0",
-
-        ...style,
-      }}
-    >
-      {label && (
-        <Typography
-          style={{
-            fontWeight: "700",
-            textTransform: "uppercase",
-            marginRight: 5,
-          }}
-        >
-          {label}
-        </Typography>
-      )}
-      {/* <InputLabel htmlFor={name}>{label}</InputLabel> */}
-
-      <NativeSelect
-        id={name}
-        name={name}
-        value={value || ""}
-        onChange={handleChange}
-        input={<BootstrapInput />}
+    <Hidden smDown={smDown} mdDown={mdDown} lgDown={lgDown} xlDown={xlDown}>
+      <Grid
+        item
+        xs={xs || 12}
+        sm={sm || 12}
+        md={md || 12}
+        lg={lg || 12}
+        xl={xl || 12}
+        style={{
+          ...style,
+        }}
       >
-        {/*todo later <option aria-label="None" value="" /> */}
-        {options.map((option, index) => (
-          <option key={index} value={option.value}>
-            {option.display}
-          </option>
-        ))}
-      </NativeSelect>
-    </FormControl>
+        {label && (
+          <Typography style={{ fontWeight: "bold" }}>{label}</Typography>
+        )}
+
+        <NativeSelect
+          id={name}
+          name={name}
+          value={value}
+          onChange={onChange}
+          input={<BootstrapInput />}
+        >
+          {/*todo later <option aria-label="None" value="" /> */}
+          {options &&
+            options.map((option, index) => (
+              <option key={index} value={option.value}>
+                {option.display}
+              </option>
+            ))}
+        </NativeSelect>
+      </Grid>
+    </Hidden>
   );
 }
