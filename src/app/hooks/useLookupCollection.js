@@ -12,6 +12,7 @@ export default function useLookupCollection(
     value: "id",
     pageResponse: false,
     emptyValue,
+    defaultValue: 0,
   }
 ) {
   const {
@@ -22,6 +23,7 @@ export default function useLookupCollection(
     display,
     value,
     emptyValue,
+    defaultValue,
   } = params;
   const { filter, handleFilter } = useFilter(defaultFilter);
   const [data, setData] = React.useState([]);
@@ -32,6 +34,12 @@ export default function useLookupCollection(
   });
 
   const apiService = new ApiService();
+
+  const getDefault = (pk) => {
+    apiService.getItem(pk).then((response) => {
+      setSelected({ display: response[display], value: response[value] });
+    });
+  };
 
   const getCollection = (page, filter, ordering = {}) => {
     apiService
@@ -65,9 +73,10 @@ export default function useLookupCollection(
     function initialize() {
       apiService.initialize(name, pk);
       getCollection(1, filter);
+      if (defaultValue) getDefault(defaultValue);
     }
     initialize();
-  }, [filter]);
+  }, [filter, defaultValue]);
 
   const handleInputChange = React.useCallback((event, onChange) => {
     const search = event.target.value;
@@ -75,6 +84,7 @@ export default function useLookupCollection(
     // getCollection({ search: search }, 1);
 
     //handle basic changes in InputBase
+    // if (search) onChange(event, search);
     onChange(event, search);
   }, []);
 

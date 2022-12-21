@@ -44,6 +44,7 @@ export default function TaskView(props) {
       display: "Non Définie",
       value: null,
     },
+    defaultValue: form.receiver,
   });
   return (
     <div style={{ margin: margins.default }}>
@@ -94,9 +95,11 @@ export default function TaskView(props) {
           onSelect={(event, item) => {
             onSelect(item);
             //todo review this
-            event.target.name = "receiver";
-            event.target.value = item.value;
-            onFormChanged(event);
+            if (item) {
+              event.target.name = "receiver";
+              event.target.value = item.value;
+              onFormChanged(event);
+            }
           }}
           onOpen={onOpen}
           onClose={onClose}
