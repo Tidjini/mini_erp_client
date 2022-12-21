@@ -6,6 +6,7 @@ import useView from "app/hooks/useView";
 import Input from "app/composants.v2/Input";
 import InputSelector from "app/composants.v2/InputSelector";
 import { defaultItem, statues } from "./Config";
+import InputCollection from "app/composants.v2/InputCollection";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -26,6 +27,19 @@ export default function TaskView(props) {
 
   const actions = [saveAction, deleteAction];
 
+  const onInputChange = React.useCallback((event, onChange) => {
+    console.log("onInputChange", onChange);
+    const search = event.target.value;
+    // setLoading(true);
+    // getCollection({ search: search }, 1);
+
+    //handle basic changes in InputBase
+    onChange(event, search);
+  }, []);
+
+  const handleSelection = (value) => {
+    console.log("handle selection", value);
+  };
   return (
     <div style={{ margin: margins.default }}>
       <div
@@ -62,6 +76,15 @@ export default function TaskView(props) {
           value={form.statue}
           options={statues}
           onChange={onFormChanged}
+        />
+        <InputCollection
+          label="Statue"
+          name="statue"
+          value={form.statue}
+          options={statues}
+          onChange={onFormChanged}
+          onInputChange={onInputChange}
+          onSelect={handleSelection}
         />
       </div>
     </div>
