@@ -16,9 +16,6 @@ export default function TaskCollectionView(props) {
     pk: "id",
     filter: {
       type: "0",
-      closed: null,
-      statue: "",
-      created_at__date: null,
     },
     viewUrl: "/task",
   });

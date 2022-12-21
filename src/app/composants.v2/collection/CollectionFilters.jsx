@@ -32,7 +32,7 @@ export default function Collectionfilter(props) {
       <Input
         name="search"
         placeholder="Rechercher des task"
-        handleChange={onFilter}
+        onChange={onFilter}
         value={filter.search}
       />
       <Button

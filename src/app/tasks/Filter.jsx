@@ -7,6 +7,16 @@ export default function Filter(props) {
   const { filter, onFilter } = props;
 
   const statues = [{ display: "tous", value: "tous" }, ...defaultStatues];
+  const categories = [
+    { display: "Tous", value: "tous" },
+    { display: "Opened", value: "0" },
+    { display: "Closed", value: "1" },
+  ];
+  const types = [
+    { display: "Tous", value: "tous" },
+    { display: "Tâches Créées", value: "0" },
+    { display: "Tâches Affectées", value: "1" },
+  ];
 
   return (
     <div>
@@ -26,19 +36,21 @@ export default function Filter(props) {
         options={statues}
         onChange={onFilter}
       />
-      <Input
+
+      <InputSelector
         label="Type"
-        placeholder="type"
-        onChange={onFilter}
-        value={filter.type}
         name="type"
-      />
-      <Input
-        label="Fermer"
-        placeholder="Closed"
+        value={filter.type}
+        options={types}
         onChange={onFilter}
-        value={filter.closed}
+      />
+
+      <InputSelector
+        label="Catégorie"
         name="closed"
+        value={filter.closed}
+        options={categories}
+        onChange={onFilter}
       />
     </div>
   );

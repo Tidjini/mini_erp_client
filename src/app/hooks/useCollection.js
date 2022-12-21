@@ -10,7 +10,6 @@ export default function useCollection(params = { name, pk: "id", filter: {} }) {
   const { name, pk, filter: defaultfilter, viewUrl } = params;
 
   // const navigation = useHistory();
-
   const [data, setData] = React.useState([]);
   const [filter, setfilter] = React.useState(defaultfilter);
   const [page, setPage] = React.useState(1);
