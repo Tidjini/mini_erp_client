@@ -75,7 +75,7 @@ export default function useCollection(params = { name, pk: "id", filter: {} }) {
 
   const handleEdit = React.useCallback(() => {
     if (selectedItem) {
-      history.push(`${viewUrl}/${selectedItem.id}`);
+      history.push(`${viewUrl}/${selectedItem[pk]}`);
       setSelectedItem(null);
       return;
     }
