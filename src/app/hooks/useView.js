@@ -17,6 +17,10 @@ export default function useView(
     backgroundColor: backcolors.delete,
   });
 
+  const saveAction = new Action("Sauvgarder", () => handleSave(), "save", {
+    backgroundColor: backcolors.add,
+  });
+
   const handleGoBack = () => {
     history.goBack();
   };
@@ -65,7 +69,7 @@ export default function useView(
       });
   }, [form, history]);
 
-  const save = (form) => {
+  const handleSave = React.useCallback(() => {
     apiService
       .saveItem(form)
       .then((response) => {
@@ -73,14 +77,15 @@ export default function useView(
         //todo and return
       })
       .catch((exception) => {});
-  };
+  }, [form]);
   return {
     title,
     form,
     handleChange,
     handleGoBack,
     handleDelete,
-    save,
+    handleSave,
     deleteAction,
+    saveAction,
   };
 }

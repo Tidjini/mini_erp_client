@@ -10,6 +10,7 @@ export default function TaskView(props) {
   const {
     title,
     handleGoBack: goBack,
+    saveAction,
     deleteAction,
   } = useView({
     name: "tasks",
@@ -17,7 +18,7 @@ export default function TaskView(props) {
     primary: id,
   });
 
-  const actions = [deleteAction];
+  const actions = [saveAction, deleteAction];
 
   return (
     <div style={{ margin: margins.default }}>

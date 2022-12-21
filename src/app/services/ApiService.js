@@ -59,8 +59,10 @@ class ApiService extends FuseUtils.EventEmitter {
   buildSaveRequest = (item) => {
     let request = undefined;
     if (item[this.pk]) {
+      console.log(`${this.API_URL}/${this.collection}/${item[this.pk]}/`);
+
       request = axios.put(
-        `${this.API_URL}/${this.collection}/${item[this.primary]}/`,
+        `${this.API_URL}/${this.collection}/${item[this.pk]}/`,
         item
       );
     } else {
