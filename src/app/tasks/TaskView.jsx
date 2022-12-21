@@ -9,6 +9,7 @@ import { defaultItem, statues } from "./Config";
 import InputCollection from "app/composants.v2/InputCollection";
 import useLookupCollection from "app/hooks/useLookupCollection";
 import { Grid } from "@material-ui/core";
+import Action from "app/hooks/Action";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -26,8 +27,37 @@ export default function TaskView(props) {
     primary: id,
     data: defaultItem,
   });
-
-  const actions = [saveAction, deleteAction];
+  const accepteAction = new Action(
+    "Accepter",
+    () => {
+      console.log("On Accept Clicked");
+    },
+    "verified_user",
+    {
+      backgroundColor: "#FFB703",
+    }
+  );
+  const terminerAction = new Action(
+    "Terminer",
+    () => {
+      console.log("On Accept Clicked");
+    },
+    "done_all",
+    {
+      backgroundColor: "#52b69a",
+    }
+  );
+  const cancelAction = new Action(
+    "Annuler",
+    () => {
+      console.log("On Accept Clicked");
+    },
+    "cancel",
+    {
+      backgroundColor: "#E63946",
+    }
+  );
+  const actions = [saveAction, accepteAction, terminerAction, cancelAction];
   const {
     data,
     open,
@@ -56,9 +86,13 @@ export default function TaskView(props) {
         }}
       >
         <Header title={title} goBack={goBack} />
-        <CollectionActions actions={actions} />
+        {/* <CollectionActions actions={actions} /> */}
       </div>
-      <Grid container spacing={1} style={{ alignItems: "flex-start" }}>
+      <Grid
+        container
+        spacing={1}
+        style={{ alignItems: "flex-start", padding: 20 }}
+      >
         <Grid item container spacing={1} xl={6} lg={6} md={6} sm={12} xs={12}>
           <Input
             label="Intitule"
@@ -103,22 +137,31 @@ export default function TaskView(props) {
             sm={6}
             xs={12}
           />
+          <Input
+            label="Description"
+            placeholder="Description de cette tâche"
+            name="description"
+            onChange={onFormChanged}
+            value={form.description}
+            style={{
+              multiline: true,
+              rows: 10,
+            }}
+          />
+          <div
+            style={{
+              margin: "10px 2px",
+              padding: 20,
+              backgroundColor: "#415a7720",
+              width: "100%",
+              borderRadius: 10,
+              display: "flex",
+              flexDirection: "row-reverse",
+            }}
+          >
+            <CollectionActions actions={actions} />
+          </div>
         </Grid>
-
-        <Input
-          label="Description"
-          placeholder="Description de cette tâche"
-          name="description"
-          onChange={onFormChanged}
-          value={form.description}
-          style={{
-            multiline: true,
-            rows: 10,
-          }}
-          xl={6}
-          lg={6}
-          md={6}
-        />
       </Grid>
     </div>
   );

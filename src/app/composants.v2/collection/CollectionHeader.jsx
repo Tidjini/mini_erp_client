@@ -20,25 +20,6 @@ const StyledTableCell = withStyles((theme) => ({
 
 export default function CollectionHeader(props) {
   const { cells, orderBy, order, onSort } = props;
-  //   const cells = [
-  //     { ordering: true, label: "Dessert (100g serving)", id: 1 },
-  //     { ordering: true, label: "Calories", align: "right", id: 2 },
-  //     { label: "Fat&nbsp;(g)", align: "right", id: 3 },
-  //     { ordering: true, label: "Carbs&nbsp;(g)", align: "right", id: 4 },
-  //     { label: "Protein&nbsp;(g)", align: "right", id: 5 },
-  //   ];
-
-  //   const [orderBy, setOrderBy] = React.useState(null);
-  //   const [order, setOrder] = React.useState("asc");
-  //   const onSort = (id) => (event) => {
-  //     if (orderBy === id) {
-  //       const o = order === "asc" ? "desc" : "asc";
-  //       setOrder(o);
-  //     } else {
-  //       setOrderBy(id);
-  //       setOrder("asc");
-  //     }
-  //   };
 
   return (
     <TableHead>
