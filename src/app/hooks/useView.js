@@ -3,7 +3,7 @@ import { useForm } from "@fuse/hooks";
 import apiService from "app/services/ApiService";
 
 export default function useView(
-  params = { name, title, data: {}, primary: undefined, pk: "id" }
+  params = { name, title, data: {}, primary, pk: "id" }
 ) {
   const { name, title: defaultTitle, data: defaultData, primary, pk } = params;
 
@@ -12,29 +12,25 @@ export default function useView(
 
   React.useEffect(() => {
     function handleTitleChanges() {
-      if (!Boolean(primary)) {
+      if (!Boolean(primary) || primary === "nouveau") {
         setTitle(`Nouveau ${defaultTitle}`);
         return;
       }
-      if (primary === "nouveau") {
-        setTitle(`Nouveau ${defaultTitle}`);
-      } else {
-        setTitle(`Edition ${defaultTitle} (${primary})`);
-      }
+      setTitle(`Edition ${defaultTitle} (${primary})`);
     }
 
     function initialize() {
-      if (!Boolean(primary)) return;
       apiService.initialize(name, pk);
-      if (primary !== "nouveau") {
-        apiService
-          .getItem(primary)
-          .then((data) => {
-            setForm(data);
-            console.log(data);
-          })
-          .catch((exception) => {});
-      }
+
+      if (!Boolean(primary) || primary === "nouveau") return;
+
+      apiService
+        .getItem(primary)
+        .then((data) => {
+          setForm(data);
+          console.log(data);
+        })
+        .catch((exception) => {});
     }
 
     handleTitleChanges();
