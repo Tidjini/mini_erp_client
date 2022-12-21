@@ -25,6 +25,10 @@ export default function useLookupCollection(
     emptyValue,
     defaultValue,
   } = params;
+
+  const apiService = new ApiService();
+  apiService.initialize(name, pk);
+
   const { filter, handleFilter } = useFilter(defaultFilter);
   const [data, setData] = React.useState([]);
   const [open, setOpen] = React.useState(false);
@@ -32,8 +36,6 @@ export default function useLookupCollection(
     display: "Non Définie",
     value: null,
   });
-
-  const apiService = new ApiService();
 
   const getDefault = (pk) => {
     apiService.getItem(pk).then((response) => {
@@ -69,14 +71,14 @@ export default function useLookupCollection(
         /*TODO later*/
       });
   };
+
   React.useEffect(() => {
-    function initialize() {
-      apiService.initialize(name, pk);
-      getCollection(1, filter);
-      if (defaultValue) getDefault(defaultValue);
-    }
-    initialize();
-  }, [filter, defaultValue]);
+    getCollection(1, filter);
+  }, [filter]);
+
+  React.useEffect(() => {
+    if (defaultValue) getDefault(defaultValue);
+  }, [defaultValue]);
 
   const handleInputChange = React.useCallback((event, onChange) => {
     const search = event.target.value;
