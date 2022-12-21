@@ -1,10 +1,12 @@
 import Input from "app/composants.v2/Input";
 import InputSelector from "app/composants.v2/InputSelector";
 import React from "react";
-import { statues } from "./Config";
+import { statues as defaultStatues } from "./Config";
 
 export default function Filter(props) {
   const { filter, onFilter } = props;
+
+  const statues = [{ display: "tous", value: "tous" }, ...defaultStatues];
 
   return (
     <div>

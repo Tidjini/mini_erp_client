@@ -34,19 +34,26 @@ export default function useCollection(params = { name, pk: "id", filter: {} }) {
     backgroundColor: backcolors.delete,
   });
 
-  const handleFilter = (event) => {
-    if (event.target.value === "Non Définie" || event.target.value === "Tous") {
-      event.target.value = null;
-    }
+  const handleFilter = React.useCallback(
+    (event) => {
+      const { value } = event.target;
 
-    if (!Boolean(event.target.value)) {
-      const filter = { ...filter };
-      delete filter[event.target.name];
-      setfilter({ ...filter });
-      return;
-    }
-    setfilter({ ...filter, [event.target.name]: event.target.value });
-  };
+      if (
+        value === undefined ||
+        value === null ||
+        value.toLowerCase() === "non définie" ||
+        value.toLowerCase() === "tous"
+      ) {
+        const cleaned = { ...filter };
+        delete cleaned[event.target.name];
+        setfilter({ ...cleaned });
+        return;
+      }
+
+      setfilter({ ...filter, [event.target.name]: event.target.value });
+    },
+    [filter]
+  );
 
   React.useEffect(() => {
     apiService.initialize(name, pk);
