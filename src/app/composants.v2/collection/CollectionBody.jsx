@@ -4,8 +4,6 @@ import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import { withStyles } from "@material-ui/core/styles";
-//application
-import { forecolors } from "../constants";
 
 const StyledTableRow = withStyles((theme) => ({
   root: {
