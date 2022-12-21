@@ -7,7 +7,7 @@ export default function CollectionPagination(props) {
   return (
     <TableFooter>
       <TableRow>
-        <TablePagination
+        {/* <TablePagination
           rowsPerPageOptions={[50]}
           colSpan={3}
           count={10}
@@ -23,7 +23,7 @@ export default function CollectionPagination(props) {
           onRowsPerPageChange={(e) => {
             console.log("on Page onRowsPerPageChange ", e);
           }}
-        />
+        /> */}
       </TableRow>
     </TableFooter>
   );
