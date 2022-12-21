@@ -54,7 +54,6 @@ export default function useView(
         .getItem(primary)
         .then((data) => {
           setForm(data);
-          console.log(data);
         })
         .catch((exception) => {});
     }

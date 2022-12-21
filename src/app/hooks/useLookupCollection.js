@@ -38,12 +38,15 @@ export default function useLookupCollection(
   });
 
   const getDefault = (pk) => {
+    console.log("getDefault, called");
+
     apiService.getItem(pk).then((response) => {
       setSelected({ display: response[display], value: response[value] });
     });
   };
 
   const getCollection = (page, filter, ordering = {}) => {
+    console.log("getCollection, called");
     apiService
       .getCollection(page, filter, ordering)
       .then((response) => {
