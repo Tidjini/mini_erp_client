@@ -2,28 +2,16 @@ import React from "react";
 import Header from "app/composants.v2/Header";
 import CollectionActions from "app/composants.v2/collection/CollectionActions";
 import { margins } from "app/composants.v2/constants";
+import useView from "app/hooks/useView";
 
 export default function TaskView(props) {
-  const { params } = props.match;
+  const { id } = props.match.params;
 
-  const [title, setTitle] = React.useState("Nouvelle Tâche");
-
-  React.useEffect(() => {
-    function handleTitle() {
-      if (!Boolean(params)) {
-        setTitle("Nouvelle Tâche");
-        return;
-      }
-      const { id } = params;
-      if (id === "nouveau") {
-        setTitle("Nouvelle Tâche");
-      } else {
-        setTitle(`Edition Tâche (${id})`);
-      }
-    }
-
-    handleTitle();
-  }, [params]);
+  const { title } = useView({
+    name: "tasks",
+    title: "Tâche",
+    primary: id,
+  });
 
   return (
     <div style={{ margin: margins.default }}>
