@@ -1,6 +1,6 @@
 import React from "react";
 import useBreakPoints from "app/hooks/useBreakPoints";
-import Button from "./Button";
+import Button from "../Button";
 import {
   Icon,
   ListItemIcon,
@@ -8,7 +8,7 @@ import {
   MenuItem,
   Popover,
 } from "@material-ui/core";
-import { margins } from "./constants";
+import { margins } from "../constants";
 
 export default function CollectionActions(props) {
   const { actions } = props;

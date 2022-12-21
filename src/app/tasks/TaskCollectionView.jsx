@@ -1,13 +1,11 @@
 import React from "react";
 
 import Header from "app/composants.v2/Header";
-import CollectionActions from "app/composants.v2/CollectionActions";
-
+import CollectionActions from "app/composants.v2/collection/CollectionActions";
 import useCollection from "app/hooks/useCollection";
 import { margins } from "app/composants.v2/constants";
 import CollectionFilters from "app/composants.v2/collection/CollectionFilters";
 import Filters from "app/tasks/Filters";
-import Input from "app/composants.v2/Input";
 import CollectionTable from "app/composants.v2/collection/CollectionTable";
 import TaskRow from "./TaskRow";
 
