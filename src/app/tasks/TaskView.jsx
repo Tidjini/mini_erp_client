@@ -92,76 +92,79 @@ export default function TaskView(props) {
         container
         spacing={1}
         style={{ alignItems: "flex-start", padding: 20 }}
+        xl={6}
+        lg={6}
+        md={12}
+        sm={12}
+        xs={12}
       >
-        <Grid item container spacing={1} xl={6} lg={6} md={6} sm={12} xs={12}>
-          <Input
-            label="Intitule"
-            placeholder="Tâche Intitule"
-            name="label"
-            onChange={onFormChanged}
-            value={form.label}
-          />
-          <InputCollection
-            label="Affecter A"
-            name="receiver"
-            value={form.receiver}
-            selected={selected}
-            options={data}
-            open={open}
-            onChange={onFormChanged}
-            onInputChange={onInputChange}
-            onSelect={(event, item) => {
-              onSelect(item);
-              //todo review this
-              event.target.name = "receiver";
-              event.target.value = item ? item.value : null;
-              onFormChanged(event);
-            }}
-            onOpen={onOpen}
-            onClose={onClose}
-            xl={6}
-            lg={6}
-            md={6}
-            sm={6}
-            xs={12}
-          />
-          <InputSelector
-            label="Statue"
-            name="statue"
-            value={form.statue}
-            options={statues}
-            onChange={onFormChanged}
-            xl={6}
-            lg={6}
-            md={6}
-            sm={6}
-            xs={12}
-          />
-          <Input
-            label="Description"
-            placeholder="Description de cette tâche"
-            name="description"
-            onChange={onFormChanged}
-            value={form.description}
-            style={{
-              multiline: true,
-              rows: 10,
-            }}
-          />
-          <div
-            style={{
-              margin: "10px 2px",
-              padding: 20,
-              backgroundColor: "#415a7720",
-              width: "100%",
-              borderRadius: 10,
-              display: "flex",
-              flexDirection: "row-reverse",
-            }}
-          >
-            <CollectionActions actions={actions} />
-          </div>
-        </Grid>
+        <Input
+          label="Intitule"
+          placeholder="Tâche Intitule"
+          name="label"
+          onChange={onFormChanged}
+          value={form.label}
+        />
+        <InputCollection
+          label="Affecter A"
+          name="receiver"
+          value={form.receiver}
+          selected={selected}
+          options={data}
+          open={open}
+          onChange={onFormChanged}
+          onInputChange={onInputChange}
+          onSelect={(event, item) => {
+            onSelect(item);
+            //todo review this
+            event.target.name = "receiver";
+            event.target.value = item ? item.value : null;
+            onFormChanged(event);
+          }}
+          onOpen={onOpen}
+          onClose={onClose}
+          xl={6}
+          lg={6}
+          md={6}
+          sm={6}
+          xs={12}
+        />
+        <InputSelector
+          label="Statue"
+          name="statue"
+          value={form.statue}
+          options={statues}
+          onChange={onFormChanged}
+          xl={6}
+          lg={6}
+          md={6}
+          sm={6}
+          xs={12}
+        />
+        <Input
+          label="Description"
+          placeholder="Description de cette tâche"
+          name="description"
+          onChange={onFormChanged}
+          value={form.description}
+          style={{
+            multiline: true,
+            rows: 10,
+          }}
+        />
+        <div
+          style={{
+            margin: "10px 2px",
+            padding: "20px 5px",
+            backgroundColor: "#E7E9EF",
+            width: "100%",
+            borderRadius: 10,
+            display: "flex",
+            flexDirection: "row-reverse",
+          }}
+        >
+          <CollectionActions actions={actions} />
+        </div>
       </Grid>
     </div>
   );

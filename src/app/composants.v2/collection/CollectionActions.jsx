@@ -64,7 +64,7 @@ export default function CollectionActions(props) {
           style={{ backgroundColor: "#4a4e69" }}
           onClick={onActionsClicked}
         >
-          Edition
+          Actions
         </Button>
         <Popover
           open={Boolean(actionMenu)}
