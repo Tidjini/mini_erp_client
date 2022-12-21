@@ -61,11 +61,11 @@ export default function useView(
       .deleteItem(form)
       .then((response) => {
         handleGoBack();
-        setForm(null);
+        setForm(defaultData);
       })
       .catch((exception) => {
         handleGoBack();
-        setForm(null);
+        setForm(defaultData);
       });
   }, [form, history]);
 
@@ -74,11 +74,11 @@ export default function useView(
       .saveItem(form)
       .then((response) => {
         handleGoBack();
-        setForm(null);
+        setForm(defaultData);
       })
       .catch((exception) => {
         handleGoBack();
-        setForm(null);
+        setForm(defaultData);
       });
   }, [form]);
   return {

@@ -8,7 +8,7 @@ export default function Input(props) {
     placeholder,
     type,
     format,
-    handleChange,
+    onChange,
     value,
     name,
     onEnterPressed,
@@ -80,7 +80,7 @@ export default function Input(props) {
               type === "number" && event.target.select();
             }}
             onChange={(e) => {
-              handleChange(e);
+              onChange(e);
             }}
             value={value || ""}
             autoFocus={style && style.autoFocus}

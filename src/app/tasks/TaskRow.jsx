@@ -97,7 +97,7 @@ function DateTime({ item }) {
     </TableCell>
   );
 }
-function StatueComponent({ item }) {
+function StatueComponent({ item, selectedItem }) {
   const { statue, statue_label } = item;
 
   const [color, setColor] = React.useState("#414962");
@@ -130,26 +130,38 @@ function StatueComponent({ item }) {
   }, [statue]);
   return (
     <TableCell align="center">
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: 8,
-          backgroundColor: backcolor,
-          padding: "7px 20px",
-        }}
-      >
-        <Typography
+      <div style={{ display: "flex", alignItems: "center" }}>
+        {selectedItem && selectedItem.id === item.id && (
+          <Icon
+            style={{
+              color: "#2FB1A0",
+              marginRight: 14,
+            }}
+          >
+            check_circle
+          </Icon>
+        )}
+        <div
           style={{
-            fontSize: 14,
-            fontWeight: "600",
-            color: color,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 8,
+            backgroundColor: backcolor,
+            padding: "7px 20px",
           }}
         >
-          {statue_label}
-        </Typography>
+          <Typography
+            style={{
+              fontSize: 14,
+              fontWeight: "600",
+              color: color,
+            }}
+          >
+            {statue_label}
+          </Typography>
+        </div>
       </div>
     </TableCell>
   );
@@ -188,7 +200,7 @@ export default function TaskRow(props) {
             : "transparent",
       }}
     >
-      <Caption item={item} selectedItem={selectedItem} />
+      <StatueComponent item={item} selectedItem={selectedItem} />
       <TableCell align={"left"} style={{ minWidth: 100 }}>
         <Typography style={{ fontSize: 12, fontWeight: "700" }}>
           {item.label}
@@ -213,7 +225,7 @@ export default function TaskRow(props) {
           {item.receiver_name}
         </Typography>
       </TableCell>
-      <StatueComponent item={item} />
+      {/* <StatueComponent item={item} /> */}
       <DateTime item={item} />
       <Closed item={item} />
     </TableRow>

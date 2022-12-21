@@ -10,11 +10,6 @@ import CollectionTable from "app/composants.v2/collection/CollectionTable";
 import TaskRow from "./TaskRow";
 
 const cells = [
-  {
-    ordering: true,
-    label: "Caption",
-    id: "caption",
-  },
   { label: "Intitule", id: "label", style: { minWidth: 100 } },
   {
     label: "Description",
