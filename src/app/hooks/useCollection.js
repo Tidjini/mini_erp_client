@@ -3,14 +3,7 @@ import history from "@history";
 
 import apiService from "app/services/ApiService";
 import { backcolors } from "app/composants.v2/constants";
-class Action {
-  constructor(label, callback, icon, style) {
-    this.label = label;
-    this.callback = callback;
-    this.icon = icon;
-    this.style = style;
-  }
-}
+import Action from "./Action";
 
 //todo rememeber to use Page Response, And Response with simple Collection
 export default function useCollection(params = { name, pk: "id", filter: {} }) {

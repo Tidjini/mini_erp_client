@@ -3,6 +3,7 @@ import history from "@history";
 
 import { useForm } from "@fuse/hooks";
 import apiService from "app/services/ApiService";
+import Action from "./Action";
 
 export default function useView(
   params = { name, title, data: {}, primary, pk: "id" }
