@@ -40,6 +40,7 @@ export default function TaskCollectionView(props) {
       statue: null,
       created_at__date: null,
     },
+    viewUrl: "/task",
   });
 
   const {

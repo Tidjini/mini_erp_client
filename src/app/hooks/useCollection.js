@@ -27,7 +27,7 @@ export default function useCollection(params = { name, pk: "id", filter: {} }) {
   const addAction = new Action(
     "Ajouter",
     () => {
-      history.push(viewUrl);
+      history.push(`${viewUrl}/nouveau`);
     },
     "add",
     { backgroundColor: backcolors.add }
@@ -75,7 +75,7 @@ export default function useCollection(params = { name, pk: "id", filter: {} }) {
 
   const handleEdit = React.useCallback(() => {
     if (selectedItem) {
-      console.log("on handleEdit callback with Selected item", selectedItem.id);
+      history.push(`${viewUrl}/${selectedItem.id}`);
       setSelectedItem(null);
       return;
     }
