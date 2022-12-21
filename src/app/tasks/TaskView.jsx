@@ -20,6 +20,7 @@ export default function TaskView(props) {
     deleteAction,
     form,
     handleChange: onFormChanged,
+    handleFormChanged: onInFormChanged,
     handleGoBack: goBack,
   } = useView({
     name: "tasks",
@@ -89,6 +90,7 @@ export default function TaskView(props) {
         {/* <CollectionActions actions={actions} /> */}
       </div>
       <Grid
+        item
         container
         spacing={1}
         style={{ alignItems: "flex-start", padding: 20 }}
@@ -116,10 +118,7 @@ export default function TaskView(props) {
           onInputChange={onInputChange}
           onSelect={(event, item) => {
             onSelect(item);
-            //todo review this
-            event.target.name = "receiver";
-            event.target.value = item ? item.value : null;
-            onFormChanged(event);
+            onInFormChanged("receiver", item ? item.value : null);
           }}
           onOpen={onOpen}
           onClose={onClose}

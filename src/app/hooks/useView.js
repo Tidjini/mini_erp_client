@@ -5,6 +5,7 @@ import { useForm } from "@fuse/hooks";
 import apiService from "app/services/ApiService";
 import Action from "./Action";
 import { backcolors } from "app/composants.v2/constants";
+import { filter } from "lodash";
 
 export default function useView(
   params = { name, title, data: {}, primary, pk: "id" }
@@ -24,6 +25,16 @@ export default function useView(
   const handleGoBack = () => {
     history.goBack();
   };
+
+  const handleFormChanged = React.useCallback(
+    (field, value) => {
+      if (value === undefined) value = null;
+      const newForm = { ...form };
+      newForm[field] = value;
+      setForm({ ...newForm });
+    },
+    [form]
+  );
 
   React.useEffect(() => {
     function handleTitleChanges() {
@@ -88,6 +99,7 @@ export default function useView(
     handleGoBack,
     handleDelete,
     handleSave,
+    handleFormChanged,
     deleteAction,
     saveAction,
   };
