@@ -110,8 +110,8 @@ export default function InputCollection(props) {
       matchFrom: "contains",
       stringify: (option) => `${option.value} ${option.display}`,
     }),
-    onOpen: onOpen,
-    onClose: onClose,
+    onOpen: onOpen && onOpen,
+    onClose: onClose && onClose,
     open: open,
     value: selected,
     disablePortal: true,
@@ -187,7 +187,9 @@ export default function InputCollection(props) {
                 <ArrowDropDownIcon
                   color="inherit"
                   size={14}
-                  onClick={(e) => (open ? onClose() : onOpen())}
+                  onClick={(e) => {
+                    if (onOpen && onClose) return open ? onClose() : onOpen();
+                  }}
                 />
               )}
             </div>

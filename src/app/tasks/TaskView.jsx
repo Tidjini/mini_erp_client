@@ -7,6 +7,7 @@ import Input from "app/composants.v2/Input";
 import InputSelector from "app/composants.v2/InputSelector";
 import { defaultItem, statues } from "./Config";
 import InputCollection from "app/composants.v2/InputCollection";
+import useLookupCollection from "app/hooks/useLookupCollection";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -26,20 +27,17 @@ export default function TaskView(props) {
   });
 
   const actions = [saveAction, deleteAction];
-
-  const onInputChange = React.useCallback((event, onChange) => {
-    console.log("onInputChange", onChange);
-    const search = event.target.value;
-    // setLoading(true);
-    // getCollection({ search: search }, 1);
-
-    //handle basic changes in InputBase
-    onChange(event, search);
-  }, []);
-
-  const handleSelection = (value) => {
-    console.log("handle selection", value);
-  };
+  const {
+    data,
+    handleInputChange: onInputChange,
+    handleSelection,
+    open,
+    handleOpen: onOpen,
+    handleClose: onClose,
+  } = useLookupCollection({
+    name: "profiles",
+    filter: {},
+  });
   return (
     <div style={{ margin: margins.default }}>
       <div
@@ -85,6 +83,9 @@ export default function TaskView(props) {
           onChange={onFormChanged}
           onInputChange={onInputChange}
           onSelect={handleSelection}
+          onOpen={onOpen}
+          onClose={onClose}
+          open={open}
         />
       </div>
     </div>

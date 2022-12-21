@@ -1,15 +1,15 @@
 import React from "react";
 
 import apiService from "app/services/ApiService";
-import { da } from "date-fns/locale";
 import useFilter from "./useFilter";
 
 export default function useLookupCollection(
   params = { name, filter, pk: "id", pageResponse: false }
 ) {
   const { name, filter: defaultFilter, pk, pageResponse } = params;
-  const [data, setData] = React.useState([]);
   const { filter, handleFilter } = useFilter(defaultFilter);
+  const [data, setData] = React.useState([]);
+  const [open, setOpen] = React.useState(false);
 
   const getCollection = (page, filter, ordering = {}) => {
     apiService
@@ -35,5 +35,33 @@ export default function useLookupCollection(
     initialize();
   }, [filter]);
 
-  return { filter, data, handleFilter };
+  const handleInputChange = React.useCallback((event, onChange) => {
+    const search = event.target.value;
+    // setLoading(true);
+    // getCollection({ search: search }, 1);
+
+    //handle basic changes in InputBase
+    onChange(event, search);
+  }, []);
+
+  const handleSelection = (value) => {
+    console.log("handle selection", value);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  return {
+    filter,
+    data,
+    open,
+    handleFilter,
+    handleInputChange,
+    handleSelection,
+    handleOpen,
+    handleClose,
+  };
 }
