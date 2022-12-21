@@ -11,7 +11,7 @@ export default function useView(
   const [title, setTitle] = React.useState(defaultTitle);
 
   React.useEffect(() => {
-    function handleTitle() {
+    function handleTitleChanges() {
       if (!Boolean(primary)) {
         setTitle(`Nouveau ${defaultTitle}`);
         return;
@@ -37,7 +37,7 @@ export default function useView(
       }
     }
 
-    handleTitle();
+    handleTitleChanges();
     initialize();
   }, []);
 
