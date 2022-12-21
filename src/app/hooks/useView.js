@@ -73,10 +73,13 @@ export default function useView(
     apiService
       .saveItem(form)
       .then((response) => {
-        //todo display delete notification
-        //todo and return
+        handleGoBack();
+        setForm(null);
       })
-      .catch((exception) => {});
+      .catch((exception) => {
+        handleGoBack();
+        setForm(null);
+      });
   }, [form]);
   return {
     title,
