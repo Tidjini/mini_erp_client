@@ -7,7 +7,7 @@ import useView from "app/hooks/useView";
 export default function TaskView(props) {
   const { id } = props.match.params;
 
-  const { title } = useView({
+  const { title, handleGoBack: goBack } = useView({
     name: "tasks",
     title: "Tâche",
     primary: id,
@@ -21,7 +21,7 @@ export default function TaskView(props) {
           justifyContent: "space-between",
         }}
       >
-        <Header title={title} />
+        <Header title={title} goBack={goBack} />
         <CollectionActions actions={[]} />
       </div>
     </div>

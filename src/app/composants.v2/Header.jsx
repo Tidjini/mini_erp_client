@@ -1,12 +1,14 @@
 import React from "react";
 
-import { Typography } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import Icon from "@material-ui/core/Icon";
 
 import useBreakPoints from "app/hooks/useBreakPoints";
 import { margins } from "./constants";
 
 export default function Header(props) {
-  const { icon, title } = props;
+  const { icon, title, goBack } = props;
   const size = useBreakPoints();
 
   const [iconSize, setIconSize] = React.useState({
@@ -35,6 +37,12 @@ export default function Header(props) {
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
+      {goBack && (
+        <IconButton onClick={goBack}>
+          <Icon>arrow_back</Icon>
+        </IconButton>
+      )}
+
       <img
         src={icon || "assets/images/logos/logo.svg"}
         style={{ ...iconSize }}

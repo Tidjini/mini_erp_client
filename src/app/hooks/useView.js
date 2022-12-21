@@ -1,4 +1,6 @@
 import React from "react";
+import history from "@history";
+
 import { useForm } from "@fuse/hooks";
 import apiService from "app/services/ApiService";
 
@@ -9,6 +11,10 @@ export default function useView(
 
   const { form, handleChange, setForm } = useForm(defaultData);
   const [title, setTitle] = React.useState(defaultTitle);
+
+  const handleGoBack = () => {
+    history.goBack();
+  };
 
   React.useEffect(() => {
     function handleTitleChanges() {
@@ -56,5 +62,5 @@ export default function useView(
       })
       .catch((exception) => {});
   };
-  return { title, form, handleChange, setForm, save, deleteItem };
+  return { title, form, handleChange, handleGoBack, setForm, save, deleteItem };
 }
