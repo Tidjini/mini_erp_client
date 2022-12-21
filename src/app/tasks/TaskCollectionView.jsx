@@ -5,7 +5,7 @@ import CollectionActions from "app/composants.v2/collection/CollectionActions";
 import useCollection from "app/hooks/useCollection";
 import { margins } from "app/composants.v2/constants";
 import CollectionFilters from "app/composants.v2/collection/CollectionFilters";
-import Filters from "app/tasks/Filters";
+import Filter from "app/tasks/Filter";
 import CollectionTable from "app/composants.v2/collection/CollectionTable";
 import TaskRow from "./TaskRow";
 
@@ -34,7 +34,7 @@ export default function TaskCollectionView(props) {
   const tasks = useCollection({
     name: "tasks",
     pk: "id",
-    filters: {
+    filter: {
       type: "0",
       closed: null,
       statue: null,
@@ -49,7 +49,7 @@ export default function TaskCollectionView(props) {
     handleFilter: onFilter,
     handleSelection: onSelect,
     handleEdit: onEdit,
-    filters,
+    filter,
     data,
     selectedItem,
   } = tasks;
@@ -83,8 +83,8 @@ export default function TaskCollectionView(props) {
       </div>
       <CollectionFilters
         onFilter={onFilter}
-        filters={filters}
-        FilterContent={<Filters onFilter={onFilter} filters={filters} />}
+        filter={filter}
+        FilterContent={<Filter onFilter={onFilter} filter={filter} />}
       />
       <CollectionTable
         cells={cells}

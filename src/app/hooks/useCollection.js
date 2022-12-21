@@ -12,13 +12,11 @@ class Action {
 }
 
 //todo rememeber to use Page Response, And Response with simple Collection
-export default function useCollection(
-  params = { name, pk: "id", filters: {} }
-) {
-  const { name, pk, filters: defaultFilters } = params;
+export default function useCollection(params = { name, pk: "id", filter: {} }) {
+  const { name, pk, filter: defaultfilter } = params;
 
   const [data, setData] = React.useState([]);
-  const [filters, setFilters] = React.useState(defaultFilters);
+  const [filter, setfilter] = React.useState(defaultfilter);
   const [page, setPage] = React.useState(1);
   const [ordering, setOrdering] = React.useState({});
   const [selectedItem, setSelectedItem] = React.useState(null);
@@ -44,22 +42,22 @@ export default function useCollection(
     }
 
     if (!Boolean(event.target.value)) {
-      const filter = { ...filters };
+      const filter = { ...filter };
       delete filter[event.target.name];
-      setFilters({ ...filter });
+      setfilter({ ...filter });
       return;
     }
-    setFilters({ ...filters, [event.target.name]: event.target.value });
+    setfilter({ ...filter, [event.target.name]: event.target.value });
   };
 
   React.useEffect(() => {
     apiService.initialize(name, pk);
   }, []);
 
-  const getCollection = (page, filters, ordering) => {
+  const getCollection = (page, filter, ordering) => {
     setSelectedItem(null);
     apiService
-      .getCollection(page, filters, ordering)
+      .getCollection(page, filter, ordering)
       .then((response) => {
         console.log(response);
         setData(response);
@@ -67,8 +65,8 @@ export default function useCollection(
       .catch((exception) => {});
   };
   React.useEffect(() => {
-    getCollection(page, filters, ordering);
-  }, [page, filters, ordering]);
+    getCollection(page, filter, ordering);
+  }, [page, filter, ordering]);
 
   const handleEdit = React.useCallback(() => {
     if (selectedItem) {
@@ -104,8 +102,8 @@ export default function useCollection(
   }, [selectedItem]);
 
   const handleRefresh = React.useCallback(() => {
-    getCollection(page, filters, ordering);
-  }, [page, filters, ordering]);
+    getCollection(page, filter, ordering);
+  }, [page, filter, ordering]);
 
   const handleSelection = (item) => {
     setSelectedItem(item);
@@ -113,7 +111,7 @@ export default function useCollection(
 
   return {
     data,
-    filters,
+    filter,
     setPage,
     setOrdering,
     handleSelection,

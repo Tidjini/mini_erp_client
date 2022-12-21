@@ -9,8 +9,8 @@ import { margins, backcolors, forecolors } from "app/composants.v2/constants";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-export default function CollectionFilters(props) {
-  const { onFilter, filters, FilterContent } = props;
+export default function Collectionfilter(props) {
+  const { onFilter, filter, FilterContent } = props;
 
   const [open, setOpen] = React.useState(false);
 
@@ -33,7 +33,7 @@ export default function CollectionFilters(props) {
         name="search"
         placeholder="Rechercher des task"
         handleChange={onFilter}
-        value={filters.search}
+        value={filter.search}
       />
       <Button
         style={{
@@ -59,7 +59,7 @@ export default function CollectionFilters(props) {
               background: backcolors.add,
             }}
             onClick={(event) => {
-              console.log("Apply Filters");
+              console.log("Apply filter");
               onClose();
             }}
           >
