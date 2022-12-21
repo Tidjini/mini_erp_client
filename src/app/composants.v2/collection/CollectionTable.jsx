@@ -24,12 +24,13 @@ export default function CollectionTable(props) {
     children,
     itemHandlers,
     selectedItem,
+    style,
   } = props;
 
   const classes = useStyles();
 
   return (
-    <Paper>
+    <Paper style={{ ...style }}>
       <TableContainer style={{ maxHeight: 900 }}>
         <Table
           className={classes.table}

@@ -88,23 +88,18 @@ export default function TaskCollectionView(props) {
         filters={filters}
         FilterContent={<Filters onFilter={onFilter} filters={filters} />}
       />
-      <div style={{ marginTop: 10 }}>
-        <CollectionTable
-          cells={cells}
-          onSort={handleSorting}
-          order={order}
-          orderBy={orderBy}
-          data={data.results}
-          itemHandlers={{ onClick: onSelect, onDoubleClick: onEdit }}
-          selectedItem={selectedItem}
-        >
-          {TaskRow}
-        </CollectionTable>
-      </div>
-      {/*  */}
-      {/* <div>
-        <h1>collection pagination</h1>
-      </div> */}
+      <CollectionTable
+        cells={cells}
+        onSort={handleSorting}
+        order={order}
+        orderBy={orderBy}
+        data={data.results}
+        itemHandlers={{ onClick: onSelect, onDoubleClick: onEdit }}
+        selectedItem={selectedItem}
+        style={{ marginTop: 10 }}
+      >
+        {TaskRow}
+      </CollectionTable>
     </div>
   );
 }
