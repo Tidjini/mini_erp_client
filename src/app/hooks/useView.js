@@ -4,14 +4,18 @@ import history from "@history";
 import { useForm } from "@fuse/hooks";
 import apiService from "app/services/ApiService";
 import Action from "./Action";
+import { backcolors } from "app/composants.v2/constants";
 
 export default function useView(
   params = { name, title, data: {}, primary, pk: "id" }
 ) {
   const { name, title: defaultTitle, data: defaultData, primary, pk } = params;
-
   const { form, handleChange, setForm } = useForm(defaultData);
   const [title, setTitle] = React.useState(defaultTitle);
+
+  const deleteAction = new Action("Supprimer", () => handleDelete(), "delete", {
+    backgroundColor: backcolors.delete,
+  });
 
   const handleGoBack = () => {
     history.goBack();
@@ -44,24 +48,39 @@ export default function useView(
     initialize();
   }, []);
 
-  const deleteItem = (item) => {
-    apiService
-      .deleteItem(item)
-      .then((response) => {
-        //todo display delete notification
-        //todo and return
-      })
-      .catch((exception) => {});
-  };
+  const handleDelete = React.useCallback(() => {
+    console.log("on handleDelete callback", form);
+    if (!Boolean(form)) return;
 
-  const save = (item) => {
+    //todo clean collection localy if you want
     apiService
-      .saveItem(item)
+      .deleteItem(form)
+      .then((response) => {
+        handleGoBack();
+        setForm(null);
+      })
+      .catch((exception) => {
+        handleGoBack();
+        setForm(null);
+      });
+  }, [form, history]);
+
+  const save = (form) => {
+    apiService
+      .saveItem(form)
       .then((response) => {
         //todo display delete notification
         //todo and return
       })
       .catch((exception) => {});
   };
-  return { title, form, handleChange, handleGoBack, setForm, save, deleteItem };
+  return {
+    title,
+    form,
+    handleChange,
+    handleGoBack,
+    handleDelete,
+    save,
+    deleteAction,
+  };
 }
