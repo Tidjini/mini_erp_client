@@ -5,35 +5,7 @@ import { margins } from "app/composants.v2/constants";
 import useView from "app/hooks/useView";
 import Input from "app/composants.v2/Input";
 import InputSelector from "app/composants.v2/InputSelector";
-
-const task = {
-  id: 0,
-  documents: [],
-  caption: "",
-  statue_label: "",
-  closed: false,
-  created_date: "",
-  created_time: "",
-  receiver_name: "",
-  creator_name: "",
-  statue: "i",
-  label: "",
-  forecolor: "#27187E",
-  backcolor: "#E9C46A",
-  description: "",
-  created_at: "",
-  finished_at: null,
-  creator: 1,
-  receiver: 2,
-};
-
-const statues = [
-  { display: "Instance", value: "i" },
-  { display: "accepted", value: "a" },
-  { display: "in progress", value: "p" },
-  { display: "terminated", value: "t" },
-  { display: "canceled", value: "c" },
-];
+import { defaultItem, statues } from "./Config";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -49,7 +21,7 @@ export default function TaskView(props) {
     name: "tasks",
     title: "Tâche",
     primary: id,
-    data: task,
+    data: defaultItem,
   });
 
   const actions = [saveAction, deleteAction];

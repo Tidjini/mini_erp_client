@@ -8,22 +8,7 @@ import CollectionFilters from "app/composants.v2/collection/CollectionFilters";
 import Filter from "app/tasks/Filter";
 import CollectionTable from "app/composants.v2/collection/CollectionTable";
 import TaskRow from "./TaskRow";
-
-const cells = [
-  { label: "Intitule", id: "label", style: { minWidth: 100 } },
-  {
-    label: "Description",
-    id: "description",
-    component: "th",
-    scope: "row",
-    style: { minWidth: 200 },
-  },
-  { ordering: true, label: "Responsable", id: "creator_name" },
-  { ordering: true, label: "Affectation", id: "receiver_name" },
-  { ordering: true, label: "Statue", id: "statue_label" },
-  { ordering: true, label: "Created", id: "created_date" },
-  { label: "Categorie", id: "closed", align: "right" },
-];
+import { cells } from "./Config";
 
 export default function TaskCollectionView(props) {
   const tasks = useCollection({

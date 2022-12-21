@@ -1,5 +1,7 @@
 import Input from "app/composants.v2/Input";
+import InputSelector from "app/composants.v2/InputSelector";
 import React from "react";
+import { statues } from "./Config";
 
 export default function Filter(props) {
   const { filter, onFilter } = props;
@@ -14,12 +16,13 @@ export default function Filter(props) {
         onChange={onFilter}
         value={filter.created_at__date}
       />
-      <Input
+
+      <InputSelector
         label="Statue"
-        placeholder="Statue"
-        onChange={onFilter}
-        value={filter.statue}
         name="statue"
+        value={filter.statue}
+        options={statues}
+        onChange={onFilter}
       />
       <Input
         label="Type"
