@@ -1,15 +1,37 @@
 import React from "react";
 
-import apiService from "app/services/ApiService";
+import { ApiService } from "app/services/ApiService";
 import useFilter from "./useFilter";
 
 export default function useLookupCollection(
-  params = { name, filter, pk: "id", pageResponse: false }
+  params = {
+    name,
+    filter,
+    pk: "id",
+    display,
+    value: "id",
+    pageResponse: false,
+    emptyValue,
+  }
 ) {
-  const { name, filter: defaultFilter, pk, pageResponse } = params;
+  const {
+    name,
+    filter: defaultFilter,
+    pk,
+    pageResponse,
+    display,
+    value,
+    emptyValue,
+  } = params;
   const { filter, handleFilter } = useFilter(defaultFilter);
   const [data, setData] = React.useState([]);
   const [open, setOpen] = React.useState(false);
+  const [selected, setSelected] = React.useState({
+    display: "Non Définie",
+    value: null,
+  });
+
+  const apiService = new ApiService();
 
   const getCollection = (page, filter, ordering = {}) => {
     apiService
@@ -21,7 +43,19 @@ export default function useLookupCollection(
         } else {
           results = [...response];
         }
-        setData(results);
+
+        const items = results.map((item) => {
+          return {
+            display: item[display],
+            value: item[value],
+          };
+        });
+
+        if (emptyValue) {
+          setData([emptyValue, ...items]);
+          return;
+        }
+        setData(items);
       })
       .catch((exception) => {
         /*TODO later*/
@@ -45,7 +79,8 @@ export default function useLookupCollection(
   }, []);
 
   const handleSelection = (value) => {
-    console.log("handle selection", value);
+    console.log("handleSelection", value);
+    setSelected(value);
   };
   const handleClose = () => {
     setOpen(false);
@@ -58,6 +93,7 @@ export default function useLookupCollection(
     filter,
     data,
     open,
+    selected,
     handleFilter,
     handleInputChange,
     handleSelection,

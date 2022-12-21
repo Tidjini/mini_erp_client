@@ -29,14 +29,21 @@ export default function TaskView(props) {
   const actions = [saveAction, deleteAction];
   const {
     data,
-    handleInputChange: onInputChange,
-    handleSelection,
     open,
+    selected,
+    handleInputChange: onInputChange,
+    handleSelection: onSelect,
     handleOpen: onOpen,
     handleClose: onClose,
   } = useLookupCollection({
     name: "profiles",
     filter: {},
+    display: "name",
+    value: "id",
+    emptyValue: {
+      display: "Non Définie",
+      value: null,
+    },
   });
   return (
     <div style={{ margin: margins.default }}>
@@ -76,16 +83,23 @@ export default function TaskView(props) {
           onChange={onFormChanged}
         />
         <InputCollection
-          label="Statue"
-          name="statue"
-          value={form.statue}
-          options={statues}
+          label="Affecter A"
+          name="receiver"
+          value={form.receiver}
+          selected={selected}
+          options={data}
+          open={open}
           onChange={onFormChanged}
           onInputChange={onInputChange}
-          onSelect={handleSelection}
+          onSelect={(event, item) => {
+            onSelect(item);
+            //todo review this
+            event.target.name = "receiver";
+            event.target.value = item.value;
+            onFormChanged(event);
+          }}
           onOpen={onOpen}
           onClose={onClose}
-          open={open}
         />
       </div>
     </div>

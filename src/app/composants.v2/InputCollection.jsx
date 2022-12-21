@@ -104,7 +104,7 @@ export default function InputCollection(props) {
     getOptionLabel: (option) => option.display,
     getOptionSelected: (option, item) => option.value === item.value,
     onChange: (event, value) => {
-      onSelect && onSelect(value);
+      onSelect && onSelect(event, value);
     },
     filterOptions: createFilterOptions({
       matchFrom: "contains",
