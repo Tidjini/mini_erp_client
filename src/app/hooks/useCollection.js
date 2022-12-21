@@ -1,6 +1,7 @@
 import React from "react";
-import apiService from "app/services/ApiService";
+import history from "@history";
 
+import apiService from "app/services/ApiService";
 import { backcolors } from "app/composants.v2/constants";
 class Action {
   constructor(label, callback, icon, style) {
@@ -13,7 +14,9 @@ class Action {
 
 //todo rememeber to use Page Response, And Response with simple Collection
 export default function useCollection(params = { name, pk: "id", filter: {} }) {
-  const { name, pk, filter: defaultfilter } = params;
+  const { name, pk, filter: defaultfilter, viewUrl } = params;
+
+  // const navigation = useHistory();
 
   const [data, setData] = React.useState([]);
   const [filter, setfilter] = React.useState(defaultfilter);
@@ -23,7 +26,9 @@ export default function useCollection(params = { name, pk: "id", filter: {} }) {
 
   const addAction = new Action(
     "Ajouter",
-    () => console.log("on add callback"),
+    () => {
+      history.push(viewUrl);
+    },
     "add",
     { backgroundColor: backcolors.add }
   );
