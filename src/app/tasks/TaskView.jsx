@@ -9,6 +9,7 @@ import { defaultItem, statues } from "./Config";
 import InputCollection from "app/composants.v2/InputCollection";
 import { Grid } from "@material-ui/core";
 import Action from "app/hooks/Action";
+import InputFile from "app/composants.v2/InputFile";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -145,6 +146,19 @@ export default function TaskView(props) {
           >
             <CollectionActions actions={actions} />
           </div>
+        </Grid>
+        <Grid
+          style={{
+            margin: "30px 22px",
+            padding: "20px 5px",
+            backgroundColor: "#E7E9EF",
+            width: "100%",
+            borderRadius: 10,
+            display: "flex",
+            flexDirection: "row-reverse",
+          }}
+        >
+          <InputFile />
         </Grid>
       </Grid>
     </div>
