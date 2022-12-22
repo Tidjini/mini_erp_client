@@ -21,7 +21,7 @@ export default function InputFile(props) {
           justifyContent: "center",
         }}
       >
-        file
+        + File
       </Grid>
     </Hidden>
   );
