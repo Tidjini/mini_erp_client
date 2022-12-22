@@ -14,9 +14,7 @@ export default function TaskCollectionView(props) {
   const tasks = useCollection({
     name: "tasks",
     pk: "id",
-    filter: {
-      type: "0",
-    },
+    filter: {},
     viewUrl: "/task",
   });
 
