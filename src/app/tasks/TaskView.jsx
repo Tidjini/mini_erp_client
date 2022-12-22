@@ -16,7 +16,6 @@ export default function TaskView(props) {
   const {
     title,
     saveAction,
-    deleteAction,
     form,
     handleChange: onFormChanged,
     handleFormChanged: onInFormChanged,
@@ -59,10 +58,6 @@ export default function TaskView(props) {
   );
   const actions = [saveAction, accepteAction, terminerAction, cancelAction];
 
-  // const { isLoaded, loadError } = useLoadScript({
-  //   googleMapsApiKey: "AIzaSyDwp3IPJEqgPGVT6z2cmG17r8QXKkNlXl0",
-  //   libraries: ["places"],
-  // });
   return (
     <div style={{ margin: margins.default }}>
       <div
@@ -109,6 +104,9 @@ export default function TaskView(props) {
               value: "id",
               emptyValue: { display: "Non Définie", value: null },
               defaultValue: form.receiver,
+            }}
+            onSelectItem={(item) => {
+              onInFormChanged("receiver", item.value);
             }}
           />
           <InputSelector

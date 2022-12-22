@@ -67,14 +67,7 @@ const Listbox = styled("ul")`
 // }, [value]);
 
 export default function InputCollection(props) {
-  const {
-    name,
-    label,
-    isLoading,
-    style,
-
-    lookup,
-  } = props;
+  const { name, label, isLoading, style, onSelectItem, lookup } = props;
 
   const {
     data,
@@ -100,7 +93,8 @@ export default function InputCollection(props) {
     getOptionLabel: (option) => option.display,
     getOptionSelected: (option, item) => option.value === item.value,
     onChange: (event, value) => {
-      onSelect && onSelect(event, value);
+      onSelect && onSelect(value);
+      onSelectItem && onSelectItem(value);
     },
     filterOptions: createFilterOptions({
       matchFrom: "contains",
