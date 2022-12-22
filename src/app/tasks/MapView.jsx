@@ -18,7 +18,7 @@ const center = {
 // };
 export default function MapView() {
   return (
-    <LoadScript googleMapsApiKey="AIzaSyBTFjZHNvGlyoPoYwefs1sAfa6hYPIsALw">
+    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
       <GoogleMap
         mapContainerStyle={container}
         center={center}
