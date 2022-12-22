@@ -10,6 +10,7 @@ import InputCollection from "app/composants.v2/InputCollection";
 import useLookupCollection from "app/hooks/useLookupCollection";
 import { Grid } from "@material-ui/core";
 import Action from "app/hooks/Action";
+import MapView from "./MapView";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -89,81 +90,96 @@ export default function TaskView(props) {
         <Header title={title} goBack={goBack} />
         {/* <CollectionActions actions={actions} /> */}
       </div>
-      <Grid
-        item
-        container
-        spacing={1}
-        style={{ alignItems: "flex-start", padding: 20 }}
-        xl={6}
-        lg={6}
-        md={12}
-        sm={12}
-        xs={12}
-      >
-        <Input
-          label="Intitule"
-          placeholder="Tâche Intitule"
-          name="label"
-          onChange={onFormChanged}
-          value={form.label}
-        />
-        <InputCollection
-          label="Affecter A"
-          name="receiver"
-          value={form.receiver}
-          selected={selected}
-          options={data}
-          open={open}
-          onChange={onFormChanged}
-          onInputChange={onInputChange}
-          onSelect={(event, item) => {
-            onSelect(item);
-            onInFormChanged("receiver", item ? item.value : null);
-          }}
-          onOpen={onOpen}
-          onClose={onClose}
+      <Grid container>
+        <Grid
+          item
+          container
+          spacing={1}
+          style={{ alignItems: "flex-start", padding: 20 }}
           xl={6}
           lg={6}
-          md={6}
-          sm={6}
+          md={12}
+          sm={12}
           xs={12}
-        />
-        <InputSelector
-          label="Statue"
-          name="statue"
-          value={form.statue}
-          options={statues}
-          onChange={onFormChanged}
-          xl={6}
-          lg={6}
-          md={6}
-          sm={6}
-          xs={12}
-        />
-        <Input
-          label="Description"
-          placeholder="Description de cette tâche"
-          name="description"
-          onChange={onFormChanged}
-          value={form.description}
-          style={{
-            multiline: true,
-            rows: 10,
-          }}
-        />
-        <div
-          style={{
-            margin: "10px 2px",
-            padding: "20px 5px",
-            backgroundColor: "#E7E9EF",
-            width: "100%",
-            borderRadius: 10,
-            display: "flex",
-            flexDirection: "row-reverse",
-          }}
         >
-          <CollectionActions actions={actions} />
-        </div>
+          <Input
+            label="Intitule"
+            placeholder="Tâche Intitule"
+            name="label"
+            onChange={onFormChanged}
+            value={form.label}
+          />
+          <InputCollection
+            label="Affecter A"
+            name="receiver"
+            value={form.receiver}
+            selected={selected}
+            options={data}
+            open={open}
+            onChange={onFormChanged}
+            onInputChange={onInputChange}
+            onSelect={(event, item) => {
+              onSelect(item);
+              onInFormChanged("receiver", item ? item.value : null);
+            }}
+            onOpen={onOpen}
+            onClose={onClose}
+            xl={6}
+            lg={6}
+            md={6}
+            sm={6}
+            xs={12}
+          />
+          <InputSelector
+            label="Statue"
+            name="statue"
+            value={form.statue}
+            options={statues}
+            onChange={onFormChanged}
+            xl={6}
+            lg={6}
+            md={6}
+            sm={6}
+            xs={12}
+          />
+          <Input
+            label="Description"
+            placeholder="Description de cette tâche"
+            name="description"
+            onChange={onFormChanged}
+            value={form.description}
+            style={{
+              multiline: true,
+              rows: 10,
+            }}
+          />
+          <div
+            style={{
+              margin: "10px 2px",
+              padding: "20px 5px",
+              backgroundColor: "#E7E9EF",
+              width: "100%",
+              borderRadius: 10,
+              display: "flex",
+              flexDirection: "row-reverse",
+            }}
+          >
+            <CollectionActions actions={actions} />
+          </div>
+        </Grid>
+        <Grid
+          item
+          container
+          spacing={1}
+          style={{ alignItems: "flex-start", padding: 20 }}
+          xl={6}
+          lg={6}
+          md={12}
+          sm={12}
+          xs={12}
+        >
+          <MapView></MapView>
+        </Grid>
       </Grid>
     </div>
   );
