@@ -11,14 +11,6 @@ import TaskRow from "./TaskRow";
 import { cells } from "./Config";
 
 export default function TaskCollectionView(props) {
-  const tasks = useCollection({
-    name: "tasks",
-    pk: "id",
-    filter: {},
-    viewUrl: "/task",
-    pageResponse: true,
-  });
-
   const {
     addAction,
     editAction,
@@ -29,8 +21,13 @@ export default function TaskCollectionView(props) {
     filter,
     data,
     selectedItem,
-    metadata,
-  } = tasks;
+  } = useCollection({
+    collection: "tasks",
+    pk: "id",
+    filter: {},
+    viewUrl: "/task",
+    pageResponse: true,
+  });
 
   const actions = [addAction, editAction, deleteAction];
 

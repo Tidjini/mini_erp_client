@@ -7,13 +7,13 @@ import Action from "./Action";
 import useGetCollection from "./useGetCollection";
 
 export default function useCollection({
-  name,
+  collection,
   pk = "id",
   defaultfilter = {},
   pageResponse,
   viewUrl,
 }) {
-  apiService.initialize(name, pk);
+  apiService.initialize(collection, pk);
   const {
     data: collectionData,
     metadata,
@@ -65,12 +65,12 @@ export default function useCollection({
         value.toLowerCase() === "tous"
       ) {
         const cleaned = { ...filter };
-        delete cleaned[event.target.name];
+        delete cleaned[event.target.collection];
         setfilter({ ...cleaned });
         return;
       }
 
-      setfilter({ ...filter, [event.target.name]: event.target.value });
+      setfilter({ ...filter, [event.target.collection]: event.target.value });
     },
     [filter]
   );
