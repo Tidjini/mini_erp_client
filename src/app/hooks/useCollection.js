@@ -6,8 +6,12 @@ import { backcolors } from "app/composants.v2/constants";
 import Action from "./Action";
 import useGetCollection from "./useGetCollection";
 
-
-export default function useCollection({ name, pk= "id", filter= {}, pageResponse }) {
+export default function useCollection({
+  name,
+  pk = "id",
+  defaultfilter = {},
+  pageResponse,
+}) {
   apiService.initialize(name, pk);
 
   const [filter, setfilter] = React.useState(defaultfilter);
@@ -58,9 +62,6 @@ export default function useCollection({ name, pk= "id", filter= {}, pageResponse
     [filter]
   );
 
-
-
-
   const handleEdit = React.useCallback(() => {
     if (selectedItem) {
       history.push(`${viewUrl}/${selectedItem[pk]}`);
@@ -95,12 +96,16 @@ export default function useCollection({ name, pk= "id", filter= {}, pageResponse
   }, [selectedItem]);
 
   const getCollection = React.useCallback(() => {
-    onGet({page, filter, ordering});
+    onGet({ page, filter, ordering });
   }, [page, filter, ordering]);
 
   const handleSelection = (item) => {
     setSelectedItem(item);
   };
+
+  React.useEffect(() => {
+    getCollection();
+  }, []);
 
   return {
     data,
@@ -109,7 +114,7 @@ export default function useCollection({ name, pk= "id", filter= {}, pageResponse
     setOrdering,
     handleSelection,
     handleFilter,
-    handleRefresh,
+    getCollection,
     handleDelete,
     handleEdit,
     addAction,

@@ -1,6 +1,12 @@
 import React from "react";
 
-export default function useGetCollection({ api, pageResponse, emptyValue }) {
+export default function useGetCollection({
+  api,
+  pageResponse,
+  emptyValue,
+  display,
+  value,
+}) {
   const [data, setData] = React.useState([]);
   const [metadata, setMetadata] = React.useState();
 
