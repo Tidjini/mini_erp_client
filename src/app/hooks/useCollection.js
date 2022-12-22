@@ -11,18 +11,31 @@ export default function useCollection({
   pk = "id",
   defaultfilter = {},
   pageResponse,
+  viewUrl,
 }) {
   apiService.initialize(name, pk);
+  const {
+    data: collectionData,
+    metadata,
+    handleGet: onGet,
+  } = useGetCollection({
+    api: apiService,
+    pageResponse,
+  });
 
+  React.useEffect(() => {
+    setData([...collectionData]);
+  }, [collectionData]);
+
+  const [data, setData] = React.useState(collectionData);
   const [filter, setfilter] = React.useState(defaultfilter);
   const [page, setPage] = React.useState(1);
   const [ordering, setOrdering] = React.useState({});
   const [selectedItem, setSelectedItem] = React.useState(null);
 
-  const { data, handleGet: onGet } = useGetCollection({
-    apiService,
-    pageResponse,
-  });
+  React.useEffect(() => {
+    onGet({ page, filter, ordering });
+  }, [page, filter, ordering]);
 
   const addAction = new Action(
     "Ajouter",
@@ -68,53 +81,34 @@ export default function useCollection({
       setSelectedItem(null);
       return;
     }
-
-    console.log("no item selected");
   }, [selectedItem]);
 
   const handleDelete = React.useCallback(() => {
-    console.log("on handleDelete callback", selectedItem);
     if (!Boolean(selectedItem)) return;
-    const clean = data.results.filter(
+    const clean = data.filter(
       (value, index, arr) => selectedItem[pk] != value[pk]
     );
-    console.log(clean);
-    setData({
-      count: 2,
-      next: null,
-      previous: null,
-      results: [...clean],
-    });
+    setData([...clean]);
     apiService
       .deleteItem(selectedItem)
       .then((response) => {
-        // setData(response);
         setSelectedItem(null);
-        console.log(response);
       })
       .catch((exception) => {});
   }, [selectedItem]);
-
-  const getCollection = React.useCallback(() => {
-    onGet({ page, filter, ordering });
-  }, [page, filter, ordering]);
 
   const handleSelection = (item) => {
     setSelectedItem(item);
   };
 
-  React.useEffect(() => {
-    getCollection();
-  }, []);
-
   return {
+    metadata,
     data,
     filter,
     setPage,
     setOrdering,
     handleSelection,
     handleFilter,
-    getCollection,
     handleDelete,
     handleEdit,
     addAction,

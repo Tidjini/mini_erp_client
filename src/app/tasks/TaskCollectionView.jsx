@@ -16,6 +16,7 @@ export default function TaskCollectionView(props) {
     pk: "id",
     filter: {},
     viewUrl: "/task",
+    pageResponse: true,
   });
 
   const {
@@ -28,6 +29,7 @@ export default function TaskCollectionView(props) {
     filter,
     data,
     selectedItem,
+    metadata,
   } = tasks;
 
   const actions = [addAction, editAction, deleteAction];
@@ -45,7 +47,6 @@ export default function TaskCollectionView(props) {
 
     //todo perform the real sorting from server
   };
-
   return (
     <div style={{ margin: margins.default }}>
       <div
@@ -67,7 +68,7 @@ export default function TaskCollectionView(props) {
         onSort={handleSorting}
         order={order}
         orderBy={orderBy}
-        data={data.results}
+        data={data}
         itemHandlers={{ onClick: onSelect, onDoubleClick: onEdit }}
         selectedItem={selectedItem}
         style={{ marginTop: 10 }}
