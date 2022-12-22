@@ -3,31 +3,18 @@ import React from "react";
 import { ApiService } from "app/services/ApiService";
 import useFilter from "./useFilter";
 
-export default function useLookupCollection(
-  params = {
-    name,
-    filter,
-    pk: "id",
-    display,
-    value: "id",
-    pageResponse: false,
-    emptyValue,
-    defaultValue: 0,
-  }
-) {
-  const {
-    name,
-    filter: defaultFilter,
-    pk,
-    pageResponse,
-    display,
-    value,
-    emptyValue,
-    defaultValue,
-  } = params;
-
-  const apiService = new ApiService();
-  apiService.initialize(name, pk);
+export default function useLookupCollection({
+  collection,
+  filter,
+  pk,
+  display,
+  value,
+  pageResponse,
+  emptyValue,
+  defaultValue,
+}) {
+  const api = new ApiService();
+  api.initialize(collection, pk);
 
   const { filter, handleFilter } = useFilter(defaultFilter);
   const [data, setData] = React.useState([]);
@@ -40,14 +27,14 @@ export default function useLookupCollection(
   const getDefault = (pk) => {
     console.log("getDefault, called");
 
-    apiService.getItem(pk).then((response) => {
+    api.getItem(pk).then((response) => {
       setSelected({ display: response[display], value: response[value] });
     });
   };
 
   const getCollection = (page, filter, ordering = {}) => {
     console.log("getCollection, called");
-    apiService
+    api
       .getCollection(page, filter, ordering)
       .then((response) => {
         let results = [];

@@ -62,25 +62,6 @@ export default function TaskView(props) {
     }
   );
   const actions = [saveAction, accepteAction, terminerAction, cancelAction];
-  const {
-    data,
-    open,
-    selected,
-    handleInputChange: onInputChange,
-    handleSelection: onSelect,
-    handleOpen: onOpen,
-    handleClose: onClose,
-  } = useLookupCollection({
-    name: "profiles",
-    filter: {},
-    display: "name",
-    value: "id",
-    emptyValue: {
-      display: "Non Définie",
-      value: null,
-    },
-    defaultValue: form.receiver,
-  });
 
   // const { isLoaded, loadError } = useLoadScript({
   //   googleMapsApiKey: "AIzaSyDwp3IPJEqgPGVT6z2cmG17r8QXKkNlXl0",

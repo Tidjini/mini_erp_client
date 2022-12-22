@@ -6,6 +6,7 @@ import styled from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { FormControl, Hidden, Typography, Grid } from "@material-ui/core";
+import useLookupCollection from "app/hooks/useLookupCollection";
 
 const Listbox = styled("ul")`
   min-width: 100px;
@@ -70,7 +71,6 @@ export default function InputCollection(props) {
     name,
     label,
     options,
-    onInputChange,
     isLoading,
     style,
     xs,
@@ -83,11 +83,12 @@ export default function InputCollection(props) {
     lgDown,
     xlDown,
 
-    open,
-    onOpen,
-    onClose,
-    selected,
-    onSelect, //review with onChange
+    collection,
+    filter,
+    display,
+    value,
+    emptyValue,
+    defaultValue,
   } = props;
 
   const {
@@ -115,6 +116,26 @@ export default function InputCollection(props) {
     open: open,
     value: selected,
     disablePortal: true,
+  });
+
+  const {
+    data,
+    open,
+    selected,
+    handleInputChange: onInputChange,
+    handleSelection: onSelect,
+    handleOpen: onOpen,
+    handleClose: onClose,
+  } = useLookupCollection({
+    name: collection,
+    filter: {},
+    display: "name",
+    value: "id",
+    emptyValue: {
+      display: "Non Définie",
+      value: null,
+    },
+    defaultValue,
   });
 
   return (
