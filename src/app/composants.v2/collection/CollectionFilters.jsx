@@ -10,7 +10,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 export default function Collectionfilter(props) {
-  const { onFilter, filter, FilterContent } = props;
+  const { onFilter, filter, children } = props;
 
   const [open, setOpen] = React.useState(false);
 
@@ -52,7 +52,7 @@ export default function Collectionfilter(props) {
         maxWidth="xs"
         fullWidth
       >
-        <DialogContent>{FilterContent}</DialogContent>
+        <DialogContent>{children}</DialogContent>
         <DialogActions>
           <Button
             style={{

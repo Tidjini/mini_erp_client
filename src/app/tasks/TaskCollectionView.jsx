@@ -56,17 +56,13 @@ export default function TaskCollectionView(props) {
         <Header title="Collection des Tâches" />
         <CollectionActions actions={actions} />
       </div>
-      <CollectionFilters
-        onFilter={onFilter}
-        filter={filter}
-        FilterContent={
-          <Filter
-            onFilter={onFilter}
-            filter={filter}
-            onFilterChange={onFilterChange}
-          />
-        }
-      />
+      <CollectionFilters onFilter={onFilter} filter={filter}>
+        <Filter
+          onFilter={onFilter}
+          filter={filter}
+          onFilterChange={onFilterChange}
+        />
+      </CollectionFilters>
       <CollectionTable
         cells={cells}
         onSort={handleSorting}
