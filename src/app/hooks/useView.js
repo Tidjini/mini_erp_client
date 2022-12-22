@@ -5,12 +5,14 @@ import { useForm } from "@fuse/hooks";
 import apiService from "app/services/ApiService";
 import Action from "./Action";
 import { backcolors } from "app/composants.v2/constants";
-import { filter } from "lodash";
 
-export default function useView(
-  params = { name, title, data: {}, primary, pk: "id" }
-) {
-  const { name, title: defaultTitle, data: defaultData, primary, pk } = params;
+export default function useView({
+  name,
+  defaultTitle,
+  defaultData = {},
+  primary,
+  pk = "id",
+}) {
   const { form, handleChange, setForm } = useForm(defaultData);
   const [title, setTitle] = React.useState(defaultTitle);
 
@@ -63,7 +65,6 @@ export default function useView(
   }, []);
 
   const handleDelete = React.useCallback(() => {
-    console.log("on handleDelete callback", form);
     if (!Boolean(form)) return;
 
     //todo clean collection localy if you want

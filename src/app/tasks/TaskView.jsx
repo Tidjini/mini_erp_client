@@ -22,7 +22,7 @@ export default function TaskView(props) {
     handleGoBack: goBack,
   } = useView({
     name: "tasks",
-    title: "Tâche",
+    defaultTitle: "Tâche",
     primary: id,
     data: defaultItem,
   });
