@@ -127,14 +127,11 @@ export default function InputCollection(props) {
     handleOpen: onOpen,
     handleClose: onClose,
   } = useLookupCollection({
-    name: collection,
-    filter: {},
-    display: "name",
-    value: "id",
-    emptyValue: {
-      display: "Non Définie",
-      value: null,
-    },
+    collection,
+    filter,
+    display,
+    value,
+    emptyValue,
     defaultValue,
   });
 

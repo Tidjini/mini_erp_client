@@ -117,6 +117,16 @@ export default function TaskView(props) {
             md={6}
             sm={6}
             xs={12}
+
+            name: collection,
+    filter: {},
+    display: "name",
+    value: "id",
+    emptyValue: {
+      display: "Non Définie",
+      value: null,
+    },
+    defaultValue,
           />
           <InputSelector
             label="Statue"
