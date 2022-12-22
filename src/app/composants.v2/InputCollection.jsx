@@ -70,18 +70,8 @@ export default function InputCollection(props) {
   const {
     name,
     label,
-    options,
     isLoading,
     style,
-    xs,
-    sm,
-    md,
-    lg,
-    xl,
-    smDown,
-    mdDown,
-    lgDown,
-    xlDown,
 
     collection,
     filter,
@@ -90,33 +80,6 @@ export default function InputCollection(props) {
     emptyValue,
     defaultValue,
   } = props;
-
-  const {
-    getRootProps,
-    getInputLabelProps,
-    getInputProps,
-    getListboxProps,
-    getOptionProps,
-    groupedOptions,
-  } = useAutocomplete({
-    id: name,
-    name: name,
-    options: options,
-    getOptionLabel: (option) => option.display,
-    getOptionSelected: (option, item) => option.value === item.value,
-    onChange: (event, value) => {
-      onSelect && onSelect(event, value);
-    },
-    filterOptions: createFilterOptions({
-      matchFrom: "contains",
-      stringify: (option) => `${option.value} ${option.display}`,
-    }),
-    onOpen: onOpen && onOpen,
-    onClose: onClose && onClose,
-    open: open,
-    value: selected,
-    disablePortal: true,
-  });
 
   const {
     data,
@@ -135,15 +98,47 @@ export default function InputCollection(props) {
     defaultValue,
   });
 
+  const {
+    getRootProps,
+    getInputLabelProps,
+    getInputProps,
+    getListboxProps,
+    getOptionProps,
+    groupedOptions,
+  } = useAutocomplete({
+    id: name,
+    name: name,
+    options: data,
+    getOptionLabel: (option) => option.display,
+    getOptionSelected: (option, item) => option.value === item.value,
+    onChange: (event, value) => {
+      onSelect && onSelect(event, value);
+    },
+    filterOptions: createFilterOptions({
+      matchFrom: "contains",
+      stringify: (option) => `${option.value} ${option.display}`,
+    }),
+    onOpen: onOpen && onOpen,
+    onClose: onClose && onClose,
+    open: open,
+    value: selected,
+    disablePortal: true,
+  });
+
   return (
-    <Hidden smDown={smDown} mdDown={mdDown} lgDown={lgDown} xlDown={xlDown}>
+    <Hidden
+      smDown={style && style.smDown}
+      mdDown={style && style.mdDown}
+      lgDown={style && style.lgDown}
+      xlDown={style && style.xlDown}
+    >
       <Grid
         item
-        xs={xs || 12}
-        sm={sm || 12}
-        md={md || 12}
-        lg={lg || 12}
-        xl={xl || 12}
+        xs={(style && style.xs) || 12}
+        sm={(style && style.sm) || 12}
+        md={(style && style.md) || 12}
+        lg={(style && style.lg) || 12}
+        xl={(style && style.xl) || 12}
         style={{
           ...style,
         }}

@@ -2,6 +2,7 @@ import React from "react";
 
 import { ApiService } from "app/services/ApiService";
 import useFilter from "./useFilter";
+import useGetCollection from "./useGetCollection";
 
 export default function useLookupCollection({
   collection,
@@ -16,6 +17,14 @@ export default function useLookupCollection({
   const api = new ApiService();
   api.initialize(collection, pk);
 
+  const { data, handleGet: onGet } = useGetCollection({
+    api,
+    pageResponse,
+    emptyValue,
+    display,
+    value,
+  });
+
   const { filter, handleFilter } = useFilter(defaultFilter);
   const [open, setOpen] = React.useState(false);
   const [selected, setSelected] = React.useState({
@@ -24,15 +33,13 @@ export default function useLookupCollection({
   });
 
   const getDefault = (pk) => {
-    console.log("getDefault, called");
-
     api.getItem(pk).then((response) => {
       setSelected({ display: response[display], value: response[value] });
     });
   };
 
   React.useEffect(() => {
-    getCollection(1, filter);
+    onGet(1, filter, undefined, true);
   }, [filter]);
 
   React.useEffect(() => {
@@ -46,7 +53,6 @@ export default function useLookupCollection({
   }, []);
 
   const handleSelection = (value) => {
-    console.log("handleSelection", value);
     setSelected(value);
   };
   const handleClose = () => {
