@@ -1,4 +1,4 @@
-import { TaskConfig } from "../tasks/Config";
+import { TaskConfig } from "app/tasks/Config";
 
 const { navigation: tasks } = TaskConfig;
 
@@ -9,6 +9,7 @@ const navigationConfig = [
     type: "group",
     icon: "apps",
     children: [
+      tasks,
       {
         id: "dashboard",
         title: "Tableau de Bord",
@@ -201,7 +202,6 @@ const navigationConfig = [
           // },
         ],
       },
-      tasks,
       {
         id: "transit",
         title: "Transit",

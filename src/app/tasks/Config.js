@@ -15,13 +15,13 @@ export const TaskConfig = {
   ],
   navigation: {
     id: "tasks",
-    title: "Gestion Des Taches",
+    title: "Gestion Des Tâches",
     type: "group",
     children: [
       {
         id: "taches",
-        title: "Tâches",
-        icon: "add_task",
+        title: "Tâches Collection",
+        icon: "assignment_turned_in",
         type: "item",
         url: collectionPath,
       },
