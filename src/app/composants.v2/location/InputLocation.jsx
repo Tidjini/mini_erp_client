@@ -49,7 +49,6 @@ function LocationInput({ id, setAddress, defaultValue, setCenter }) {
 
   return (
     <div className="flex">
-      <img width="14" src="/assets/start.svg" alt="start" className="mr-4" />
       <Autocomplete
         id={id}
         filterOptions={(x) => x}

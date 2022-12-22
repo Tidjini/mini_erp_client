@@ -11,7 +11,7 @@ import InputLocation from "app/composants.v2/location/InputLocation";
 import useLookupCollection from "app/hooks/useLookupCollection";
 import { Grid, Typography } from "@material-ui/core";
 import Action from "app/hooks/Action";
-import MapView from "./MapView";
+// import MapView from "./MapView";
 import { useLoadScript } from "@react-google-maps/api";
 
 export default function TaskView(props) {
@@ -82,10 +82,10 @@ export default function TaskView(props) {
     defaultValue: form.receiver,
   });
 
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyDwp3IPJEqgPGVT6z2cmG17r8QXKkNlXl0",
-    libraries: ["places"],
-  });
+  // const { isLoaded, loadError } = useLoadScript({
+  //   googleMapsApiKey: "AIzaSyDwp3IPJEqgPGVT6z2cmG17r8QXKkNlXl0",
+  //   libraries: ["places"],
+  // });
   return (
     <div style={{ margin: margins.default }}>
       <div
@@ -174,15 +174,15 @@ export default function TaskView(props) {
             <CollectionActions actions={actions} />
           </div>
         </Grid>
-        {loadMap(isLoaded, loadError)}
+        {loadMap(1, 1)}
       </Grid>
     </div>
   );
 }
 
 function loadMap(isLoaded, loadError) {
-  if (loadError) return <Typography>ERRRO LOADING</Typography>;
-  if (isLoaded) return <Typography>IS LOADING</Typography>;
+  // if (loadError) return <Typography>ERRRO LOADING</Typography>;
+  // if (isLoaded) return <Typography>IS LOADING</Typography>;
 
   return (
     <Grid
@@ -197,9 +197,18 @@ function loadMap(isLoaded, loadError) {
       xs={12}
     >
       <Grid item sm={6} xs={12}>
-        <InputLocation id="depart_address" />
+        <InputLocation
+          id="depart_address"
+          setAddress={(x, y) => {
+            console.log(x, y);
+          }}
+          defaultValue="def"
+          setCenter={(x, y) => {
+            console.log(x, y);
+          }}
+        />
       </Grid>
-      <MapView></MapView>
+      {/* <MapView></MapView> */}
     </Grid>
   );
 }
