@@ -4,60 +4,56 @@ export default function useGetCollection({ api, pageResponse, emptyValue }) {
   const [data, setData] = React.useState([]);
   const [metadata, setMetadata] = React.useState();
 
-  const page = page || 1;
+  const getLookup = (response) => {
+    let results = [];
+    if (pageResponse) {
+      results = [...response.results];
+    } else {
+      results = [...response];
+    }
 
-  const handleGetCollection = (page, filter, ordering = {}) => {
-    api
-      .getCollection(page, filter, ordering)
-      .then((response) => {
-        if (!pageResponse) {
-          setData(response);
-          return;
-        }
+    const items = results.map((item) => {
+      return {
+        display: item[display],
+        value: item[value],
+      };
+    });
 
-        setData([...response.results]);
-        const meta = { ...response };
-        delete meta["results"];
-        setMetadata({ ...meta });
-      })
-      .catch((exception) => {
-        //todo later
-      });
+    if (emptyValue) {
+      setData([emptyValue, ...items]);
+      return;
+    }
+    setData(items);
   };
 
-  const handleGetLookup = (page, filter, ordering = {}) => {
-    api
-      .getCollection(page, filter, ordering)
-      .then((response) => {
-        let results = [];
-        if (pageResponse) {
-          results = [...response.results];
-        } else {
-          results = [...response];
-        }
+  const getCollection = (response) => {
+    if (!pageResponse) {
+      setData(response);
+      return;
+    }
 
-        const items = results.map((item) => {
-          return {
-            display: item[display],
-            value: item[value],
-          };
+    setData([...response.results]);
+    const meta = { ...response };
+    delete meta["results"];
+    setMetadata({ ...meta });
+  };
+
+  const handleGet = ({ page, filter, ordering = {}, lookup = false }) => {
+    api &&
+      api
+        .getCollection(page, filter, ordering)
+        .then((response) => {
+          if (lookup) return getLookup(response);
+          return getCollection(response);
+        })
+        .catch((exception) => {
+          //todo later
         });
-
-        if (emptyValue) {
-          setData([emptyValue, ...items]);
-          return;
-        }
-        setData(items);
-      })
-      .catch((exception) => {
-        //todo later
-      });
   };
 
   return {
     data,
     metadata,
-    handleGetCollection,
-    handleGetLookup,
+    handleGet,
   };
 }

@@ -4,17 +4,25 @@ import history from "@history";
 import apiService from "app/services/ApiService";
 import { backcolors } from "app/composants.v2/constants";
 import Action from "./Action";
+import useGetCollection from "./useGetCollection";
 
 //todo rememeber to use Page Response, And Response with simple Collection
 export default function useCollection(params = { name, pk: "id", filter: {} }) {
   const { name, pk, filter: defaultfilter, viewUrl } = params;
 
   // const navigation = useHistory();
-  const [data, setData] = React.useState([]);
+  // const [data, setData] = React.useState([]);
   const [filter, setfilter] = React.useState(defaultfilter);
   const [page, setPage] = React.useState(1);
   const [ordering, setOrdering] = React.useState({});
   const [selectedItem, setSelectedItem] = React.useState(null);
+  apiService.initialize(name, pk);
+
+  const { data, handleGetCollection: onGet } = useGetCollection({
+    apiService,
+    pageResponse,
+    emptyValue,
+  });
 
   const addAction = new Action(
     "Ajouter",
@@ -53,10 +61,6 @@ export default function useCollection(params = { name, pk: "id", filter: {} }) {
     },
     [filter]
   );
-
-  React.useEffect(() => {
-    apiService.initialize(name, pk);
-  }, []);
 
   const getCollection = (page, filter, ordering) => {
     setSelectedItem(null);
