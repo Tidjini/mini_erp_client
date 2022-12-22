@@ -107,6 +107,10 @@ export default function InputCollection(props) {
     disablePortal: true,
   });
 
+  React.useEffect(() => {
+    console.log("input collection, ", label);
+  }, []);
+
   return (
     <Hidden
       smDown={style && style.smDown}

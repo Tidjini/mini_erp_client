@@ -21,6 +21,36 @@ export default function Filter(props) {
 
   return (
     <div>
+      <InputCollection
+        label="Créer par"
+        name="creator"
+        style={{}}
+        lookup={{
+          collection: "profiles",
+          display: "name",
+          value: "id",
+          emptyValue: { display: "Tous", value: null },
+          defaultValue: filter.creator,
+        }}
+        onSelectItem={(item) => {
+          onFilterChange("creator", item.value);
+        }}
+      />
+      <InputCollection
+        label="Affectée a"
+        name="receiver"
+        style={{}}
+        lookup={{
+          collection: "profiles",
+          display: "name",
+          value: "id",
+          emptyValue: { display: "Tous", value: null },
+          defaultValue: filter.receiver,
+        }}
+        onSelectItem={(item) => {
+          onFilterChange("receiver", item.value);
+        }}
+      />
       <Input
         label="Date"
         placeholder="Date"
@@ -52,22 +82,6 @@ export default function Filter(props) {
         value={filter.closed}
         options={categories}
         onChange={onFilter}
-      />
-
-      <InputCollection
-        label="Affectée"
-        name="receiver"
-        style={{}}
-        lookup={{
-          collection: "profiles",
-          display: "name",
-          value: "id",
-          emptyValue: { display: "Tous", value: null },
-          defaultValue: filter.receiver,
-        }}
-        onSelectItem={(item) => {
-          onFilterChange("receiver", item.value);
-        }}
       />
     </div>
   );
