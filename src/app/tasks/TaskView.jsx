@@ -7,12 +7,8 @@ import Input from "app/composants.v2/Input";
 import InputSelector from "app/composants.v2/InputSelector";
 import { defaultItem, statues } from "./Config";
 import InputCollection from "app/composants.v2/InputCollection";
-import InputLocation from "app/composants.v2/location/InputLocation";
-import useLookupCollection from "app/hooks/useLookupCollection";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Action from "app/hooks/Action";
-// import MapView from "./MapView";
-import { useLoadScript } from "@react-google-maps/api";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -100,23 +96,20 @@ export default function TaskView(props) {
           <InputCollection
             label="Affecter A"
             name="receiver"
-            value={form.receiver}
-            selected={selected}
-            options={data}
-            open={open}
-            onChange={onFormChanged}
-            onInputChange={onInputChange}
-            onSelect={(event, item) => {
-              onSelect(item);
-              onInFormChanged("receiver", item ? item.value : null);
+            style={{
+              xl: 6,
+              lg: 6,
+              md: 6,
+              sm: 6,
+              xs: 12,
             }}
-            onOpen={onOpen}
-            onClose={onClose}
-            xl={6}
-            lg={6}
-            md={6}
-            sm={6}
-            xs={12}
+            lookup={{
+              collection: "profiles",
+              display: "name",
+              value: "id",
+              emptyValue: { display: "Non Définie", value: null },
+              defaultValue: form.receiver,
+            }}
           />
           <InputSelector
             label="Statue"
@@ -155,41 +148,7 @@ export default function TaskView(props) {
             <CollectionActions actions={actions} />
           </div>
         </Grid>
-        {loadMap(1, 1)}
       </Grid>
     </div>
-  );
-}
-
-function loadMap(isLoaded, loadError) {
-  // if (loadError) return <Typography>ERRRO LOADING</Typography>;
-  // if (isLoaded) return <Typography>IS LOADING</Typography>;
-
-  return (
-    <Grid
-      item
-      container
-      spacing={1}
-      style={{ alignItems: "flex-start", padding: 20 }}
-      xl={6}
-      lg={6}
-      md={12}
-      sm={12}
-      xs={12}
-    >
-      <Grid item sm={6} xs={12}>
-        <InputLocation
-          id="depart_address"
-          setAddress={(x, y) => {
-            console.log(x, y);
-          }}
-          defaultValue="def"
-          setCenter={(x, y) => {
-            console.log(x, y);
-          }}
-        />
-      </Grid>
-      {/* <MapView></MapView> */}
-    </Grid>
   );
 }

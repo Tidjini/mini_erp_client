@@ -6,7 +6,7 @@ import useGetCollection from "./useGetCollection";
 
 export default function useLookupCollection({
   collection,
-  filter,
+  defaultFilter,
   pk,
   display,
   value,

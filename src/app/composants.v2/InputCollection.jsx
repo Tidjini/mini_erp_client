@@ -73,12 +73,7 @@ export default function InputCollection(props) {
     isLoading,
     style,
 
-    collection,
-    filter,
-    display,
-    value,
-    emptyValue,
-    defaultValue,
+    lookup,
   } = props;
 
   const {
@@ -89,14 +84,7 @@ export default function InputCollection(props) {
     handleSelection: onSelect,
     handleOpen: onOpen,
     handleClose: onClose,
-  } = useLookupCollection({
-    collection,
-    filter,
-    display,
-    value,
-    emptyValue,
-    defaultValue,
-  });
+  } = useLookupCollection(lookup);
 
   const {
     getRootProps,
