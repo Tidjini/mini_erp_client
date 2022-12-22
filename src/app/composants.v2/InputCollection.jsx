@@ -21,7 +21,7 @@ const Listbox = styled("ul")`
   max-height: 300px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  z-index: 5;
+  z-index: 10;
   & li {
     padding: 5px 12px;
     display: flex;

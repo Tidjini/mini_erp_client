@@ -16,6 +16,7 @@ export default function TaskCollectionView(props) {
     editAction,
     deleteAction,
     handleFilter: onFilter,
+    handleFilterChange: onFilterChange,
     handleSelection: onSelect,
     handleEdit: onEdit,
     filter,
@@ -24,7 +25,7 @@ export default function TaskCollectionView(props) {
   } = useCollection({
     collection: "tasks",
     pk: "id",
-    filter: {},
+    defaultfilter: {},
     viewUrl: "/task",
     pageResponse: true,
   });
@@ -58,7 +59,13 @@ export default function TaskCollectionView(props) {
       <CollectionFilters
         onFilter={onFilter}
         filter={filter}
-        FilterContent={<Filter onFilter={onFilter} filter={filter} />}
+        FilterContent={
+          <Filter
+            onFilter={onFilter}
+            filter={filter}
+            onFilterChange={onFilterChange}
+          />
+        }
       />
       <CollectionTable
         cells={cells}

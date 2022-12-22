@@ -54,23 +54,26 @@ export default function useCollection({
     backgroundColor: backcolors.delete,
   });
 
+  const handleFilterChange = (name, value) => {
+    const newFilter = { ...filter };
+    if (
+      value === undefined ||
+      value === null ||
+      value.toLowerCase() === "non définie" ||
+      value.toLowerCase() === "tous"
+    ) {
+      const cleaned = { ...newFilter };
+      delete cleaned[name];
+      setfilter({ ...cleaned });
+      return;
+    }
+    setfilter({ ...newFilter, [name]: value });
+  };
+
   const handleFilter = React.useCallback(
     (event) => {
-      const { value } = event.target;
-
-      if (
-        value === undefined ||
-        value === null ||
-        value.toLowerCase() === "non définie" ||
-        value.toLowerCase() === "tous"
-      ) {
-        const cleaned = { ...filter };
-        delete cleaned[event.target.collection];
-        setfilter({ ...cleaned });
-        return;
-      }
-
-      setfilter({ ...filter, [event.target.collection]: event.target.value });
+      const { value, name } = event.target;
+      handleFilterChange(name, value);
     },
     [filter]
   );
@@ -109,6 +112,7 @@ export default function useCollection({
     setOrdering,
     handleSelection,
     handleFilter,
+    handleFilterChange,
     handleDelete,
     handleEdit,
     addAction,

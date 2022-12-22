@@ -1,10 +1,11 @@
 import Input from "app/composants.v2/Input";
+import InputCollection from "app/composants.v2/InputCollection";
 import InputSelector from "app/composants.v2/InputSelector";
 import React from "react";
 import { statues as defaultStatues } from "./Config";
 
 export default function Filter(props) {
-  const { filter, onFilter } = props;
+  const { filter, onFilter, onFilterChange } = props;
 
   const statues = [{ display: "tous", value: "tous" }, ...defaultStatues];
   const categories = [
@@ -51,6 +52,22 @@ export default function Filter(props) {
         value={filter.closed}
         options={categories}
         onChange={onFilter}
+      />
+
+      <InputCollection
+        label="Affectée"
+        name="receiver"
+        style={{}}
+        lookup={{
+          collection: "profiles",
+          display: "name",
+          value: "id",
+          emptyValue: { display: "Tous", value: null },
+          defaultValue: filter.receiver,
+        }}
+        onSelectItem={(item) => {
+          onFilterChange("receiver", item.value);
+        }}
       />
     </div>
   );
