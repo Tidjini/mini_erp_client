@@ -7,11 +7,12 @@ import Input from "app/composants.v2/Input";
 import InputSelector from "app/composants.v2/InputSelector";
 import { defaultItem, statues } from "./Config";
 import InputCollection from "app/composants.v2/InputCollection";
-// import InputLocation from "app/composants.v2/InputLocation";
+import InputLocation from "app/composants.v2/location/InputLocation";
 import useLookupCollection from "app/hooks/useLookupCollection";
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import Action from "app/hooks/Action";
 import MapView from "./MapView";
+import { useLoadScript } from "@react-google-maps/api";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -79,6 +80,11 @@ export default function TaskView(props) {
       value: null,
     },
     defaultValue: form.receiver,
+  });
+
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: "AIzaSyDwp3IPJEqgPGVT6z2cmG17r8QXKkNlXl0",
+    libraries: ["places"],
   });
   return (
     <div style={{ margin: margins.default }}>
@@ -168,30 +174,32 @@ export default function TaskView(props) {
             <CollectionActions actions={actions} />
           </div>
         </Grid>
-        <Grid
-          item
-          container
-          spacing={1}
-          style={{ alignItems: "flex-start", padding: 20 }}
-          xl={6}
-          lg={6}
-          md={12}
-          sm={12}
-          xs={12}
-        >
-          {/* <Grid item sm={6} xs={12}>
-            <InputLocation
-              id="depart_address"
-              setAddress={setDepartAddress}
-              defaultValue={
-                form.depart_address ? form.depart_address : "Départ"
-              }
-              setCenter={setCenter}
-            />
-          </Grid> */}
-          <MapView />
-        </Grid>
+        {loadMap(isLoaded, loadError)}
       </Grid>
     </div>
+  );
+}
+
+function loadMap(isLoaded, loadError) {
+  if (loadError) return <Typography>ERRRO LOADING</Typography>;
+  if (isLoaded) return <Typography>IS LOADING</Typography>;
+
+  return (
+    <Grid
+      item
+      container
+      spacing={1}
+      style={{ alignItems: "flex-start", padding: 20 }}
+      xl={6}
+      lg={6}
+      md={12}
+      sm={12}
+      xs={12}
+    >
+      <Grid item sm={6} xs={12}>
+        <InputLocation id="depart_address" />
+      </Grid>
+      <MapView></MapView>
+    </Grid>
   );
 }
