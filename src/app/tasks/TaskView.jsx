@@ -7,6 +7,7 @@ import Input from "app/composants.v2/Input";
 import InputSelector from "app/composants.v2/InputSelector";
 import { defaultItem, statues } from "./Config";
 import InputCollection from "app/composants.v2/InputCollection";
+// import InputLocation from "app/composants.v2/InputLocation";
 import useLookupCollection from "app/hooks/useLookupCollection";
 import { Grid } from "@material-ui/core";
 import Action from "app/hooks/Action";
@@ -178,7 +179,17 @@ export default function TaskView(props) {
           sm={12}
           xs={12}
         >
-          <MapView></MapView>
+          {/* <Grid item sm={6} xs={12}>
+            <InputLocation
+              id="depart_address"
+              setAddress={setDepartAddress}
+              defaultValue={
+                form.depart_address ? form.depart_address : "Départ"
+              }
+              setCenter={setCenter}
+            />
+          </Grid> */}
+          <MapView />
         </Grid>
       </Grid>
     </div>
