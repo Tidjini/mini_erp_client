@@ -54,17 +54,25 @@ export default function useCollection({
     backgroundColor: backcolors.delete,
   });
 
+  const cleanFilter = (filter, name) => {
+    const cleaned = { ...filter };
+    delete cleaned[name];
+    setfilter({ ...cleaned });
+  };
+
   const handleFilterChange = (name, value) => {
     const newFilter = { ...filter };
+    if (value === null || value == undefined) {
+      cleanFilter(newFilter, name);
+      return;
+    }
+    //convert to str
+    value += "";
     if (
-      value === undefined ||
-      value === null ||
       value.toLowerCase() === "non définie" ||
       value.toLowerCase() === "tous"
     ) {
-      const cleaned = { ...newFilter };
-      delete cleaned[name];
-      setfilter({ ...cleaned });
+      cleanFilter(newFilter, name);
       return;
     }
     setfilter({ ...newFilter, [name]: value });
