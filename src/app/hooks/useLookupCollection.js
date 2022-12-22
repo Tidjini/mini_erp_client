@@ -39,7 +39,7 @@ export default function useLookupCollection({
   };
 
   React.useEffect(() => {
-    onGet(1, filter, undefined, true);
+    onGet({ page: 1, filter, lookup: true });
   }, [filter]);
 
   React.useEffect(() => {
