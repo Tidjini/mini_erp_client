@@ -217,7 +217,7 @@ export default function MapView() {
             }}
           />
         )}
-        {directions && (
+        {/* {directions && (
           <Polyline
             path={directions.routes[0].overview_path}
             geodesic={true}
@@ -228,7 +228,7 @@ export default function MapView() {
               clickable: true,
             }}
           />
-        )}
+        )} */}
         {/* </DirectionsService> */}
       </GoogleMap>
     );
