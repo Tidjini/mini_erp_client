@@ -1,5 +1,5 @@
 import { Grid } from "@material-ui/core";
-import { useLoadScript } from "@react-google-maps/api";
+import { InfoBox, useLoadScript } from "@react-google-maps/api";
 import DrawDirection from "app/composants.v2/map/DrawDirections";
 import MapView from "app/composants.v2/map/MapView";
 import TypedMarker from "app/composants.v2/map/Marker";
@@ -7,6 +7,7 @@ import useDirections from "app/hooks/useDirections";
 import { map } from "lodash";
 import React from "react";
 import TaskMapInputs from "./TaskMapInputs";
+import { transporters } from "./samples";
 //center for oran
 const defaultCenter = {
   lat: 35.6976541,
@@ -56,12 +57,20 @@ export default function TaskMapView() {
           setMaps(window.google.maps);
         }}
       >
-        <TypedMarker
-          position={{
-            lat: 35.6976541,
-            lng: -0.6337376,
-          }}
-        />
+        {transporters &&
+          transporters.map((t, index) => {
+            if (t.localisation === null) return;
+            const { longitude, latitude } = t.localisation;
+            return (
+              <TypedMarker
+                key={index}
+                position={{
+                  lat: latitude,
+                  lng: longitude,
+                }}
+              />
+            );
+          })}
 
         <DrawDirection
           maps={maps}
