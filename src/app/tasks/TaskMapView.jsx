@@ -47,26 +47,32 @@ export default function TaskMapView({ onSave }) {
   );
   return (
     <Grid item xl={6} lg={6} md={12} sm={12} xs={12}>
-      <Paper style={{ width: "100%", padding: 20 }}>
-        <TaskMapInputs
-          isLoaded={isLoaded}
-          onOriginChanged={(depart) => {
-            setCenter({ ...depart });
-            setOrigin({ ...depart });
+      <Paper style={{ width: "100%", borderRadius: 15 }}>
+        <div
+          style={{
+            padding: "20px 20px",
+            backgroundColor: "white",
+            borderRadius: 15,
           }}
-          onDestinationChanged={(destination) => {
-            setCenter({ ...destination });
-            setDestination({ ...destination });
-          }}
-        />
-
+        >
+          <TaskMapInputs
+            isLoaded={isLoaded}
+            onOriginChanged={(depart) => {
+              setCenter({ ...depart });
+              setOrigin({ ...depart });
+            }}
+            onDestinationChanged={(destination) => {
+              setCenter({ ...destination });
+              setDestination({ ...destination });
+            }}
+          />
+        </div>
         <MapView
           center={center}
           isLoaded={isLoaded}
           loadError={loadError}
           style={{
-            borderRadius: 15,
-            marginTop: 30,
+            borderRadius: "0px 0px 15px 15px",
           }}
           onLoad={(instance) => {
             setMaps(window.google.maps);
@@ -96,18 +102,18 @@ export default function TaskMapView({ onSave }) {
             }}
             directions={directions}
           />
+          <div
+            style={{
+              marginTop: 20,
+              width: "100%",
+              borderRadius: 10,
+              display: "flex",
+              flexDirection: "row-reverse",
+            }}
+          >
+            <CollectionActions actions={[saveAction]} />
+          </div>
         </MapView>
-        <div
-          style={{
-            marginTop: 20,
-            width: "100%",
-            borderRadius: 10,
-            display: "flex",
-            flexDirection: "row-reverse",
-          }}
-        >
-          <CollectionActions actions={[saveAction]} />
-        </div>
       </Paper>
     </Grid>
   );

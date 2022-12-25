@@ -5,7 +5,7 @@ export default function TypedMarker({ position, type, onClick }) {
   const getIcon = (type) => {
     switch (type) {
       default:
-        return "/assets/images/maps/chauffeur.svg";
+        return "/assets/images/maps/navigation.svg";
       case 0:
         return "/assets/images/maps/start.svg";
       case 1:

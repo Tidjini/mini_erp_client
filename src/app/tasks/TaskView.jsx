@@ -170,8 +170,8 @@ export default function TaskView(props) {
             </Grid>
           </Grid>
         </Grid>
-
         <TaskMapView />
+
         <Grid
           item
           container
@@ -181,7 +181,7 @@ export default function TaskView(props) {
             backgroundColor: "#8d99ae01",
             boxShadow: "1px 3px 3px 3px #9E9E9E20",
             borderRadius: 15,
-            padding: 20,
+            padding: "30px 20px",
           }}
           xl={6}
           lg={6}
