@@ -2,7 +2,11 @@ import { Grid } from "@material-ui/core";
 import LocationInput from "app/composants.v2/InputLocation";
 import React from "react";
 
-export default function TaskMapInputs({ isLoaded }) {
+export default function TaskMapInputs({
+  isLoaded,
+  onDepartChanged,
+  onArriveChanged,
+}) {
   return (
     isLoaded && (
       <Grid item container spacing={1} xs={12}>
@@ -10,8 +14,8 @@ export default function TaskMapInputs({ isLoaded }) {
           <LocationInput
             label="Départ"
             defaultValue={undefined}
-            changeAddress={(address) => {
-              console.log(address);
+            onChange={(depart) => {
+              onDepartChanged(depart);
             }}
           />
         </Grid>
@@ -19,8 +23,8 @@ export default function TaskMapInputs({ isLoaded }) {
           <LocationInput
             label="Arrivée"
             defaultValue={undefined}
-            changeAddress={(address) => {
-              console.log(address);
+            onChange={(arrive) => {
+              onArriveChanged(arrive);
             }}
           />
         </Grid>

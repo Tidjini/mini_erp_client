@@ -9,7 +9,7 @@ import usePlacesAutocomplte, {
 import { Typography } from "@material-ui/core";
 
 //https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap
-function LocationInput({ defaultValue, changeAddress, label, style }) {
+function LocationInput({ defaultValue, onChange, label, style }) {
   const {
     ready,
     value,
@@ -34,7 +34,7 @@ function LocationInput({ defaultValue, changeAddress, label, style }) {
     try {
       const result = await getGeocode({ address: val.description });
       const { lat, lng } = await getLatLng(result[0]);
-      changeAddress({
+      onChange({
         address: val.description,
         lat: lat,
         lng: lng,
