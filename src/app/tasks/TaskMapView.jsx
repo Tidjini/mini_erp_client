@@ -1,12 +1,10 @@
+import DrawDirection from "app/composants.v2/map/DrawDirections";
 import MapView from "app/composants.v2/map/MapView";
 import TypedMarker from "app/composants.v2/map/Marker";
-import useDirections from "app/hooks/useDirections";
 import React from "react";
 
 export default function TaskMapView() {
-  const { directions, handleChangeDirections: onChangeDirection } =
-    useDirections();
-
+  const [maps, setMaps] = React.useState();
   return (
     <MapView
       style={{
@@ -18,7 +16,7 @@ export default function TaskMapView() {
         xs: 12,
       }}
       onLoad={(instance) => {
-        console.log(window.google.maps);
+        setMaps(window.google.maps);
       }}
     >
       <TypedMarker
@@ -27,20 +25,19 @@ export default function TaskMapView() {
           lng: -0.6337376,
         }}
       />
-      <TypedMarker
-        type={0}
-        position={{
-          lat: 35.7279158,
-          lng: -0.5875089,
-        }}
-      />
-      <TypedMarker
-        type={1}
-        position={{
-          lat: 35.69856,
-          lng: -0.618288,
-        }}
-      />
+      {maps && (
+        <DrawDirection
+          maps={maps}
+          origin={{
+            lat: 35.7279158,
+            lng: -0.5875089,
+          }}
+          destination={{
+            lat: 35.69856,
+            lng: -0.618288,
+          }}
+        />
+      )}
     </MapView>
   );
 }
