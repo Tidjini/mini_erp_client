@@ -76,7 +76,7 @@ export default function TaskView(props) {
           item
           container
           spacing={1}
-          style={{ alignItems: "flex-start", padding: 20 }}
+          style={{ alignItems: "flex-start" }}
           xl={6}
           lg={6}
           md={12}
@@ -148,12 +148,21 @@ export default function TaskView(props) {
             <CollectionActions actions={actions} />
           </div>
         </Grid>
-        <Grid contianer item xl={6}>
-          <MapView />
-        </Grid>
+
+        <MapView
+          style={{
+            padding: "0 20px",
+            borderRadius: 15,
+            xl: 6,
+            lg: 6,
+            md: 12,
+            sm: 12,
+            xs: 12,
+          }}
+        />
         <Grid
           style={{
-            margin: "30px 22px",
+            margin: "30px 0",
             padding: "20px 5px",
             backgroundColor: "#E7E9EF",
             width: "100%",

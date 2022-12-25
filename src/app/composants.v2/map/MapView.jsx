@@ -6,8 +6,11 @@ import {
   DirectionsRenderer,
 } from "@react-google-maps/api";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 
 const container = {
+  minWidth: 100,
+  minHeight: 100,
   width: "100%",
   height: "100%",
 };
@@ -24,7 +27,8 @@ const options = (google) => {
     },
   };
 };
-export default function MapView() {
+export default function MapView(props) {
+  const { style } = props;
   const [directions, setDirections] = React.useState();
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY, // ,
@@ -89,65 +93,75 @@ export default function MapView() {
     }
 
     return (
-      <GoogleMap
-        mapContainerStyle={container}
-        center={center}
-        options={options(window.google)}
-        onLoad={onLoad}
-        zoom={10}
-        onBoundsChanged={() => {
-          // console.log("onBoundsChanged changed");
-        }}
-        onCenterChanged={() => {
-          // console.log("center changed");
-        }}
-        onClick={(event) => {
-          // console.log("click", event);
-        }}
-        onDblClick={(event) => {
-          // console.log("db click", event);
-        }}
-        onMouseMove={(e) => {
-          // console.log("on Mouse Mouve", e);
-        }}
-        onMouseOut={(e) => {
-          // console.log("on Mouse Out", e);
-        }}
-        onMouseOver={(e) => {
-          // console.log("on Mouse Out", e);
-        }}
+      <Grid
+        item
+        xs={(style && style.xs) || 12}
+        sm={(style && style.sm) || 12}
+        md={(style && style.md) || 12}
+        lg={(style && style.lg) || 12}
+        xl={(style && style.xl) || 12}
+        style={{ ...style }}
       >
-        {directions !== null && (
-          <DirectionsRenderer
-            directions={directions}
-            // required
-            // options={{
-            //   // eslint-disable-line react-perf/jsx-no-new-object-as-prop
-            //   directions: res,
-            // }}
-            // optional
-            onLoad={(directionsRenderer) => {
-              console.log(
-                "DirectionsRenderer onLoad directionsRenderer: ",
-                directionsRenderer
-              );
-            }}
-            // optional
-            onUnmount={(directionsRenderer) => {
-              console.log(
-                "DirectionsRenderer onUnmount directionsRenderer: ",
-                directionsRenderer
-              );
-            }}
-            options={{
-              strokeColor: "#20BF55",
-              strokeOpacity: 0.8,
-              strokeWeight: 6,
-              clickable: true,
-            }}
-          />
-        )}
-      </GoogleMap>
+        <GoogleMap
+          mapContainerStyle={{ ...container, ...style }}
+          center={center}
+          options={options(window.google)}
+          onLoad={onLoad}
+          zoom={10}
+          onBoundsChanged={() => {
+            // console.log("onBoundsChanged changed");
+          }}
+          onCenterChanged={() => {
+            // console.log("center changed");
+          }}
+          onClick={(event) => {
+            // console.log("click", event);
+          }}
+          onDblClick={(event) => {
+            // console.log("db click", event);
+          }}
+          onMouseMove={(e) => {
+            // console.log("on Mouse Mouve", e);
+          }}
+          onMouseOut={(e) => {
+            // console.log("on Mouse Out", e);
+          }}
+          onMouseOver={(e) => {
+            // console.log("on Mouse Out", e);
+          }}
+        >
+          {directions !== null && (
+            <DirectionsRenderer
+              directions={directions}
+              // required
+              // options={{
+              //   // eslint-disable-line react-perf/jsx-no-new-object-as-prop
+              //   directions: res,
+              // }}
+              // optional
+              onLoad={(directionsRenderer) => {
+                console.log(
+                  "DirectionsRenderer onLoad directionsRenderer: ",
+                  directionsRenderer
+                );
+              }}
+              // optional
+              onUnmount={(directionsRenderer) => {
+                console.log(
+                  "DirectionsRenderer onUnmount directionsRenderer: ",
+                  directionsRenderer
+                );
+              }}
+              options={{
+                strokeColor: "#20BF55",
+                strokeOpacity: 0.8,
+                strokeWeight: 6,
+                clickable: true,
+              }}
+            />
+          )}
+        </GoogleMap>
+      </Grid>
     );
   };
 
