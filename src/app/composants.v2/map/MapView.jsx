@@ -1,10 +1,6 @@
 import React from "react";
 
-import {
-  GoogleMap,
-  useLoadScript,
-  DirectionsRenderer,
-} from "@react-google-maps/api";
+import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import mapStyles from "./styles";
@@ -21,13 +17,6 @@ const center = {
   lng: -0.6337376,
 };
 
-const options = (google) => {
-  return {
-    zoomControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_CENTER,
-    },
-  };
-};
 export default function MapView(props) {
   const { style } = props;
   const [directions, setDirections] = React.useState();
@@ -60,16 +49,9 @@ export default function MapView(props) {
       },
       (result, status) => {
         if (status === window.google.maps.DirectionsStatus.OK) {
-          // setDistance(result.routes[0].legs[0].distance.text);
-          // setDuration(result.routes[0].legs[0].duration.text);
-          // setDistanceM(result.routes[0].legs[0].distance.value);
-          // setDurationS(result.routes[0].legs[0].duration.value);
-          // hideElements(form.max_poid, result.routes[0].legs[0].distance.value);
-
           setDirections(result);
         } else {
           console.error(`error fetching directions ${result}`);
-          console.log("SD, service", result);
         }
       }
     );
@@ -112,38 +94,7 @@ export default function MapView(props) {
           }}
           onLoad={onLoad}
           zoom={10}
-        >
-          {directions !== null && (
-            <DirectionsRenderer
-              directions={directions}
-              // required
-              // options={{
-              //   // eslint-disable-line react-perf/jsx-no-new-object-as-prop
-              //   directions: res,
-              // }}
-              // optional
-              onLoad={(directionsRenderer) => {
-                console.log(
-                  "DirectionsRenderer onLoad directionsRenderer: ",
-                  directionsRenderer
-                );
-              }}
-              // optional
-              onUnmount={(directionsRenderer) => {
-                console.log(
-                  "DirectionsRenderer onUnmount directionsRenderer: ",
-                  directionsRenderer
-                );
-              }}
-              options={{
-                strokeColor: "#20BF55",
-                strokeOpacity: 0.8,
-                strokeWeight: 6,
-                clickable: true,
-              }}
-            />
-          )}
-        </GoogleMap>
+        ></GoogleMap>
       </Grid>
     );
   };
