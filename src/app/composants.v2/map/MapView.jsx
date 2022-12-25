@@ -7,6 +7,7 @@ import {
 } from "@react-google-maps/api";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import mapStyles from "./styles";
 
 const container = {
   minWidth: 100,
@@ -31,8 +32,7 @@ export default function MapView(props) {
   const { style } = props;
   const [directions, setDirections] = React.useState();
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY, // ,
-    // ...otherOptions
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
   });
 
   let directionsService;
@@ -105,7 +105,11 @@ export default function MapView(props) {
         <GoogleMap
           mapContainerStyle={{ ...container, ...style }}
           center={center}
-          options={options(window.google)}
+          options={{
+            styles: mapStyles,
+            disableDefaultUI: true,
+            zoomControl: true,
+          }}
           onLoad={onLoad}
           zoom={10}
           onBoundsChanged={() => {
