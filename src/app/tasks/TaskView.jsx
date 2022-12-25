@@ -11,6 +11,7 @@ import { Grid } from "@material-ui/core";
 import Action from "app/hooks/Action";
 import InputFile from "app/composants.v2/InputFile";
 import MapView from "app/composants.v2/map/MapView";
+import TypedMarker from "app/composants.v2/map/Marker";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -158,7 +159,14 @@ export default function TaskView(props) {
             sm: 12,
             xs: 12,
           }}
-        />
+        >
+          <TypedMarker
+            position={{
+              lat: 35.6976541,
+              lng: -0.6337376,
+            }}
+          />
+        </MapView>
         <Grid
           style={{
             margin: "30px 0",
