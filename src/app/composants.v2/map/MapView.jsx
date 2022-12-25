@@ -19,31 +19,13 @@ const center = {
 };
 
 export default function MapView(props) {
-  const { style, children, onChangeDirection } = props;
-  //   const { directions, handleChangeDirections: onChangeDirection } =
-  //     useDirections();
+  const { style, children, onLoad } = props;
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
   });
 
   const renderMap = () => {
-    function onLoad(mapInstance) {
-      if (onChangeDirection) {
-        onChangeDirection({
-          mapInstance: window.google.maps,
-          origin: {
-            lat: 35.7279158,
-            lng: -0.5875089,
-          },
-          destination: {
-            lat: 35.69856,
-            lng: -0.618288,
-          },
-        });
-      }
-    }
-
     return (
       <Grid
         item

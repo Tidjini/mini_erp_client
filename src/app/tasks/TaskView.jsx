@@ -12,6 +12,7 @@ import Action from "app/hooks/Action";
 import InputFile from "app/composants.v2/InputFile";
 import MapView from "app/composants.v2/map/MapView";
 import TypedMarker from "app/composants.v2/map/Marker";
+import TaskMapView from "./TaskMapView";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -60,6 +61,9 @@ export default function TaskView(props) {
     }
   );
   const actions = [saveAction, accepteAction, terminerAction, cancelAction];
+
+  //   const { directions, handleChangeDirections: onChangeDirection } =
+  //     useDirections();
 
   return (
     <div style={{ margin: margins.default }}>
@@ -150,37 +154,7 @@ export default function TaskView(props) {
           </div>
         </Grid>
 
-        <MapView
-          style={{
-            borderRadius: 15,
-            xl: 6,
-            lg: 6,
-            md: 12,
-            sm: 12,
-            xs: 12,
-          }}
-        >
-          <TypedMarker
-            position={{
-              lat: 35.6976541,
-              lng: -0.6337376,
-            }}
-          />
-          <TypedMarker
-            type={0}
-            position={{
-              lat: 35.7279158,
-              lng: -0.5875089,
-            }}
-          />
-          <TypedMarker
-            type={1}
-            position={{
-              lat: 35.69856,
-              lng: -0.618288,
-            }}
-          />
-        </MapView>
+        <TaskMapView />
         <Grid
           style={{
             margin: "30px 0",
