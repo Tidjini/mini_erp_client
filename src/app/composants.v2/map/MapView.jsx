@@ -4,6 +4,7 @@ import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import mapStyles from "./styles";
+import useDirections from "app/hooks/useDirections";
 
 const container = {
   minWidth: 100,
@@ -19,59 +20,28 @@ const center = {
 
 export default function MapView(props) {
   const { style } = props;
-  const [directions, setDirections] = React.useState();
+  const { directions, handleChangeDirections: onChangeDirection } =
+    useDirections();
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
   });
-
-  let directionsService;
-
-  function changeDirections(maps, depart, arrive) {
-    if (depart === null) return;
-    if (arrive === null) return;
-
-    directionsService = new maps.DirectionsService();
-    const origin = {
-      lat: depart.lat,
-      lng: depart.lng,
-    };
-    const destination = {
-      lat: arrive.lat,
-      lng: arrive.lng,
-    };
-    directionsService.route(
-      {
-        origin: origin,
-        destination: destination,
-        travelMode: window.google.maps.TravelMode.DRIVING,
-        provideRouteAlternatives: true,
-        optimizeWaypoints: true,
-      },
-      (result, status) => {
-        if (status === window.google.maps.DirectionsStatus.OK) {
-          setDirections(result);
-        } else {
-          console.error(`error fetching directions ${result}`);
-        }
-      }
-    );
-  }
 
   const renderMap = () => {
     function onLoad(mapInstance) {
       // console.log(mapInstance);
       // console.log(window);
-      changeDirections(
-        window.google.maps,
-        {
+
+      onChangeDirection({
+        mapInstance: window.google.maps,
+        origin: {
           lat: 35.7279158,
           lng: -0.5875089,
         },
-        {
+        destination: {
           lat: 35.69856,
           lng: -0.618288,
-        }
-      );
+        },
+      });
     }
 
     return (
