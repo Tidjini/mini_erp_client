@@ -112,6 +112,27 @@ export default function MapView(props) {
           }}
           onLoad={onLoad}
           zoom={10}
+          onBoundsChanged={() => {
+            // console.log("onBoundsChanged changed");
+          }}
+          onCenterChanged={() => {
+            // console.log("center changed");
+          }}
+          onClick={(event) => {
+            // console.log("click", event);
+          }}
+          onDblClick={(event) => {
+            // console.log("db click", event);
+          }}
+          onMouseMove={(e) => {
+            // console.log("on Mouse Mouve", e);
+          }}
+          onMouseOut={(e) => {
+            // console.log("on Mouse Out", e);
+          }}
+          onMouseOver={(e) => {
+            // console.log("on Mouse Out", e);
+          }}
         >
           {directions !== null && (
             <DirectionsRenderer
