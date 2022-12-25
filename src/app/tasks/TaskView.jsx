@@ -77,7 +77,7 @@ export default function TaskView(props) {
         <Header title={title} goBack={goBack} />
         {/* <CollectionActions actions={actions} /> */}
       </div>
-      <Grid container spacing={4} style={{ alignItems: "flex-start" }}>
+      <Grid container spacing={1} style={{ alignItems: "flex-start" }}>
         <Grid
           item
           container
@@ -98,7 +98,7 @@ export default function TaskView(props) {
             style={{
               alignItems: "flex-start",
               backgroundColor: "#8d99ae01",
-              boxShadow: "1px 3px 3px #9E9E9E50",
+              boxShadow: "1px 3px 3px 3px #9E9E9E20",
               borderRadius: 15,
               padding: 20,
             }}
