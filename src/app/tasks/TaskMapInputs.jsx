@@ -11,7 +11,7 @@ export default function TaskMapInputs({
   return (
     isLoaded && (
       <Grid item container spacing={1} xs={12}>
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={6} md={6}>
           <LocationInput
             label="Départ"
             defaultValue={{
@@ -25,7 +25,7 @@ export default function TaskMapInputs({
             }}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={6} md={6}>
           <LocationInput
             label="Arrivée"
             defaultValue={"Pharmacie Ben Okba, W46, Hassi Ben Okba, Algérie"}

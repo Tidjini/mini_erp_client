@@ -77,12 +77,12 @@ export default function TaskView(props) {
         <Header title={title} goBack={goBack} />
         {/* <CollectionActions actions={actions} /> */}
       </div>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} style={{ alignItems: "flex-start" }}>
         <Grid
           item
           container
           spacing={1}
-          style={{ alignItems: "flex-start" }}
+          style={{ alignItems: "flex-start", backgroundColor: "floralwhite" }}
           xl={6}
           lg={6}
           md={12}
@@ -140,11 +140,9 @@ export default function TaskView(props) {
               rows: 10,
             }}
           />
-          <div
+          <Grid
             style={{
-              margin: "10px 2px",
-              padding: "20px 5px",
-              backgroundColor: "#E7E9EF",
+              marginTop: 20,
               width: "100%",
               borderRadius: 10,
               display: "flex",
@@ -152,12 +150,12 @@ export default function TaskView(props) {
             }}
           >
             <CollectionActions actions={actions} />
-          </div>
+          </Grid>
         </Grid>
 
         <TaskMapView />
 
-        <Grid
+        {/* <Grid
           style={{
             margin: "30px 0",
             padding: "20px 5px",
@@ -169,7 +167,20 @@ export default function TaskView(props) {
           }}
         >
           <InputFile />
-        </Grid>
+        </Grid> */}
+        {/* <Grid
+          style={{
+            margin: "10px 2px",
+            padding: "20px 5px",
+            backgroundColor: "#E7E9EF",
+            width: "100%",
+            borderRadius: 10,
+            display: "flex",
+            flexDirection: "row-reverse",
+          }}
+        >
+          <CollectionActions actions={actions} />
+        </Grid> */}
       </Grid>
     </div>
   );
