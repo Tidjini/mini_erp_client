@@ -4,7 +4,6 @@ import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import mapStyles from "./styles";
-import useDirections from "app/hooks/useDirections";
 
 const container = {
   minWidth: 100,
@@ -13,15 +12,16 @@ const container = {
   height: "100%",
 };
 
+//center for oran
 const center = {
   lat: 35.6976541,
   lng: -0.6337376,
 };
 
 export default function MapView(props) {
-  const { style } = props;
-  const { directions, handleChangeDirections: onChangeDirection } =
-    useDirections();
+  const { style, children, onChangeDirection } = props;
+  //   const { directions, handleChangeDirections: onChangeDirection } =
+  //     useDirections();
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -29,17 +29,19 @@ export default function MapView(props) {
 
   const renderMap = () => {
     function onLoad(mapInstance) {
-      onChangeDirection({
-        mapInstance: window.google.maps,
-        origin: {
-          lat: 35.7279158,
-          lng: -0.5875089,
-        },
-        destination: {
-          lat: 35.69856,
-          lng: -0.618288,
-        },
-      });
+      if (onChangeDirection) {
+        onChangeDirection({
+          mapInstance: window.google.maps,
+          origin: {
+            lat: 35.7279158,
+            lng: -0.5875089,
+          },
+          destination: {
+            lat: 35.69856,
+            lng: -0.618288,
+          },
+        });
+      }
     }
 
     return (
@@ -62,7 +64,9 @@ export default function MapView(props) {
           }}
           onLoad={onLoad}
           zoom={(style && style.zoom) || 12}
-        ></GoogleMap>
+        >
+          {children}
+        </GoogleMap>
       </Grid>
     );
   };
