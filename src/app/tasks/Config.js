@@ -74,3 +74,13 @@ export const statues = [
   { display: "terminated", value: "t" },
   { display: "canceled", value: "c" },
 ];
+
+export const taskLocation = {
+  task: null,
+  origin_address: "",
+  origin_lng: 0.0,
+  origin_lat: 0.0,
+  destination_address: "",
+  destination_lng: 0.0,
+  destination_lat: 0.0,
+};

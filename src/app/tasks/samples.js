@@ -296,3 +296,36 @@ export const transporters = [
     exercice: null,
   },
 ];
+
+export const localisations = [
+  {
+    id: 1,
+    task: 21,
+    origin_address: "Origin",
+    origin_lng: -0.74,
+    origin_lat: 35.6976141,
+    destination_address: "Destination",
+    destination_lng: -0.6,
+    destination_lat: 35.2,
+  },
+  {
+    id: 2,
+    task: 21,
+    origin_address: "Origin",
+    origin_lng: -0.74,
+    origin_lat: 35.6976141,
+    destination_address: "Destination",
+    destination_lng: -0.6,
+    destination_lat: 35.2,
+  },
+  {
+    id: 3,
+    task: 22,
+    origin_address: "Origin",
+    origin_lng: -0.74,
+    origin_lat: 35.6976141,
+    destination_address: "Destination",
+    destination_lng: -0.6,
+    destination_lat: 35.2,
+  },
+];

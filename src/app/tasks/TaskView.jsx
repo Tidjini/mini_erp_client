@@ -5,7 +5,7 @@ import { margins } from "app/composants.v2/constants";
 import useView from "app/hooks/useView";
 import Input from "app/composants.v2/Input";
 import InputSelector from "app/composants.v2/InputSelector";
-import { defaultItem, statues } from "./Config";
+import { defaultItem, statues, taskLocation } from "./Config";
 import InputCollection from "app/composants.v2/InputCollection";
 import { Grid } from "@material-ui/core";
 import Action from "app/hooks/Action";
@@ -13,7 +13,9 @@ import InputFile from "app/composants.v2/InputFile";
 import MapView from "app/composants.v2/map/MapView";
 import TypedMarker from "app/composants.v2/map/Marker";
 import TaskMapView from "./TaskMapView";
-import LocationInput from "app/composants.v2/InputLocation";
+import CollectionBody from "app/composants.v2/collection/CollectionBody";
+import TaskLocationItem from "./TaskLocationItem";
+import { localisations } from "./samples";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -154,6 +156,8 @@ export default function TaskView(props) {
                 rows: 10,
               }}
             />
+
+            {locations}
             <Grid
               style={{
                 marginTop: 20,

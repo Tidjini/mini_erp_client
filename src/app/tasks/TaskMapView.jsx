@@ -17,7 +17,8 @@ const defaultCenter = {
   lng: -0.6337376,
 };
 const libs = ["places"];
-export default function TaskMapView() {
+
+export default function TaskMapView({ onSave }) {
   const [maps, setMaps] = React.useState();
 
   const [center, setCenter] = React.useState(defaultCenter);
@@ -37,7 +38,7 @@ export default function TaskMapView() {
   const saveAction = new Action(
     "Sauvgarder",
     () => {
-      console.log("On Accept Clicked");
+      // onSave({});
     },
     "cancel",
     {
