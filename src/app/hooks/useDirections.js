@@ -11,7 +11,9 @@ export default function useDirections() {
   }) => {
     //if origin or destination not define return
     if (!Boolean(origin) || !Boolean(destination)) return;
-    console.log(mapInstance);
+    console.log("handle....", mapInstance);
+    setDirections(null);
+
     new mapInstance.DirectionsService().route(
       {
         origin,

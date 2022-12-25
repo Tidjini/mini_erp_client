@@ -4,8 +4,9 @@ import React from "react";
 
 export default function TaskMapInputs({
   isLoaded,
-  onDepartChanged,
-  onArriveChanged,
+  onOriginChanged,
+  onDestinationChanged,
+  changeDirection,
 }) {
   return (
     isLoaded && (
@@ -15,7 +16,8 @@ export default function TaskMapInputs({
             label="Départ"
             defaultValue={undefined}
             onChange={(depart) => {
-              onDepartChanged(depart);
+              onOriginChanged(depart);
+              changeDirection && changeDirection();
             }}
           />
         </Grid>
@@ -24,7 +26,8 @@ export default function TaskMapInputs({
             label="Arrivée"
             defaultValue={undefined}
             onChange={(arrive) => {
-              onArriveChanged(arrive);
+              onDestinationChanged(arrive);
+              changeDirection && changeDirection();
             }}
           />
         </Grid>
