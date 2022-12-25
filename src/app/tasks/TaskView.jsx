@@ -77,79 +77,94 @@ export default function TaskView(props) {
         <Header title={title} goBack={goBack} />
         {/* <CollectionActions actions={actions} /> */}
       </div>
-      <Grid container spacing={2} style={{ alignItems: "flex-start" }}>
+      <Grid container spacing={4} style={{ alignItems: "flex-start" }}>
         <Grid
           item
           container
           spacing={1}
-          style={{ alignItems: "flex-start", backgroundColor: "floralwhite" }}
+          style={{
+            padding: "30px 20px",
+          }}
           xl={6}
           lg={6}
           md={12}
           sm={12}
           xs={12}
         >
-          <Input
-            label="Intitule"
-            placeholder="Tâche Intitule"
-            name="label"
-            onChange={onFormChanged}
-            value={form.label}
-          />
-          <InputCollection
-            label="Affecter A"
-            name="receiver"
-            style={{
-              xl: 6,
-              lg: 6,
-              md: 6,
-              sm: 6,
-              xs: 12,
-            }}
-            lookup={{
-              collection: "profiles",
-              display: "name",
-              value: "id",
-              emptyValue: { display: "Non Définie", value: null },
-              defaultValue: form.receiver,
-            }}
-            onSelectItem={(item) => {
-              onInFormChanged("receiver", item.value);
-            }}
-          />
-          <InputSelector
-            label="Statue"
-            name="statue"
-            value={form.statue}
-            options={statues}
-            onChange={onFormChanged}
-            xl={6}
-            lg={6}
-            md={6}
-            sm={6}
-            xs={12}
-          />
-          <Input
-            label="Description"
-            placeholder="Description de cette tâche"
-            name="description"
-            onChange={onFormChanged}
-            value={form.description}
-            style={{
-              multiline: true,
-              rows: 10,
-            }}
-          />
           <Grid
+            item
+            container
+            spacing={1}
             style={{
-              marginTop: 20,
-              width: "100%",
-              borderRadius: 10,
-              display: "flex",
-              flexDirection: "row-reverse",
+              alignItems: "flex-start",
+              backgroundColor: "#8d99ae01",
+              boxShadow: "1px 3px 3px #9E9E9E50",
+              borderRadius: 15,
+              padding: 20,
             }}
           >
-            <CollectionActions actions={actions} />
+            <Input
+              label="Intitule"
+              placeholder="Tâche Intitule"
+              name="label"
+              onChange={onFormChanged}
+              value={form.label}
+            />
+            <InputCollection
+              label="Affecter A"
+              name="receiver"
+              style={{
+                xl: 6,
+                lg: 6,
+                md: 6,
+                sm: 6,
+                xs: 12,
+              }}
+              lookup={{
+                collection: "profiles",
+                display: "name",
+                value: "id",
+                emptyValue: { display: "Non Définie", value: null },
+                defaultValue: form.receiver,
+              }}
+              onSelectItem={(item) => {
+                onInFormChanged("receiver", item.value);
+              }}
+            />
+            <InputSelector
+              label="Statue"
+              name="statue"
+              value={form.statue}
+              options={statues}
+              onChange={onFormChanged}
+              xl={6}
+              lg={6}
+              md={6}
+              sm={6}
+              xs={12}
+            />
+            <Input
+              label="Description"
+              placeholder="Description de cette tâche"
+              name="description"
+              onChange={onFormChanged}
+              value={form.description}
+              style={{
+                multiline: true,
+                rows: 10,
+              }}
+            />
+            <Grid
+              style={{
+                marginTop: 20,
+                width: "100%",
+                borderRadius: 10,
+                display: "flex",
+                flexDirection: "row-reverse",
+              }}
+            >
+              <CollectionActions actions={actions} />
+            </Grid>
           </Grid>
         </Grid>
 
