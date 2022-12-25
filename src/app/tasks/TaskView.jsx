@@ -166,6 +166,20 @@ export default function TaskView(props) {
               lng: -0.6337376,
             }}
           />
+          <TypedMarker
+            type={0}
+            position={{
+              lat: 35.7279158,
+              lng: -0.5875089,
+            }}
+          />
+          <TypedMarker
+            type={1}
+            position={{
+              lat: 35.69856,
+              lng: -0.618288,
+            }}
+          />
         </MapView>
         <Grid
           style={{
