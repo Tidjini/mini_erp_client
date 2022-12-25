@@ -1,52 +1,74 @@
-import { Typography } from "@material-ui/core";
-import Button from "app/composants.v2/Button";
+import { Icon, IconButton, Typography } from "@material-ui/core";
 import { margins } from "app/composants.v2/constants";
 import React from "react";
 
-export default function TaskLocationdata({ data, onDelete }) {
+export default function TaskLocationItem({ data, onDelete }) {
   return (
     <div
       style={{
+        width: "100%",
         backgroundColor: "#8d99ae01",
-        boxShadow: "1px 3px 3px 3px #9E9E9E20",
+        borderColor: "#8d99ae20",
+        borderWidth: 1,
         borderRadius: 15,
-        padding: 20,
+        padding: "10px",
+        margin: 5,
         display: "flex",
         justifyContent: "space-between",
+        alignItems: "center",
       }}
     >
-      <div>
-        <div style={{ display: "flex", aligndatas: "center" }}>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <div>
           <img
             src="assets/images/maps/start.svg"
-            style={{ width: 36, height: 36, marginLeft: 16 }}
+            style={{
+              width: 14,
+              height: 14,
+              marginRight: 16,
+              display: "block",
+              marginBottom: 8,
+            }}
           />
-          <div>
-            <Typography style={{ fontWeight: "600" }}>Depart</Typography>
-            <Typography>{data.origin_address}</Typography>
-          </div>
-        </div>
-        <div style={{ display: "flex", aligndatas: "center" }}>
           <img
             src="assets/images/maps/end.svg"
-            style={{ width: 36, height: 36, marginLeft: 16 }}
+            style={{ width: 14, height: 14, marginRight: 16, display: "block" }}
           />
-          <div>
-            <Typography style={{ fontWeight: "600" }}>Destination</Typography>
-            <Typography>{data.destination_address}</Typography>
-          </div>
+        </div>
+        <div>
+          <Typography
+            style={{ fontWeight: "700", fontSize: 12, marginRight: 16 }}
+          >
+            Depart
+          </Typography>
+          <Typography
+            style={{ fontWeight: "700", fontSize: 12, marginRight: 16 }}
+          >
+            Destination
+          </Typography>
+        </div>
+        <div>
+          <Typography style={{ fontWeight: "500", fontSize: 12 }}>
+            {data.origin_address}
+          </Typography>
+          <Typography style={{ fontWeight: "500", fontSize: 12 }}>
+            {data.destination_address}
+          </Typography>
         </div>
       </div>
-      <Button
+      <IconButton
         style={{
-          marginRight: margins.default,
-          backgroundColor: "#fffcf2",
-          borderWidth: 1,
+          backgroundColor: "transparent",
           borderColor: "#da2c38",
+          border: "#da2c38 solid 2px",
+          color: "#da2c38",
+          width: 48,
+          height: 48,
         }}
         onClick={onDelete}
-        content="Supprimer"
-      ></Button>
+      >
+        <Icon>delete</Icon>
+      </IconButton>
     </div>
   );
 }

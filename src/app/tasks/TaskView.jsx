@@ -157,7 +157,6 @@ export default function TaskView(props) {
               }}
             />
 
-            {locations}
             <Grid
               style={{
                 marginTop: 20,
@@ -173,6 +172,27 @@ export default function TaskView(props) {
         </Grid>
 
         <TaskMapView />
+        <Grid
+          item
+          container
+          spacing={1}
+          style={{
+            alignItems: "flex-start",
+            backgroundColor: "#8d99ae01",
+            boxShadow: "1px 3px 3px 3px #9E9E9E20",
+            borderRadius: 15,
+            padding: 20,
+          }}
+          xl={6}
+          lg={6}
+          md={12}
+          sm={12}
+          xs={12}
+        >
+          {localisations.map((item, id) => {
+            return <TaskLocationItem key={id} data={item} />;
+          })}
+        </Grid>
 
         {/* <Grid
           style={{
