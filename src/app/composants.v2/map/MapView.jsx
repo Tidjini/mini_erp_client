@@ -12,14 +12,8 @@ const container = {
   height: "100%",
 };
 
-//center for oran
-const center = {
-  lat: 35.6976541,
-  lng: -0.6337376,
-};
-
 export default function MapView(props) {
-  const { style, children, onLoad, isLoaded, loadError } = props;
+  const { style, children, onLoad, isLoaded, loadError, center } = props;
 
   const renderMap = () => {
     return (

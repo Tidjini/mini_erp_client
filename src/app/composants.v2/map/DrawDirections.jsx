@@ -12,36 +12,37 @@ export default function DrawDirection({ maps, origin, destination, onClick }) {
   }, [maps]);
 
   return (
-    directions && (
-      <div>
-        <DirectionsRenderer
-          options={{
-            polylineOptions: {
-              strokeOpacity: 0,
-              strokeWeight: 0,
-            },
-            markerOptions: {
-              opacity: 0,
-            },
-          }}
-          directions={directions}
-        />
+    <div>
+      {directions && (
+        <div>
+          <DirectionsRenderer
+            options={{
+              polylineOptions: {
+                strokeOpacity: 0,
+                strokeWeight: 0,
+              },
+              markerOptions: {
+                opacity: 0,
+              },
+            }}
+            directions={directions}
+          />
+          <Polyline
+            path={directions.routes[0].overview_path}
+            geodesic={true}
+            options={{
+              strokeColor: "#1D68C3",
+              strokeOpacity: 0.8,
+              strokeWeight: 4,
+              clickable: true,
+            }}
+            onClick={onClick}
+          />
+        </div>
+      )}
 
-        <Polyline
-          path={directions.routes[0].overview_path}
-          geodesic={true}
-          options={{
-            strokeColor: "#1D68C3",
-            strokeOpacity: 0.8,
-            strokeWeight: 4,
-            clickable: true,
-          }}
-          onClick={onClick}
-        />
-
-        <TypedMarker position={origin} type={0}></TypedMarker>
-        <TypedMarker position={destination} type={1} />
-      </div>
-    )
+      {origin && <TypedMarker position={origin} type={0}></TypedMarker>}
+      {destination && <TypedMarker position={destination} type={1} />}
+    </div>
   );
 }
