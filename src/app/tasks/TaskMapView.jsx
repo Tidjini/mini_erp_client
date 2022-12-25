@@ -47,14 +47,7 @@ export default function TaskMapView() {
           }}
         />
 
-        <DrawDirection
-          maps={maps}
-          origin={origin}
-          destination={{
-            lat: 35.69856,
-            lng: -0.618288,
-          }}
-        />
+        <DrawDirection maps={maps} origin={origin} destination={undefined} />
       </MapView>
     </Grid>
   );
