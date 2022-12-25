@@ -19,11 +19,7 @@ const center = {
 };
 
 export default function MapView(props) {
-  const { style, children, onLoad } = props;
-
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-  });
+  const { style, children, onLoad, isLoaded, loadError } = props;
 
   const renderMap = () => {
     return (

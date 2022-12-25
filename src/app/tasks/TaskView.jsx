@@ -13,6 +13,7 @@ import InputFile from "app/composants.v2/InputFile";
 import MapView from "app/composants.v2/map/MapView";
 import TypedMarker from "app/composants.v2/map/Marker";
 import TaskMapView from "./TaskMapView";
+import LocationInput from "app/composants.v2/InputLocation";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -155,6 +156,7 @@ export default function TaskView(props) {
         </Grid>
 
         <TaskMapView />
+
         <Grid
           style={{
             margin: "30px 0",

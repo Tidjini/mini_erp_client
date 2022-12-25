@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { TextField } from "@material-ui/core";
+import React from "react";
+import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import axios from "axios";
 
 import usePlacesAutocomplte, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
+import { Typography } from "@material-ui/core";
 
 //https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap
-function LocationInput({ id, setAddress, defaultValue, setCenter }) {
+function LocationInput({ defaultValue, changeAddress, label, style }) {
   const {
     ready,
     value,
@@ -26,34 +26,29 @@ function LocationInput({ id, setAddress, defaultValue, setCenter }) {
     cache: 24 * 60 * 60,
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     setValue(defaultValue);
   }, [defaultValue]);
 
-  const onDepartChange = async (e, val) => {
-    //setDirections(null);
+  const handleChange = async (e, val) => {
     try {
       const result = await getGeocode({ address: val.description });
       const { lat, lng } = await getLatLng(result[0]);
-      setAddress({
+      changeAddress({
         address: val.description,
         lat: lat,
         lng: lng,
       });
-      // setDepart({ address: val.description, lat, lng });
-      setCenter({ lat: lat, lng: lng });
-    } catch (e) {
-      // setDepart(null);
-    }
+    } catch (e) {}
   };
 
   return (
-    <div className="flex">
+    <div style={{ ...style, width: "100%" }}>
+      {label && <Typography style={{ fontWeight: "bold" }}>{label}</Typography>}
       <Autocomplete
-        id={id}
         filterOptions={(x) => x}
         options={data}
-        onChange={onDepartChange}
+        onChange={handleChange}
         getOptionLabel={({ place_id, description }) => {
           return description;
         }}
