@@ -10,6 +10,7 @@ import InputCollection from "app/composants.v2/InputCollection";
 import { Grid } from "@material-ui/core";
 import Action from "app/hooks/Action";
 import InputFile from "app/composants.v2/InputFile";
+import MapView from "app/composants.v2/map/MapView";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -146,6 +147,9 @@ export default function TaskView(props) {
           >
             <CollectionActions actions={actions} />
           </div>
+        </Grid>
+        <Grid contianer item xl={6}>
+          <MapView />
         </Grid>
         <Grid
           style={{

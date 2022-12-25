@@ -1,14 +1,11 @@
 import React from "react";
+
 import {
   GoogleMap,
   useLoadScript,
-  InfoBox,
-  Marker,
-  DirectionsService,
   DirectionsRenderer,
-  Polyline,
 } from "@react-google-maps/api";
-import { Typography } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 const container = {
   width: "100%",
@@ -120,79 +117,6 @@ export default function MapView() {
           // console.log("on Mouse Out", e);
         }}
       >
-        <InfoBox
-          onLoad={(infoBox) => {
-            console.log("infoBox: ", infoBox);
-          }}
-          position={center}
-        >
-          <div style={{ backgroundColor: "yellow", opacity: 1, padding: 12 }}>
-            <div style={{ fontSize: 16, fontColor: `#08233B` }}>
-              Hello, World!
-            </div>
-          </div>
-        </InfoBox>
-
-        <Marker
-          onLoad={(marker) => {
-            console.log("marker: ", marker);
-          }}
-          position={{
-            lat: 35.7279158,
-            lng: -0.5875089,
-          }}
-        />
-        <Marker
-          onLoad={(marker) => {
-            console.log("marker: ", marker);
-          }}
-          position={{
-            lat: 35.69856,
-            lng: -0.618288,
-          }}
-        />
-
-        {/* <DirectionsService
-          // required
-          options={{
-            // eslint-disable-line react-perf/jsx-no-new-object-as-prop
-            destination: {
-              lat: 35.7279158,
-              lng: -0.5875089,
-            },
-            origin: {
-              lat: 35.69856,
-              lng: -0.618288,
-            },
-            travelMode: "DRIVING",
-          }}
-          // required
-          callback={(response) => {
-            console.log(response);
-
-            if (response !== null) {
-              if (response.status === "OK") {
-                setRes({ ...response });
-              } else {
-                console.log("response: ", response);
-              }
-            }
-          }}
-          // optional
-          onLoad={(directionsService) => {
-            console.log(
-              "DirectionsService onLoad directionsService: ",
-              directionsService
-            );
-          }}
-          // optional
-          onUnmount={(directionsService) => {
-            console.log(
-              "DirectionsService onUnmount directionsService: ",
-              directionsService
-            );
-          }}
-        > */}
         {directions !== null && (
           <DirectionsRenderer
             directions={directions}
@@ -215,12 +139,6 @@ export default function MapView() {
                 directionsRenderer
               );
             }}
-          />
-        )}
-        {/* {directions && (
-          <Polyline
-            path={directions.routes[0].overview_path}
-            geodesic={true}
             options={{
               strokeColor: "#20BF55",
               strokeOpacity: 0.8,
@@ -228,8 +146,7 @@ export default function MapView() {
               clickable: true,
             }}
           />
-        )} */}
-        {/* </DirectionsService> */}
+        )}
       </GoogleMap>
     );
   };

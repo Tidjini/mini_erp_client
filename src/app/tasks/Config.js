@@ -12,10 +12,6 @@ export const TaskConfig = {
       path: "/task/:id",
       component: React.lazy(() => import("./TaskView")),
     },
-    {
-      path: "/map/",
-      component: React.lazy(() => import("./MapView")),
-    },
   ],
   navigation: {
     id: "tasks",
@@ -59,6 +55,7 @@ export const defaultItem = {
   created_time: "",
   receiver_name: "",
   creator_name: "",
+  has_location: false,
   statue: "i",
   label: "",
   forecolor: "#27187E",
