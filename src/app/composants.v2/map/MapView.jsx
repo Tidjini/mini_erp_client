@@ -8,7 +8,7 @@ import useDirections from "app/hooks/useDirections";
 
 const container = {
   minWidth: 100,
-  minHeight: 100,
+  minHeight: 300,
   width: "100%",
   height: "100%",
 };
@@ -22,15 +22,13 @@ export default function MapView(props) {
   const { style } = props;
   const { directions, handleChangeDirections: onChangeDirection } =
     useDirections();
+
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
   });
 
   const renderMap = () => {
     function onLoad(mapInstance) {
-      // console.log(mapInstance);
-      // console.log(window);
-
       onChangeDirection({
         mapInstance: window.google.maps,
         origin: {
@@ -63,7 +61,7 @@ export default function MapView(props) {
             zoomControl: true,
           }}
           onLoad={onLoad}
-          zoom={10}
+          zoom={(style && style.zoom) || 12}
         ></GoogleMap>
       </Grid>
     );

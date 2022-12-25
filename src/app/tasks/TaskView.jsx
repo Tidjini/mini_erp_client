@@ -71,7 +71,7 @@ export default function TaskView(props) {
         <Header title={title} goBack={goBack} />
         {/* <CollectionActions actions={actions} /> */}
       </div>
-      <Grid container>
+      <Grid container spacing={2}>
         <Grid
           item
           container
@@ -151,7 +151,6 @@ export default function TaskView(props) {
 
         <MapView
           style={{
-            padding: "0 20px",
             borderRadius: 15,
             xl: 6,
             lg: 6,
