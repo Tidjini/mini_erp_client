@@ -12,7 +12,7 @@ import { Typography } from "@material-ui/core";
 function LocationInput({ defaultValue, onChange, label, style }) {
   const {
     ready,
-    value,
+    value = defaultValue,
     suggestions: { status, data },
     setValue,
     clearSuggestions,
@@ -25,10 +25,6 @@ function LocationInput({ defaultValue, onChange, label, style }) {
     },
     cache: 24 * 60 * 60,
   });
-
-  React.useEffect(() => {
-    setValue(defaultValue);
-  }, [defaultValue]);
 
   const handleChange = async (e, val) => {
     try {
@@ -56,17 +52,11 @@ function LocationInput({ defaultValue, onChange, label, style }) {
         disabled={!ready}
         renderInput={(params) => (
           <TextField
-            placeholder={defaultValue}
+            placeholder={"location"}
             className="flex flex-1"
             variant="outlined"
-            InputProps={{
-              "aria-label": { defaultValue },
-              "::-webkit-input-placeholder": {
-                color: "red",
-              },
-            }}
             {...params}
-            value={value}
+            value={value && value.address}
             onChange={(e) => {
               setValue(e.target.value);
             }}
