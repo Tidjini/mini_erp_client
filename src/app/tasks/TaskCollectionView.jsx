@@ -10,6 +10,7 @@ import CollectionTable from "app/composants.v2/collection/CollectionTable";
 import TaskRow from "./TaskRow";
 import { cells as allCells } from "./Config";
 import { useSelector } from "react-redux";
+import { useGeoLocalisation } from "app/hooks/useGeoLocalisation";
 
 export default function TaskCollectionView(props) {
   const {
@@ -33,6 +34,8 @@ export default function TaskCollectionView(props) {
 
   const user = useSelector(({ auth }) => auth.user.data);
 
+  const location = useGeoLocalisation();
+
   const actions = [addAction, editAction, deleteAction];
 
   const [cells, setCells] = React.useState(allCells);
@@ -52,19 +55,22 @@ export default function TaskCollectionView(props) {
   };
 
   React.useEffect(() => {
-    if (user.is_admin || user.is_staff) return;
-    setCells([
-      { ordering: true, label: "Statue", id: "statue_label" },
-      { label: "Intitule", id: "label", style: { minWidth: 100 } },
-      {
-        label: "Description",
-        id: "description",
-        component: "th",
-        scope: "row",
-        style: { minWidth: 200 },
-      },
-      { ordering: true, label: "Created", id: "created_date" },
-    ]);
+    if (user.is_admin || user.is_staff) {
+      setCells(allCells);
+    } else {
+      setCells([
+        { ordering: true, label: "Statue", id: "statue_label" },
+        { label: "Intitule", id: "label", style: { minWidth: 100 } },
+        {
+          label: "Description",
+          id: "description",
+          component: "th",
+          scope: "row",
+          style: { minWidth: 200 },
+        },
+        { ordering: true, label: "Created", id: "created_date" },
+      ]);
+    }
   }, [user]);
 
   return (
