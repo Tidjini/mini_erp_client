@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "app/composants.v2/Header";
 import CollectionActions from "app/composants.v2/collection/CollectionActions";
-import { margins } from "app/composants.v2/constants";
+import { backcolors, margins } from "app/composants.v2/constants";
 import useView from "app/hooks/useView";
 import Input from "app/composants.v2/Input";
 import InputSelector from "app/composants.v2/InputSelector";
@@ -13,19 +13,21 @@ import TaskMapView from "./TaskMapView";
 import TaskLocationItem from "./TaskLocationItem";
 import { useLocalisation } from "./utils";
 
+import apiService from "app/services/ApiService";
+
 export default function TaskView(props) {
   const { id } = props.match.params;
   const {
     localisations,
     handleAdd: onPathAdd,
-    handleSave,
+    handleSave: onSavePaths,
     handleDelete: onDeleteLocalisation,
   } = useLocalisation(id);
 
   const {
     title,
-    saveAction,
     form,
+    handleSave: onSave,
     handleChange: onFormChanged,
     handleFormChanged: onInFormChanged,
     handleGoBack: goBack,
@@ -66,6 +68,25 @@ export default function TaskView(props) {
       backgroundColor: "#E63946",
     }
   );
+
+  const saveAction = new Action(
+    "Sauvgarder",
+    () => {
+      apiService
+        .saveItem(form)
+        .then((response) => {
+          onSavePaths(goBack);
+        })
+        .catch((exception) => {
+          goBack();
+        });
+    },
+    "save",
+    {
+      backgroundColor: backcolors.add,
+    }
+  );
+
   const actions = [saveAction, accepteAction, terminerAction, cancelAction];
 
   const [selectedPath, setSelectedPath] = React.useState();

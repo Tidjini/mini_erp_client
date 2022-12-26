@@ -49,8 +49,11 @@ export const useLocalisation = (taskId) => {
     }
   };
   const handleSave = (afterSave, catchException) => {
-    const collectionToSave = localisations.filter((item) => item.id === 0);
+    const collectionToSave = localisations.filter(
+      (item) => !Boolean(item.id) || item.id === 0
+    );
     const responses = [];
+
     collectionToSave.forEach((item) => {
       item.task = taskId;
       responses.push(api.saveItem(item));
@@ -62,10 +65,11 @@ export const useLocalisation = (taskId) => {
 
     Promise.all(responses)
       .then((results) => {
-        afterSave(results);
+        afterSave && afterSave(results);
       })
       .catch((exceptions) => {
-        catchException(exceptions);
+        console.log(exceptions);
+        catchException && catchException(exceptions);
       });
   };
 
