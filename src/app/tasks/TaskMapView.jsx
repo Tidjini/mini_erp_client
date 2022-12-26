@@ -1,4 +1,4 @@
-import { Grid, Paper } from "@material-ui/core";
+import { Grid, Paper, Typography } from "@material-ui/core";
 import { InfoBox, useLoadScript } from "@react-google-maps/api";
 import DrawDirection from "app/composants.v2/map/DrawDirections";
 import MapView from "app/composants.v2/map/MapView";
@@ -46,13 +46,24 @@ export default function TaskMapView({ onSave }) {
     }
   );
   return (
-    <Grid item xl={6} lg={6} md={12} sm={12} xs={12}>
+    <Grid item xl={6} lg={6} md={12} sm={12} xs={12} style={{ paddingTop: 20 }}>
       <Paper style={{ width: "100%", borderRadius: 15 }}>
+        <Typography
+          style={{
+            padding: 20,
+            fontSize: 18,
+            fontWeight: "700",
+            width: "100%",
+            backgroundColor: "#26465350",
+            borderRadius: "15px 15px 0 0",
+          }}
+        >
+          Directions
+        </Typography>
         <div
           style={{
-            padding: "20px 20px",
             backgroundColor: "white",
-            borderRadius: 15,
+            padding: "10px 20px 20px 15px",
           }}
         >
           <TaskMapInputs
