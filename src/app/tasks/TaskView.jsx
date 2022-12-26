@@ -7,16 +7,22 @@ import Input from "app/composants.v2/Input";
 import InputSelector from "app/composants.v2/InputSelector";
 import { defaultItem, statues, taskLocation } from "./Config";
 import InputCollection from "app/composants.v2/InputCollection";
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import Action from "app/hooks/Action";
 import TaskMapView from "./TaskMapView";
 import TaskLocationItem from "./TaskLocationItem";
 import { useLocalisation } from "./utils";
 
 import apiService from "app/services/ApiService";
+import { useSelector } from "react-redux";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
+
+  const user = useSelector(({ auth }) => auth.user.data);
+
+  console.log(user);
+
   const {
     localisations,
     handleAdd: onPathAdd,
@@ -91,6 +97,8 @@ export default function TaskView(props) {
 
   const [selectedPath, setSelectedPath] = React.useState();
 
+  if (!user.is_active) return <Typography>USER IS NOT ACTIVE</Typography>;
+
   return (
     <div style={{ margin: margins.default }}>
       <div
@@ -134,10 +142,12 @@ export default function TaskView(props) {
               name="label"
               onChange={onFormChanged}
               value={form.label}
+              disabled={user.is_admin && user.is_staff}
             />
             <InputCollection
               label="Affecter A"
               name="receiver"
+              disabled={!user.is_admin && !user.is_staff}
               style={{
                 xl: 6,
                 lg: 6,
@@ -153,6 +163,7 @@ export default function TaskView(props) {
                 defaultValue: form.receiver,
               }}
               onSelectItem={(item) => {
+                if (user.is_admin && user.is_staff) return;
                 onInFormChanged("receiver", item.value);
               }}
             />

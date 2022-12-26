@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import FuseUtils from "@fuse/FuseUtils";
+import { data } from "app/main/employe/store/reducer/data";
 
 class AuthService extends FuseUtils.EventEmitter {
   API_URL = process.env.REACT_APP_API_URL;

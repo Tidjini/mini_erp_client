@@ -102,9 +102,10 @@ export default function InputCollection(props) {
     }),
     onOpen: onOpen && onOpen,
     onClose: onClose && onClose,
-    open: open,
+    open: !props.disabled && open,
     value: selected,
     disablePortal: true,
+    disabled: props.disabled,
   });
 
   return (
@@ -165,6 +166,7 @@ export default function InputCollection(props) {
               }}
             >
               <InputBase
+                {...props}
                 {...getInputProps()}
                 style={{
                   marginLeft: 5,
