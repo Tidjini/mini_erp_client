@@ -39,10 +39,11 @@ export const useLocalisation = (taskId) => {
 
   const handleDelete = (index) => {
     const item = localisations[index];
-    delete localisations[index];
+
+    localisations.splice(index, 1);
     setLocalisations([...localisations]);
 
-    if (item.id !== 0) {
+    if (item.id && item.id !== 0) {
       collectionToDelete.push(item);
       setCollectionToDelete([...collectionToDelete]);
     }

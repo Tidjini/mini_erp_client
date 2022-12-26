@@ -1,5 +1,4 @@
 import { Icon, IconButton, Typography } from "@material-ui/core";
-import { margins } from "app/composants.v2/constants";
 import React from "react";
 
 export default function TaskLocationItem({ data, onDelete }) {

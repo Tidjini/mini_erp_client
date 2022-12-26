@@ -67,6 +67,7 @@ export default function TaskView(props) {
     getCollection,
     handleAdd: onPathAdd,
     handleSave,
+    handleDelete: onDeleteLocalisation,
   } = useLocalisation(id);
 
   return (
@@ -189,8 +190,16 @@ export default function TaskView(props) {
           sm={12}
           xs={12}
         >
-          {localisations.map((item, id) => {
-            return <TaskLocationItem key={id} data={item} />;
+          {localisations.map((item, index) => {
+            return (
+              <TaskLocationItem
+                key={index}
+                data={item}
+                onDelete={(event) => {
+                  onDeleteLocalisation(index);
+                }}
+              />
+            );
           })}
         </Grid>
 
