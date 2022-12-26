@@ -11,6 +11,7 @@ import { transporters } from "./samples";
 import CollectionActions from "app/composants.v2/collection/CollectionActions";
 import Action from "app/hooks/Action";
 import { backcolors } from "app/composants.v2/constants";
+import { useSelector } from "react-redux";
 //center for oran
 const defaultCenter = {
   lat: 35.6976541,
@@ -20,6 +21,8 @@ const libs = ["places"];
 
 export default function TaskMapView({ onSave, path }) {
   const [maps, setMaps] = React.useState();
+
+  const user = useSelector(({ auth }) => auth.user.data);
 
   const [center, setCenter] = React.useState(defaultCenter);
   const [origin, setOrigin] = React.useState();
@@ -112,7 +115,8 @@ export default function TaskMapView({ onSave, path }) {
             setMaps(window.google.maps);
           }}
         >
-          {transporters &&
+          {(user.is_admin || user.is_staff) &&
+            transporters &&
             transporters.map((t, index) => {
               if (t.localisation === null) return;
               const { longitude, latitude } = t.localisation;
@@ -126,6 +130,15 @@ export default function TaskMapView({ onSave, path }) {
                 />
               );
             })}
+
+          {!user.is_admin && !user.is_staff && user.localisation && (
+            <TypedMarker
+              position={{
+                lat: user.localisation.latitude,
+                lng: user.localisation.longitude,
+              }}
+            />
+          )}
 
           <DrawDirection
             maps={maps}
@@ -145,7 +158,9 @@ export default function TaskMapView({ onSave, path }) {
               flexDirection: "row-reverse",
             }}
           >
-            <CollectionActions actions={[saveAction]} />
+            {(user.is_admin || user.is_staff) && (
+              <CollectionActions actions={[saveAction]} />
+            )}
           </div>
         </MapView>
       </Paper>
