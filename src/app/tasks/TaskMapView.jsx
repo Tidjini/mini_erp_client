@@ -4,14 +4,13 @@ import DrawDirection from "app/composants.v2/map/DrawDirections";
 import MapView from "app/composants.v2/map/MapView";
 import TypedMarker from "app/composants.v2/map/Marker";
 import useDirections from "app/hooks/useDirections";
-import { map } from "lodash";
 import React from "react";
 import TaskMapInputs from "./TaskMapInputs";
-import { transporters } from "./samples";
 import CollectionActions from "app/composants.v2/collection/CollectionActions";
 import Action from "app/hooks/Action";
 import { backcolors } from "app/composants.v2/constants";
 import { useSelector } from "react-redux";
+import { useGetCollection } from "app/hooks/useSave";
 //center for oran
 const defaultCenter = {
   lat: 35.6976541,
@@ -23,6 +22,9 @@ export default function TaskMapView({ onSave, path }) {
   const [maps, setMaps] = React.useState();
 
   const user = useSelector(({ auth }) => auth.user.data);
+
+  const { data: transporters, handleGet: getUserCollection } =
+    useGetCollection("profiles");
 
   const [center, setCenter] = React.useState(defaultCenter);
   const [origin, setOrigin] = React.useState();
@@ -37,6 +39,7 @@ export default function TaskMapView({ onSave, path }) {
 
   React.useEffect(() => {
     onChangeDirection({ mapInstance: maps, origin, destination });
+    getUserCollection();
   }, [origin, destination]);
 
   const saveAction = new Action(
