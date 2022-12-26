@@ -4,6 +4,10 @@ import FuseUtils from "@fuse/FuseUtils";
 export class ApiService extends FuseUtils.EventEmitter {
   API_URL = process.env.REACT_APP_API_URL;
 
+  constructor(collection, pk = "id") {
+    super();
+    initialize(collection, pk);
+  }
   initialize(collection, pk = "id") {
     this.loading = false;
     this.collection = collection;

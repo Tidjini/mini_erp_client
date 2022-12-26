@@ -14,8 +14,7 @@ export default function useLookupCollection({
   emptyValue,
   defaultValue,
 }) {
-  const api = new ApiService();
-  api.initialize(collection, pk);
+  const api = new ApiService(collection, pk);
 
   const { data, handleGet: onGet } = useGetCollection({
     api,

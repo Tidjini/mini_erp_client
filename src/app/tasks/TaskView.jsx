@@ -9,13 +9,10 @@ import { defaultItem, statues, taskLocation } from "./Config";
 import InputCollection from "app/composants.v2/InputCollection";
 import { Grid } from "@material-ui/core";
 import Action from "app/hooks/Action";
-import InputFile from "app/composants.v2/InputFile";
-import MapView from "app/composants.v2/map/MapView";
-import TypedMarker from "app/composants.v2/map/Marker";
 import TaskMapView from "./TaskMapView";
-import CollectionBody from "app/composants.v2/collection/CollectionBody";
 import TaskLocationItem from "./TaskLocationItem";
 import { localisations } from "./samples";
+import useSave from "app/hooks/useSave";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -33,6 +30,10 @@ export default function TaskView(props) {
     primary: id,
     data: defaultItem,
   });
+
+  const { response, handleSave: onLocationSave } =
+    useSave("task-localisations");
+
   const accepteAction = new Action(
     "Accepter",
     () => {
@@ -65,8 +66,7 @@ export default function TaskView(props) {
   );
   const actions = [saveAction, accepteAction, terminerAction, cancelAction];
 
-  //   const { directions, handleChangeDirections: onChangeDirection } =
-  //     useDirections();
+  const onSave = (origin, destination) => {};
 
   return (
     <div style={{ margin: margins.default }}>
@@ -170,8 +170,7 @@ export default function TaskView(props) {
             </Grid>
           </Grid>
         </Grid>
-        <TaskMapView />
-
+        <TaskMapView onSave={hanldleLocationSave} />
         <Grid
           item
           container
