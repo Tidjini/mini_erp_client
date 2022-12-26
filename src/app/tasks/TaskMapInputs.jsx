@@ -14,11 +14,7 @@ export default function TaskMapInputs({
         <Grid item xs={12} sm={6} md={6}>
           <LocationInput
             label="Départ"
-            defaultValue={{
-              address: "Hamri Pharmacy, Oran, Algérie",
-              lat: 35.6840886,
-              lng: -0.6387731,
-            }}
+            value="Pharmacie Ben Okba, W46, Hassi Ben Okba, Algérie"
             onChange={(depart) => {
               onOriginChanged(depart);
               changeDirection && changeDirection();
@@ -28,11 +24,11 @@ export default function TaskMapInputs({
         <Grid item xs={12} sm={6} md={6}>
           <LocationInput
             label="Arrivée"
-            defaultValue={"Pharmacie Ben Okba, W46, Hassi Ben Okba, Algérie"}
             onChange={(arrive) => {
               onDestinationChanged(arrive);
               changeDirection && changeDirection();
             }}
+            value="Pharmacie Ben Okba, W46, Hassi Ben Okba, Algérie"
           />
         </Grid>
       </Grid>

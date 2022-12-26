@@ -39,6 +39,10 @@ export default function TaskMapView({ onSave }) {
     "Sauvgarder",
     () => {
       if (origin && destination) onSave(origin, destination);
+
+      setCenter(defaultCenter);
+      setOrigin(undefined);
+      setDestination(undefined);
     },
     "cancel",
     {

@@ -1,7 +1,7 @@
 import { Icon, IconButton, Typography } from "@material-ui/core";
 import React from "react";
 
-export default function TaskLocationItem({ data, onDelete }) {
+export default function TaskLocationItem({ data, onDelete, onClick }) {
   return (
     <div
       style={{
@@ -16,6 +16,7 @@ export default function TaskLocationItem({ data, onDelete }) {
         justifyContent: "space-between",
         alignItems: "center",
       }}
+      onClick={onClick}
     >
       <div style={{ display: "flex", alignItems: "center" }}>
         <div>

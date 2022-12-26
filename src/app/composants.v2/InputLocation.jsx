@@ -9,12 +9,12 @@ import usePlacesAutocomplte, {
 import { Typography } from "@material-ui/core";
 
 //https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap
-function LocationInput({ defaultValue, onChange, label, style }) {
+function LocationInput({ value, onChange, label, style }) {
   const {
     ready,
-    value = defaultValue,
+    value: placeValue,
     suggestions: { status, data },
-    setValue,
+    setValue: setPlaceValue,
     clearSuggestions,
   } = usePlacesAutocomplte({
     requestOptions: {
@@ -38,6 +38,14 @@ function LocationInput({ defaultValue, onChange, label, style }) {
     } catch (e) {}
   };
 
+  React.useEffect(() => {
+    setPlaceValue(value);
+    // const a = {
+    //   description: value,
+    // };
+    // handleChange(null, a);
+  }, []);
+
   return (
     <div style={{ ...style, width: "100%" }}>
       {label && <Typography style={{ fontWeight: "bold" }}>{label}</Typography>}
@@ -56,9 +64,9 @@ function LocationInput({ defaultValue, onChange, label, style }) {
             className="flex flex-1"
             variant="outlined"
             {...params}
-            value={value && value.address}
+            value={placeValue}
             onChange={(e) => {
-              setValue(e.target.value);
+              setPlaceValue(e.target.value);
             }}
             fullWidth
           />

@@ -195,6 +195,9 @@ export default function TaskView(props) {
               <TaskLocationItem
                 key={index}
                 data={item}
+                onClick={(event) => {
+                  console.log("clicked", item);
+                }}
                 onDelete={(event) => {
                   onDeleteLocalisation(index);
                 }}
