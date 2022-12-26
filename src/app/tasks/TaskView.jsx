@@ -21,8 +21,6 @@ export default function TaskView(props) {
 
   const user = useSelector(({ auth }) => auth.user.data);
 
-  console.log(user);
-
   const {
     localisations,
     handleAdd: onPathAdd,
@@ -142,7 +140,7 @@ export default function TaskView(props) {
               name="label"
               onChange={onFormChanged}
               value={form.label}
-              disabled={user.is_admin && user.is_staff}
+              disabled={!user.is_admin && !user.is_staff}
             />
             <InputCollection
               label="Affecter A"
@@ -189,6 +187,7 @@ export default function TaskView(props) {
                 multiline: true,
                 rows: 10,
               }}
+              disabled={!user.is_admin && !user.is_staff}
             />
 
             <Grid
@@ -237,33 +236,6 @@ export default function TaskView(props) {
             );
           })}
         </Grid>
-
-        {/* <Grid
-          style={{
-            margin: "30px 0",
-            padding: "20px 5px",
-            backgroundColor: "#E7E9EF",
-            width: "100%",
-            borderRadius: 10,
-            display: "flex",
-            flexDirection: "row-reverse",
-          }}
-        >
-          <InputFile />
-        </Grid> */}
-        {/* <Grid
-          style={{
-            margin: "10px 2px",
-            padding: "20px 5px",
-            backgroundColor: "#E7E9EF",
-            width: "100%",
-            borderRadius: 10,
-            display: "flex",
-            flexDirection: "row-reverse",
-          }}
-        >
-          <CollectionActions actions={actions} />
-        </Grid> */}
       </Grid>
     </div>
   );

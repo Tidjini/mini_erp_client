@@ -9,7 +9,7 @@ import usePlacesAutocomplte, {
 import { Typography } from "@material-ui/core";
 
 //https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap
-function LocationInput({ value, onChange, label, style }) {
+function LocationInput({ value, onChange, label, style, disabled }) {
   const {
     ready,
     value: placeValue,
@@ -60,7 +60,7 @@ function LocationInput({ value, onChange, label, style }) {
           return "Non Défini";
         }}
         fullWidth
-        disabled={!ready}
+        disabled={!ready || disabled}
         renderInput={(params) => {
           return (
             <TextField

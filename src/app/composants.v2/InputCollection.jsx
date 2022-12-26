@@ -67,7 +67,8 @@ const Listbox = styled("ul")`
 // }, [value]);
 
 export default function InputCollection(props) {
-  const { name, label, isLoading, style, onSelectItem, lookup } = props;
+  const { name, label, isLoading, style, onSelectItem, lookup, disabled } =
+    props;
 
   const {
     data,
@@ -102,10 +103,9 @@ export default function InputCollection(props) {
     }),
     onOpen: onOpen && onOpen,
     onClose: onClose && onClose,
-    open: !props.disabled && open,
+    open: !disabled && open,
     value: selected,
     disablePortal: true,
-    disabled: props.disabled,
   });
 
   return (
@@ -166,7 +166,6 @@ export default function InputCollection(props) {
               }}
             >
               <InputBase
-                {...props}
                 {...getInputProps()}
                 style={{
                   marginLeft: 5,
@@ -176,6 +175,7 @@ export default function InputCollection(props) {
                 onChange={(event) => {
                   onInputChange(event, getInputProps().onChange);
                 }}
+                disabled={disabled}
               />
 
               {isLoading ? (

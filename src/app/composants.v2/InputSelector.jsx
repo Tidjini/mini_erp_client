@@ -44,6 +44,7 @@ const BootstrapInput = withStyles((theme) => ({
 export default function InputSelector(props) {
   const {
     name,
+    disabled,
     label,
     value,
     options,
@@ -78,6 +79,7 @@ export default function InputSelector(props) {
         )}
 
         <NativeSelect
+          disabled={disabled}
           id={name}
           name={name}
           value={value}

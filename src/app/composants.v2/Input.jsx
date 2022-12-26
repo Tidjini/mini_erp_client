@@ -5,8 +5,15 @@ import { Grid, Typography, Hidden } from "@material-ui/core";
 export default function Input(props) {
   const {
     label,
+    placeholder,
+    type,
+    format,
+    onChange,
+    value,
+    name,
     onEnterPressed,
     onTabPressed,
+    disabled,
     style,
     xs,
     sm,
@@ -37,9 +44,13 @@ export default function Input(props) {
             <Typography style={{ fontWeight: "bold" }}>{label}</Typography>
           )}
           <InputBase
-            {...props}
-            key={props.name}
-            id={props.name}
+            disabled={disabled}
+            key={name}
+            name={name}
+            id={name}
+            placeholder={placeholder}
+            type={type === undefined ? "text" : type}
+            format={format === undefined ? "" : format}
             style={{
               color: "#2b2d42",
               fontSize: 14,
@@ -68,9 +79,12 @@ export default function Input(props) {
             }}
             onBlur={(event) => {}}
             onFocus={(event) => {
-              const { type } = props;
               type === "number" && event.target.select();
             }}
+            onChange={(e) => {
+              onChange(e);
+            }}
+            value={value || ""}
             autoFocus={style && style.autoFocus}
             inputProps={{ maxLength: style && style.maxLength }}
             pattern={
