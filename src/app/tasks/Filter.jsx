@@ -2,10 +2,13 @@ import Input from "app/composants.v2/Input";
 import InputCollection from "app/composants.v2/InputCollection";
 import InputSelector from "app/composants.v2/InputSelector";
 import React from "react";
+import { useSelector } from "react-redux";
 import { statues as defaultStatues } from "./Config";
 
 export default function Filter(props) {
   const { filter, onFilter, onFilterChange } = props;
+
+  const user = useSelector(({ auth }) => auth.user.data);
 
   const statues = [{ display: "tous", value: "tous" }, ...defaultStatues];
   const categories = [
@@ -24,7 +27,9 @@ export default function Filter(props) {
       <InputCollection
         label="Créer par"
         name="creator"
-        style={{}}
+        style={{
+          display: user.is_admin || user.is_staff ? "block" : "none",
+        }}
         lookup={{
           collection: "profiles",
           display: "name",
@@ -39,7 +44,7 @@ export default function Filter(props) {
       <InputCollection
         label="Affectée a"
         name="receiver"
-        style={{}}
+        style={{ display: user.is_admin || user.is_staff ? "block" : "none" }}
         lookup={{
           collection: "profiles",
           display: "name",
@@ -74,6 +79,7 @@ export default function Filter(props) {
         value={filter.type}
         options={types}
         onChange={onFilter}
+        style={{ display: user.is_admin || user.is_staff ? "block" : "none" }}
       />
 
       <InputSelector
@@ -82,6 +88,7 @@ export default function Filter(props) {
         value={filter.closed}
         options={categories}
         onChange={onFilter}
+        style={{ display: user.is_admin || user.is_staff ? "block" : "none" }}
       />
     </div>
   );
