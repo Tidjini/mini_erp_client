@@ -15,6 +15,12 @@ import { useLocalisation } from "./utils";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
+  const {
+    localisations,
+    handleAdd: onPathAdd,
+    handleSave,
+    handleDelete: onDeleteLocalisation,
+  } = useLocalisation(id);
 
   const {
     title,
@@ -61,14 +67,6 @@ export default function TaskView(props) {
     }
   );
   const actions = [saveAction, accepteAction, terminerAction, cancelAction];
-
-  const {
-    localisations,
-    getCollection,
-    handleAdd: onPathAdd,
-    handleSave,
-    handleDelete: onDeleteLocalisation,
-  } = useLocalisation(id);
 
   const [selectedPath, setSelectedPath] = React.useState();
 

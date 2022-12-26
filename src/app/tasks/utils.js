@@ -2,7 +2,7 @@ import React from "react";
 //before save to backend save location to array of locations
 import { ApiService } from "app/services/ApiService";
 
-const api = new ApiService("task-locations");
+const api = new ApiService("task-localisations");
 
 export const useLocalisation = (taskId) => {
   //all locations
@@ -11,7 +11,7 @@ export const useLocalisation = (taskId) => {
 
   const getCollection = () => {
     api
-      .getCollection(1, { task: taskId })
+      .getCollectionWithParams({ task: taskId })
       .then((collection) => {
         setLocalisations(collection);
       })

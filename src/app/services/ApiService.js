@@ -40,6 +40,25 @@ export class ApiService extends FuseUtils.EventEmitter {
         });
     });
   };
+  getCollectionWithParams = (params) => {
+    this.setLoading(true);
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${this.API_URL}/${this.collection}/`, { params })
+        .then((response) => {
+          if (response.data) {
+            resolve(response.data);
+          } else {
+            reject(response.data.error);
+          }
+          this.setLoading(false);
+        })
+        .catch((exception) => {
+          this.setLoading(false);
+          reject(exception);
+        });
+    });
+  };
 
   getItem = (id) => {
     this.setLoading(true);
