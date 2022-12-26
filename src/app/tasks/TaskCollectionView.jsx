@@ -8,7 +8,8 @@ import CollectionFilters from "app/composants.v2/collection/CollectionFilters";
 import Filter from "app/tasks/Filter";
 import CollectionTable from "app/composants.v2/collection/CollectionTable";
 import TaskRow from "./TaskRow";
-import { cells } from "./Config";
+import { cells as allCells } from "./Config";
+import { useSelector } from "react-redux";
 
 export default function TaskCollectionView(props) {
   const {
@@ -30,7 +31,11 @@ export default function TaskCollectionView(props) {
     pageResponse: true,
   });
 
+  const user = useSelector(({ auth }) => auth.user.data);
+
   const actions = [addAction, editAction, deleteAction];
+
+  const [cells, setCells] = React.useState(allCells);
 
   const [orderBy, setOrderBy] = React.useState(null);
   const [order, setOrder] = React.useState("asc");
@@ -45,6 +50,23 @@ export default function TaskCollectionView(props) {
 
     //todo perform the real sorting from server
   };
+
+  React.useEffect(() => {
+    if (user.is_admin || user.is_staff) return;
+    setCells([
+      { ordering: true, label: "Statue", id: "statue_label" },
+      { label: "Intitule", id: "label", style: { minWidth: 100 } },
+      {
+        label: "Description",
+        id: "description",
+        component: "th",
+        scope: "row",
+        style: { minWidth: 200 },
+      },
+      { ordering: true, label: "Created", id: "created_date" },
+    ]);
+  }, [user]);
+
   return (
     <div style={{ margin: margins.default }}>
       <div

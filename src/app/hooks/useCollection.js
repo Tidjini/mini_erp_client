@@ -87,6 +87,7 @@ export default function useCollection({
   );
 
   const handleEdit = React.useCallback(() => {
+    console.log("Edit", selectedItem);
     if (selectedItem) {
       history.push(`${viewUrl}/${selectedItem[pk]}`);
       setSelectedItem(null);
@@ -109,6 +110,8 @@ export default function useCollection({
   }, [selectedItem]);
 
   const handleSelection = (item) => {
+    console.log("handleSelection", item);
+
     setSelectedItem(item);
   };
 

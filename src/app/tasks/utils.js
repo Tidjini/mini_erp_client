@@ -18,8 +18,9 @@ export const useLocalisation = (taskId) => {
       .catch((exception) => {});
   };
   React.useEffect(() => {
+    if (!Boolean(taskId) || taskId === "nouveau") return;
     getCollection();
-  }, []);
+  }, [taskId]);
 
   const handleAdd = (origin, destination) => {
     // console.log("origin", origin);
