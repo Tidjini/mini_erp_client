@@ -10,7 +10,6 @@ export default function TaskMapInputs({
   destinaitonAddress,
   changeDirection,
 }) {
-  console.log(originAddress, destinaitonAddress);
   return (
     isLoaded && (
       <Grid item container spacing={1} xs={12}>

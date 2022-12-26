@@ -44,7 +44,7 @@ function LocationInput({ value, onChange, label, style }) {
       description: value,
     };
     handleChange(null, contextValue);
-  }, []);
+  }, [value]);
 
   return (
     <div style={{ ...style, width: "100%" }}>
@@ -65,7 +65,7 @@ function LocationInput({ value, onChange, label, style }) {
               placeholder={placeValue}
               className="flex flex-1"
               variant="outlined"
-              value={placeValue}
+              value={value}
               onChange={(e) => {
                 setPlaceValue(e.target.value);
               }}
