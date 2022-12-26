@@ -10,7 +10,7 @@ import CollectionActions from "app/composants.v2/collection/CollectionActions";
 import Action from "app/hooks/Action";
 import { backcolors } from "app/composants.v2/constants";
 import { useSelector } from "react-redux";
-import { useGetCollection } from "app/hooks/useSave";
+import { useGetCollection } from "app/hooks/useRequest";
 //center for oran
 const defaultCenter = {
   lat: 35.6976541,
