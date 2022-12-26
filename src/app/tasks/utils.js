@@ -7,6 +7,7 @@ const api = new ApiService("task-locations");
 export const useLocalisation = (taskId) => {
   //all locations
   const [localisations, setLocalisations] = React.useState([]);
+  const [collectionToDelete, setCollectionToDelete] = React.useState([]);
 
   const getCollection = () => {
     api
@@ -35,12 +36,27 @@ export const useLocalisation = (taskId) => {
     localisations.push(item);
     setLocalisations([...localisations]);
   };
+
+  const handleDelete = (index) => {
+    const item = localisations[index];
+    delete localisations[index];
+    setLocalisations([...localisations]);
+
+    if (item.id !== 0) {
+      collectionToDelete.push(item);
+      setCollectionToDelete([...collectionToDelete]);
+    }
+  };
   const handleSave = (afterSave, catchException) => {
     const collectionToSave = localisations.filter((item) => item.id === 0);
     const responses = [];
     collectionToSave.forEach((item) => {
       item.task = taskId;
       responses.push(api.saveItem(item));
+    });
+
+    collectionToDelete.forEach((item) => {
+      responses.push(api.deleteItem(item));
     });
 
     Promise.all(responses)
@@ -52,5 +68,5 @@ export const useLocalisation = (taskId) => {
       });
   };
 
-  return { localisations, getCollection, handleAdd, handleSave };
+  return { localisations, getCollection, handleAdd, handleDelete, handleSave };
 };
