@@ -39,11 +39,12 @@ function LocationInput({ value, onChange, label, style }) {
   };
 
   React.useEffect(() => {
+    handleChange(null, contextValue);
+
     setPlaceValue(value);
     const contextValue = {
       description: value,
     };
-    handleChange(null, contextValue);
   }, [value]);
 
   return (
@@ -52,9 +53,11 @@ function LocationInput({ value, onChange, label, style }) {
       <Autocomplete
         filterOptions={(x) => x}
         options={data}
+        // defaultValue={{ place_id: "0", description: value }}
         onChange={handleChange}
         getOptionLabel={({ place_id, description }) => {
-          return description;
+          if (description) return description;
+          return "Non Défini";
         }}
         fullWidth
         disabled={!ready}
@@ -63,9 +66,10 @@ function LocationInput({ value, onChange, label, style }) {
             <TextField
               {...params}
               placeholder={placeValue}
+              defaultValue={value}
               className="flex flex-1"
               variant="outlined"
-              value={value}
+              value={placeValue}
               onChange={(e) => {
                 setPlaceValue(e.target.value);
               }}
