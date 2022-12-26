@@ -38,7 +38,7 @@ export default function TaskMapView({ onSave }) {
   const saveAction = new Action(
     "Sauvgarder",
     () => {
-      if (origin && destination) onSave({ origin, destination });
+      if (origin && destination) onSave(origin, destination);
     },
     "cancel",
     {

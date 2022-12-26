@@ -11,8 +11,7 @@ import { Grid } from "@material-ui/core";
 import Action from "app/hooks/Action";
 import TaskMapView from "./TaskMapView";
 import TaskLocationItem from "./TaskLocationItem";
-import { localisations } from "./samples";
-import useSave from "app/hooks/useSave";
+import { useLocalisation } from "./utils";
 
 export default function TaskView(props) {
   const { id } = props.match.params;
@@ -30,9 +29,6 @@ export default function TaskView(props) {
     primary: id,
     data: defaultItem,
   });
-
-  const { response, handleSave: onLocationSave } =
-    useSave("task-localisations");
 
   const accepteAction = new Action(
     "Accepter",
@@ -66,7 +62,12 @@ export default function TaskView(props) {
   );
   const actions = [saveAction, accepteAction, terminerAction, cancelAction];
 
-  const onSave = (origin, destination) => {};
+  const {
+    localisations,
+    getCollection,
+    handleAdd: onPathAdd,
+    handleSave,
+  } = useLocalisation(id);
 
   return (
     <div style={{ margin: margins.default }}>
@@ -170,7 +171,7 @@ export default function TaskView(props) {
             </Grid>
           </Grid>
         </Grid>
-        <TaskMapView onSave={hanldleLocationSave} />
+        <TaskMapView onSave={onPathAdd} />
         <Grid
           item
           container

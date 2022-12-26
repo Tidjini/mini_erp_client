@@ -6,8 +6,9 @@ export class ApiService extends FuseUtils.EventEmitter {
 
   constructor(collection, pk = "id") {
     super();
-    initialize(collection, pk);
+    this.initialize(collection, pk);
   }
+
   initialize(collection, pk = "id") {
     this.loading = false;
     this.collection = collection;
