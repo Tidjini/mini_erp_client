@@ -18,7 +18,7 @@ const defaultCenter = {
 };
 const libs = ["places"];
 
-export default function TaskMapView({ onSave }) {
+export default function TaskMapView({ onSave, path }) {
   const [maps, setMaps] = React.useState();
 
   const [center, setCenter] = React.useState(defaultCenter);
@@ -35,6 +35,7 @@ export default function TaskMapView({ onSave }) {
   React.useEffect(() => {
     onChangeDirection({ mapInstance: maps, origin, destination });
   }, [origin, destination]);
+
   const saveAction = new Action(
     "Sauvgarder",
     () => {
@@ -49,6 +50,22 @@ export default function TaskMapView({ onSave }) {
       backgroundColor: backcolors.add,
     }
   );
+
+  React.useEffect(() => {
+    if (path) {
+      setOrigin({
+        address: path.origin_address,
+        lat: path.origin_lat,
+        lng: path.origin_lng,
+      });
+      setDestination({
+        address: path.destination_address,
+        lat: path.destination_lat,
+        lng: path.destination_lng,
+      });
+    }
+  }, [path]);
+
   return (
     <Grid item xl={6} lg={6} md={12} sm={12} xs={12} style={{ paddingTop: 20 }}>
       <Paper style={{ width: "100%", borderRadius: 15 }}>
@@ -72,6 +89,8 @@ export default function TaskMapView({ onSave }) {
         >
           <TaskMapInputs
             isLoaded={isLoaded}
+            originAddress={origin && origin.address}
+            destinaitonAddress={destination && destination.address}
             onOriginChanged={(depart) => {
               setCenter({ ...depart });
               setOrigin({ ...depart });

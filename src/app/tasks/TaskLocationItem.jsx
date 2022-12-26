@@ -15,6 +15,7 @@ export default function TaskLocationItem({ data, onDelete, onClick }) {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        cursor: "pointer",
       }}
       onClick={onClick}
     >

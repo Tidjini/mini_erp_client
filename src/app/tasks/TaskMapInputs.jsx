@@ -5,16 +5,19 @@ import React from "react";
 export default function TaskMapInputs({
   isLoaded,
   onOriginChanged,
+  originAddress,
   onDestinationChanged,
+  destinaitonAddress,
   changeDirection,
 }) {
+  console.log(originAddress, destinaitonAddress);
   return (
     isLoaded && (
       <Grid item container spacing={1} xs={12}>
         <Grid item xs={12} sm={6} md={6}>
           <LocationInput
             label="Départ"
-            value="Pharmacie Ben Okba, W46, Hassi Ben Okba, Algérie"
+            value={originAddress}
             onChange={(depart) => {
               onOriginChanged(depart);
               changeDirection && changeDirection();
@@ -28,7 +31,7 @@ export default function TaskMapInputs({
               onDestinationChanged(arrive);
               changeDirection && changeDirection();
             }}
-            value="Pharmacie Ben Okba, W46, Hassi Ben Okba, Algérie"
+            value={destinaitonAddress}
           />
         </Grid>
       </Grid>

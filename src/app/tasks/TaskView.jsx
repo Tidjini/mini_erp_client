@@ -70,6 +70,8 @@ export default function TaskView(props) {
     handleDelete: onDeleteLocalisation,
   } = useLocalisation(id);
 
+  const [selectedPath, setSelectedPath] = React.useState();
+
   return (
     <div style={{ margin: margins.default }}>
       <div
@@ -172,7 +174,7 @@ export default function TaskView(props) {
             </Grid>
           </Grid>
         </Grid>
-        <TaskMapView onSave={onPathAdd} />
+        <TaskMapView onSave={onPathAdd} path={selectedPath} />
         <Grid
           item
           container
@@ -196,7 +198,7 @@ export default function TaskView(props) {
                 key={index}
                 data={item}
                 onClick={(event) => {
-                  console.log("clicked", item);
+                  setSelectedPath(item);
                 }}
                 onDelete={(event) => {
                   onDeleteLocalisation(index);

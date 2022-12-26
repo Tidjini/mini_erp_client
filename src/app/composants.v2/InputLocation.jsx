@@ -40,10 +40,10 @@ function LocationInput({ value, onChange, label, style }) {
 
   React.useEffect(() => {
     setPlaceValue(value);
-    // const a = {
-    //   description: value,
-    // };
-    // handleChange(null, a);
+    const contextValue = {
+      description: value,
+    };
+    handleChange(null, contextValue);
   }, []);
 
   return (
@@ -58,19 +58,21 @@ function LocationInput({ value, onChange, label, style }) {
         }}
         fullWidth
         disabled={!ready}
-        renderInput={(params) => (
-          <TextField
-            placeholder={"location"}
-            className="flex flex-1"
-            variant="outlined"
-            {...params}
-            value={placeValue}
-            onChange={(e) => {
-              setPlaceValue(e.target.value);
-            }}
-            fullWidth
-          />
-        )}
+        renderInput={(params) => {
+          return (
+            <TextField
+              {...params}
+              placeholder={placeValue}
+              className="flex flex-1"
+              variant="outlined"
+              value={placeValue}
+              onChange={(e) => {
+                setPlaceValue(e.target.value);
+              }}
+              fullWidth
+            />
+          );
+        }}
       />
     </div>
   );
