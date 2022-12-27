@@ -12,25 +12,25 @@ export default function useDirections() {
     //if origin or destination not define return
     if (!Boolean(origin) || !Boolean(destination)) return;
     setDirections(null);
-
-    new mapInstance.DirectionsService().route(
-      {
-        origin,
-        destination,
-        travelMode,
-        provideRouteAlternatives: true,
-        optimizeWaypoints: true,
-      },
-      (result, status) => {
-        if (status === mapInstance.DirectionsStatus.OK) {
-          setDirections(result);
-          console.log(result.routes[0].legs[0]);
-        } else {
-          console.error(`error fetching directions ${result}`);
-          setDirections(null);
+    if (mapInstance)
+      new mapInstance.DirectionsService().route(
+        {
+          origin,
+          destination,
+          travelMode,
+          provideRouteAlternatives: true,
+          optimizeWaypoints: true,
+        },
+        (result, status) => {
+          if (status === mapInstance.DirectionsStatus.OK) {
+            setDirections(result);
+            console.log(result.routes[0].legs[0]);
+          } else {
+            console.error(`error fetching directions ${result}`);
+            setDirections(null);
+          }
         }
-      }
-    );
+      );
   };
 
   return { directions, handleChangeDirections };

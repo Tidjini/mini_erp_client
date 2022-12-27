@@ -1,7 +1,34 @@
-<svg width="156" height="156" viewBox="0 0 156 156" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="78" cy="78" r="78" fill="#2A9D8F" fill-opacity="0.1"/>
-<circle cx="78" cy="78" r="74" fill="#2A9D8F" fill-opacity="0.1"/>
-<circle cx="78" cy="78" r="68" fill="#2A9D8F" fill-opacity="0.1"/>
-<circle cx="78" cy="78" r="64" fill="#2A9D8F" fill-opacity="0.1"/>
-<circle cx="78" cy="78" r="48" fill="#2A9D8F" fill-opacity="0.6"/>
+<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>.Frame_34_367 {
+	animation: 2s linear 0s infinite normal forwards running Frame_34_367;
+}
+@keyframes Frame_34_367 {
+	0% {
+		opacity: 1;
+	}
+	5% {
+		opacity: 0.4;
+	}
+	45% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}.start_382 {
+	animation: 2s linear 0s infinite normal forwards running start_382;
+}
+@keyframes start_382 {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+</style><g class="Frame_34_367"><g transform="translate(0 0)" class="start_382">
+<ellipse fill="#FFAD4D" fill-opacity="0.1" transform="translate(28 28)" rx="28" ry="28"/>
+<ellipse fill="#FFAD4D" fill-opacity="0.4" transform="translate(28 28)" rx="24" ry="24"/>
+<ellipse fill="#FFAD4D" fill-opacity="0.6" transform="translate(28 28)" rx="16" ry="16"/>
+<ellipse fill="#FFAD4D" transform="translate(28 28)" rx="8" ry="8"/></g></g>
 </svg>
