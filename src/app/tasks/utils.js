@@ -22,7 +22,7 @@ export const useLocalisation = (taskId) => {
     getCollection();
   }, [taskId]);
 
-  const handleAdd = (origin, destination) => {
+  const handleAdd = (origin, destination, distance, duration) => {
     // console.log("origin", origin);
     // console.log("destination", destination);
     const item = {
@@ -32,6 +32,8 @@ export const useLocalisation = (taskId) => {
       destination_lat: destination.lat,
       destination_lng: destination.lng,
       destination_address: destination.address,
+      distance,
+      duration,
     };
 
     localisations.push(item);

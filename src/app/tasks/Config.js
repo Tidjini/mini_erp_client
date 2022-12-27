@@ -85,4 +85,8 @@ export const taskLocation = {
   destination_address: "",
   destination_lng: 0.0,
   destination_lat: 0.0,
+  distance: 0.0,
+  duration: 0.0,
+  humain_duration: "",
+  humain_distance: "",
 };

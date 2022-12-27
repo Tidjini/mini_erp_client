@@ -36,18 +36,7 @@ export default function TaskLocationItem({ data, onDelete, onClick }) {
             style={{ width: 14, height: 14, marginRight: 16, display: "block" }}
           />
         </div>
-        <div>
-          <Typography
-            style={{ fontWeight: "700", fontSize: 12, marginRight: 16 }}
-          >
-            Depart
-          </Typography>
-          <Typography
-            style={{ fontWeight: "700", fontSize: 12, marginRight: 16 }}
-          >
-            Destination
-          </Typography>
-        </div>
+
         <div>
           <Typography style={{ fontWeight: "500", fontSize: 12 }}>
             {data.origin_address}
@@ -57,19 +46,33 @@ export default function TaskLocationItem({ data, onDelete, onClick }) {
           </Typography>
         </div>
       </div>
-      <IconButton
-        style={{
-          backgroundColor: "transparent",
-          borderColor: "#da2c38",
-          border: "#da2c38 solid 2px",
-          color: "#da2c38",
-          width: 48,
-          height: 48,
-        }}
-        onClick={onDelete}
-      >
-        <Icon>delete</Icon>
-      </IconButton>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <div>
+          <Typography
+            style={{ fontWeight: "700", fontSize: 12, marginRight: 16 }}
+          >
+            {data.humain_distance}
+          </Typography>
+          <Typography
+            style={{ fontWeight: "700", fontSize: 12, marginRight: 16 }}
+          >
+            {data.humain_duration}
+          </Typography>
+        </div>
+        <IconButton
+          style={{
+            backgroundColor: "transparent",
+            borderColor: "#da2c38",
+            border: "#da2c38 solid 2px",
+            color: "#da2c38",
+            width: 48,
+            height: 48,
+          }}
+          onClick={onDelete}
+        >
+          <Icon>delete</Icon>
+        </IconButton>
+      </div>
     </div>
   );
 }
