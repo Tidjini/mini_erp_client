@@ -5,7 +5,7 @@ import { backcolors, margins } from "app/composants.v2/constants";
 import useView from "app/hooks/useView";
 import Input from "app/composants.v2/Input";
 import InputSelector from "app/composants.v2/InputSelector";
-import { defaultItem, statues, taskLocation } from "./Config";
+import { defaultItem, statues } from "./Config";
 import InputCollection from "app/composants.v2/InputCollection";
 import { Grid, Typography } from "@material-ui/core";
 import Action from "app/hooks/Action";

@@ -9,9 +9,10 @@ export const useGeoLocalisation = () => {
   const apiService = new ApiService("localisations", "user");
 
   React.useEffect(() => {
-    // Handler to call on window resize
     function handleGeoPosition() {
-      // Set window width/height to state
+      // navigator.permissions.query({ name: "geolocation" }).then((res) => {
+      //   console.log(res);
+      // });
       if ("geolocation" in navigator) {
         console.log("Available");
 
@@ -45,7 +46,7 @@ export const useGeoLocalisation = () => {
       }
     }
     // Add event listener
-    const interval = setInterval(handleGeoPosition, 1 * 10 * 1000);
+    const interval = setInterval(handleGeoPosition, 1 * 60 * 1000);
     // Call handler right away so state gets updated with initial window size
     handleGeoPosition();
     // Remove event listener on cleanup

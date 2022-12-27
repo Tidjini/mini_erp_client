@@ -11,6 +11,7 @@ import TaskRow from "./TaskRow";
 import { cells as allCells } from "./Config";
 import { useSelector } from "react-redux";
 import { useGeoLocalisation } from "app/hooks/useGeoLocalisation";
+import test from "app/hooks/test";
 
 export default function TaskCollectionView(props) {
   const {
