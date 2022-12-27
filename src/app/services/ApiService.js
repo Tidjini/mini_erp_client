@@ -20,6 +20,26 @@ export class ApiService extends FuseUtils.EventEmitter {
     this.emit("loading", this.loading);
   }
 
+  getGeneric = (params) => {
+    this.setLoading(true);
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${this.API_URL}/${this.collection}/`, { params })
+        .then((response) => {
+          if (response.data) {
+            resolve(response.data);
+          } else {
+            reject(response.data.error);
+          }
+          this.setLoading(false);
+        })
+        .catch((exception) => {
+          this.setLoading(false);
+          reject(exception);
+        });
+    });
+  };
+
   getCollection = (page = 1, filters = {}, ordering = {}) => {
     const params = { page: page, ...filters, ...ordering };
     this.setLoading(true);
