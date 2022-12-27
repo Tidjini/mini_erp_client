@@ -45,7 +45,3 @@ export function cleanFrom(data, item, pk = "id") {
   if (!Boolean(item)) return;
   return data.filter((value, index, arr) => item[pk] != value[pk]);
 }
-
-export default function useActions() {
-  return <div>useActions</div>;
-}
