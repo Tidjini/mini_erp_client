@@ -10,7 +10,7 @@ import useFilter from "./common/useFilter";
 export default function useCollection({
   collection,
   pk = "id",
-  defaultfilter = {},
+  defaultFilter = {},
   viewUrl,
 }) {
   const apiService = new ApiService(collection);
@@ -24,7 +24,7 @@ export default function useCollection({
     filter,
     handleChange: handleFilterChange,
     resetFilter,
-  } = useFilter(defaultfilter);
+  } = useFilter(defaultFilter);
 
   React.useEffect(() => {
     setData([...collectionData]);
