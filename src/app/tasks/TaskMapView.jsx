@@ -45,7 +45,16 @@ export default function TaskMapView({ onSave, path }) {
   const saveAction = new Action(
     "Sauvgarder",
     () => {
-      if (origin && destination) onSave(origin, destination);
+      if (origin && destination) {
+        let distance = 0;
+        let duration = 0;
+        if (directions) {
+          distance = directions.routes[0].legs[0].distance.value;
+          duration = directions.routes[0].legs[0].duration.value;
+        }
+
+        onSave(origin, destination, distance, duration);
+      }
 
       setCenter(defaultCenter);
       setOrigin(undefined);
