@@ -24,7 +24,7 @@ export default function useLookupCollection({
     value,
   });
 
-  const { filter, handleFilter } = useFilter(defaultFilter);
+  const { filter, handleFilterChange } = useFilter(defaultFilter);
   const [open, setOpen] = React.useState(false);
   const [selected, setSelected] = React.useState({
     display: "Non Définie",
@@ -66,7 +66,7 @@ export default function useLookupCollection({
     data,
     open,
     selected,
-    handleFilter,
+    handleFilterChange,
     handleInputChange,
     handleSelection,
     handleOpen,
