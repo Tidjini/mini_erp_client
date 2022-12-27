@@ -27,8 +27,9 @@ export function useEdit(viewUrl, identifiant) {
 export function useDelete(collection, item) {
   const api = new ApiService(collection);
 
-  const handleDelete = (callback, handleException) => {
+  const handleDelete = (callback, clean, handleException) => {
     if (!Boolean(item)) return;
+    clean && clean();
     api
       .deleteItem(item)
       .then((response) => {

@@ -14,12 +14,13 @@ export default function useCollection({
   viewUrl,
 }) {
   const apiService = new ApiService(collection);
+  //data
   const {
     data: collectionData,
     metadata,
     handleGetData: onGet,
   } = useCollectionData(collection);
-
+  //filtering
   const {
     filter,
     handleChange: handleFilterChange,
