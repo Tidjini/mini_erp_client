@@ -1,8 +1,10 @@
 import React from "react";
+import { authRoles } from "app/auth";
 
 const collectionPath = "/tasks/";
-
 export const TaskConfig = {
+  auth: authRoles.user,
+
   routes: [
     {
       path: collectionPath,
