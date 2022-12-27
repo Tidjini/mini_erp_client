@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { statues as defaultStatues } from "./Config";
 
 export default function Filter(props) {
-  const { filter, onFilter, onFilterChange } = props;
+  const { filter, onFilterChange } = props;
 
   const user = useSelector(({ auth }) => auth.user.data);
 
@@ -21,6 +21,11 @@ export default function Filter(props) {
     { display: "Tâches Créées", value: "0" },
     { display: "Tâches Affectées", value: "1" },
   ];
+
+  const handleFilterEvent = (event) => {
+    const { name, value } = event.target;
+    onFilterChange(name, value);
+  };
 
   return (
     <div>
@@ -61,7 +66,7 @@ export default function Filter(props) {
         placeholder="Date"
         type="date"
         name="created_at__date"
-        onChange={onFilter}
+        onChange={handleFilterEvent}
         value={filter.created_at__date}
       />
 
@@ -70,7 +75,7 @@ export default function Filter(props) {
         name="statue"
         value={filter.statue}
         options={statues}
-        onChange={onFilter}
+        onChange={handleFilterEvent}
       />
 
       <InputSelector
@@ -78,7 +83,7 @@ export default function Filter(props) {
         name="type"
         value={filter.type}
         options={types}
-        onChange={onFilter}
+        onChange={handleFilterEvent}
         style={{ display: user.is_admin || user.is_staff ? "block" : "none" }}
       />
 
@@ -87,7 +92,7 @@ export default function Filter(props) {
         name="closed"
         value={filter.closed}
         options={categories}
-        onChange={onFilter}
+        onChange={handleFilterEvent}
         style={{ display: user.is_admin || user.is_staff ? "block" : "none" }}
       />
     </div>

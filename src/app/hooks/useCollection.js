@@ -5,6 +5,7 @@ import ApiService from "app/services/ApiService";
 import { backcolors } from "app/composants.v2/constants";
 import Action from "./Action";
 import { useCollectionData } from "./common/useCollectionData";
+import useFilter from "./common/useFilter";
 
 export default function useCollection({
   collection,
@@ -19,18 +20,23 @@ export default function useCollection({
     handleGetData: onGet,
   } = useCollectionData(collection);
 
+  const {
+    filter,
+    handleChange: handleFilterChange,
+    resetFilter,
+  } = useFilter(defaultfilter);
+
   React.useEffect(() => {
     setData([...collectionData]);
   }, [collectionData]);
 
   const [data, setData] = React.useState(collectionData);
-  const [filter, setfilter] = React.useState(defaultfilter);
   const [page, setPage] = React.useState(1);
   const [ordering, setOrdering] = React.useState({});
   const [selectedItem, setSelectedItem] = React.useState(null);
 
   React.useEffect(() => {
-    onGet({ page, filter, ordering });
+    onGet({ page, ...filter, ...ordering });
   }, [page, filter, ordering]);
 
   const addAction = new Action(
@@ -49,38 +55,6 @@ export default function useCollection({
   const deleteAction = new Action("Supprimer", () => handleDelete(), "delete", {
     backgroundColor: backcolors.delete,
   });
-
-  const cleanFilter = (filter, name) => {
-    const cleaned = { ...filter };
-    delete cleaned[name];
-    setfilter({ ...cleaned });
-  };
-
-  const handleFilterChange = (name, value) => {
-    const newFilter = { ...filter };
-    if (value === null || value == undefined) {
-      cleanFilter(newFilter, name);
-      return;
-    }
-    //convert to str
-    value += "";
-    if (
-      value.toLowerCase() === "non définie" ||
-      value.toLowerCase() === "tous"
-    ) {
-      cleanFilter(newFilter, name);
-      return;
-    }
-    setfilter({ ...newFilter, [name]: value });
-  };
-
-  const handleFilter = React.useCallback(
-    (event) => {
-      const { value, name } = event.target;
-      handleFilterChange(name, value);
-    },
-    [filter]
-  );
 
   const handleEdit = React.useCallback(() => {
     console.log("Edit", selectedItem);
@@ -118,8 +92,8 @@ export default function useCollection({
     setPage,
     setOrdering,
     handleSelection,
-    handleFilter,
     handleFilterChange,
+    resetFilter,
     handleDelete,
     handleEdit,
     addAction,

@@ -9,8 +9,7 @@ export default function useFilter(defaultFilter) {
     setFilter({ ...cleaned });
   };
 
-  const handleFilterChange = (event) => {
-    const { name, value } = event.target;
+  const handleChange = (name, value) => {
     const newFilter = { ...filter };
     //clean null and undefined
     if (value === null || value == undefined) {
@@ -33,5 +32,5 @@ export default function useFilter(defaultFilter) {
     setFilter({});
   };
 
-  return { filter, handleFilterChange, resetFilter };
+  return { filter, handleChange, resetFilter };
 }

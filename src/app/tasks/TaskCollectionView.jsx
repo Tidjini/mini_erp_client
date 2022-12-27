@@ -13,14 +13,12 @@ import { useSelector } from "react-redux";
 import { useGeoLocation } from "app/hooks/useGeoLocation";
 import { useCollectionData } from "app/hooks/common/useCollectionData";
 import TestNotif from "./TestNotif";
-import { onMessageListener } from "app/services/Firebase";
 
 export default function TaskCollectionView(props) {
   const {
     addAction,
     editAction,
     deleteAction,
-    handleFilter: onFilter,
     handleFilterChange: onFilterChange,
     handleSelection: onSelect,
     handleEdit: onEdit,
@@ -57,6 +55,10 @@ export default function TaskCollectionView(props) {
     //todo perform the real sorting from server
   };
 
+  const search = (event) => {
+    const { name, value } = event.target;
+    onFilterChange(name, value);
+  };
   React.useEffect(() => {
     if (user.is_admin || user.is_staff) {
       setCells(allCells);
@@ -89,12 +91,8 @@ export default function TaskCollectionView(props) {
         <Header title="Collection des Tâches" />
         <CollectionActions actions={actions} />
       </div>
-      <CollectionFilters onFilter={onFilter} filter={filter}>
-        <Filter
-          onFilter={onFilter}
-          filter={filter}
-          onFilterChange={onFilterChange}
-        />
+      <CollectionFilters onFilter={search} filter={filter}>
+        <Filter filter={filter} onFilterChange={onFilterChange} />
       </CollectionFilters>
       <CollectionTable
         cells={cells}
