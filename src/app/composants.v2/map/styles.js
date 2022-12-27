@@ -40,7 +40,7 @@ export default [
     featureType: "landscape.natural",
     stylers: [
       {
-        color: "#daf6df",
+        color: "#d8f3dcBB",
       },
       {
         visibility: "on",
