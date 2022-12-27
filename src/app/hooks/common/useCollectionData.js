@@ -6,15 +6,29 @@ import api from "app/services/ApiService";
 
 export function useCollectionData(collection, params) {
   const [data, setData] = React.useState([]);
+  const [metadata, setMetadata] = React.useState();
   const [error, setError] = React.useState();
 
   api.initialize(collection);
 
+  const handleSettingData = (response) => {
+    if (Array.isArray(response)) {
+      setData(response);
+      return;
+    }
+
+    setData([...response.results]);
+    delete response.results;
+    setMetadata({
+      ...response,
+    });
+  };
+
   const handleGetData = (params) => {
     api
       .getGeneric(params)
-      .then((result) => {
-        setData(result);
+      .then((response) => {
+        handleSettingData(response);
       })
       .catch((exception) => {
         console.error("Use Data Exception ", exception);
@@ -25,5 +39,5 @@ export function useCollectionData(collection, params) {
   React.useEffect(() => {
     handleGetData(params);
   }, []);
-  return { data, error, handleGetData };
+  return { data, metadata, error, handleGetData };
 }

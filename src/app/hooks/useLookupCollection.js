@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ApiService } from "app/services/ApiService";
-import useFilter from "./useFilter";
+import useFilter from "./common/useFilter";
 import useGetCollection from "./useGetCollection";
 
 export default function useLookupCollection({
