@@ -11,8 +11,7 @@ import TaskRow from "./TaskRow";
 import { cells as allCells } from "./Config";
 import { useSelector } from "react-redux";
 import { useGeoLocalisation } from "app/hooks/useGeoLocalisation";
-import test from "app/hooks/test";
-import { useData } from "app/hooks/collection/useData";
+import { useCollectionData } from "app/hooks/useCollectionData";
 
 export default function TaskCollectionView(props) {
   const {
@@ -35,7 +34,7 @@ export default function TaskCollectionView(props) {
   });
 
   const user = useSelector(({ auth }) => auth.user.data);
-  const collec = useData("tasks");
+  const collec = useCollectionData("tasks");
   const location = useGeoLocalisation();
 
   const actions = [addAction, editAction, deleteAction];

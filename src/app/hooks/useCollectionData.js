@@ -4,7 +4,7 @@ import api from "app/services/ApiService";
  * special to get collection data from server, not pagination
  */
 
-export function useData(collection, params) {
+export function useCollectionData(collection, params) {
   const [data, setData] = React.useState([]);
   const [error, setError] = React.useState();
 
