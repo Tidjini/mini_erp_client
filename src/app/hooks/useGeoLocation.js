@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { ApiService } from "app/services/ApiService";
 
-export const useGeoLocalisation = () => {
+export const useGeoLocation = () => {
   const [position, setPosition] = React.useState();
 
   const user = useSelector(({ auth }) => auth.user.data);
@@ -46,7 +46,7 @@ export const useGeoLocalisation = () => {
       }
     }
     // Add event listener
-    const interval = setInterval(handleGeoPosition, 1 * 60 * 1000);
+    const interval = setInterval(handleGeoPosition, 5 * 60 * 1000);
     // Call handler right away so state gets updated with initial window size
     handleGeoPosition();
     // Remove event listener on cleanup
