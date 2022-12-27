@@ -22,7 +22,7 @@
     "dotenv": "^16.0.3",
     "downshift": "3.2.10",
     "env-cmd": "^10.1.0",
-    "firebase": "^9.6.1",
+    "firebase": "^9.15.0",
     "formsy-react": "1.1.5",
     "framer-motion": "^4.0.3",
     "google-map-react": "1.1.4",

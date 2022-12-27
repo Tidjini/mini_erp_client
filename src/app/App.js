@@ -14,7 +14,7 @@ import {
   jssPreset,
   createGenerateClassName,
 } from "@material-ui/styles";
-import { getToken } from "./services/Firebase";
+import { requestForToken, onMessageListener } from "./services/Firebase";
 
 const jss = create({
   ...jssPreset(),
@@ -26,7 +26,17 @@ const generateClassName = createGenerateClassName();
 
 const App = () => {
   const [isTokenFound, setTokenFound] = React.useState(false);
-  getToken(setTokenFound);
+  requestForToken(setTokenFound);
+
+  onMessageListener()
+    .then((payload) => {
+      // setNotification({
+      //   title: payload.notification.title,
+      //   body: payload.notification.body,
+      // });
+      console.log("notificaitoin", payload);
+    })
+    .catch((err) => console.log("failed: ", err));
 
   // inside the jsx being returned:
 
