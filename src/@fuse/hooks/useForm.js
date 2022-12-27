@@ -7,6 +7,8 @@ function useForm(initialState, onSubmit) {
 
   const handleChange = useCallback(
     (event) => {
+      const { name, value } = event.target;
+
       event.persist();
       let date = new Date();
       if (event.target.type === "date") {

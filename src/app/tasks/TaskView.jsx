@@ -13,7 +13,7 @@ import TaskMapView from "./TaskMapView";
 import TaskLocationItem from "./TaskLocationItem";
 import { useLocalisation } from "./utils";
 
-import apiService from "app/services/ApiService";
+import ApiService from "app/services/ApiService";
 import { useSelector } from "react-redux";
 
 export default function TaskView(props) {
@@ -41,6 +41,8 @@ export default function TaskView(props) {
     primary: id,
     data: defaultItem,
   });
+
+  const apiService = new ApiService("tasks");
 
   const accepteAction = new Action(
     "Accepter",
@@ -79,7 +81,7 @@ export default function TaskView(props) {
       apiService
         .saveItem(form)
         .then((response) => {
-          onSavePaths(goBack);
+          onSavePaths();
         })
         .catch((exception) => {
           goBack();
@@ -161,7 +163,7 @@ export default function TaskView(props) {
                 defaultValue: form.receiver,
               }}
               onSelectItem={(item) => {
-                if (user.is_admin && user.is_staff) return;
+                if (!user.is_admin && !user.is_staff) return;
                 onInFormChanged("receiver", item.value);
               }}
             />

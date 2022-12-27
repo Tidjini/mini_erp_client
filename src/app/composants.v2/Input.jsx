@@ -44,7 +44,6 @@ export default function Input(props) {
             <Typography style={{ fontWeight: "bold" }}>{label}</Typography>
           )}
           <InputBase
-            disabled={disabled}
             key={name}
             name={name}
             id={name}
@@ -93,6 +92,7 @@ export default function Input(props) {
             autoComplete="off"
             multiline={style && style.multiline}
             rows={style && style.rows}
+            disabled={disabled}
           />
         </div>
       </Grid>
