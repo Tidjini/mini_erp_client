@@ -1,7 +1,0 @@
-export const POSTE_COLLECTION = "[POSTE-GRH] COLLECTION";
-export const LOADING = "[POSTE-GRH] LOADING";
-export const ERROR = "[POSTE-GRH] COLLECTION ERROR";
-export const SAVE = "[POSTE-GRH] SAVE";
-export const SAVE_ERROR = "[POSTE-GRH] SAVE ERROR";
-export const DELETE = "[POSTE-GRH] DELETE";
-export const DELETE_ERROR = "[POSTE-GRH] DELETE ERROR";

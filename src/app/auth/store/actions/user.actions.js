@@ -1,8 +1,6 @@
 import history from "@history";
-import { setDefaultSettings, setInitialSettings } from "app/store/actions/fuse";
+import { setInitialSettings } from "app/store/actions/fuse";
 import _ from "@lodash";
-import store from "app/store";
-import * as Actions from "app/store/actions";
 
 import authService from "app/services/AuthService";
 

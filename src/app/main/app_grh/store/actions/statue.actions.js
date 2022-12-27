@@ -1,7 +1,0 @@
-export const STATUE_COLLECTION = "[STATUE-GRH] COLLECTION";
-export const LOADING = "[STATUE-GRH] LOADING";
-export const ERROR = "[STATUE-GRH] COLLECTION ERROR";
-export const SAVE = "[STATUE-GRH] SAVE";
-export const SAVE_ERROR = "[STATUE-GRH] SAVE ERROR";
-export const DELETE = "[STATUE-GRH] DELETE";
-export const DELETE_ERROR = "[STATUE-GRH] DELETE ERROR";

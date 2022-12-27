@@ -1,12 +1,11 @@
 import React from "react";
 import { AppBar, Hidden, Toolbar } from "@material-ui/core";
 import { makeStyles, ThemeProvider } from "@material-ui/styles";
-import { FuseSearch, FuseShortcuts } from "@fuse";
+import { FuseShortcuts } from "@fuse";
 import NavbarMobileToggleButton from "app/fuse-layouts/shared-components/NavbarMobileToggleButton";
 import QuickPanelToggleButton from "app/fuse-layouts/shared-components/quickPanel/QuickPanelToggleButton";
 import UserMenu from "app/fuse-layouts/shared-components/UserMenu";
 import { useSelector } from "react-redux";
-import { theme } from "app/main/components/AppTheme";
 
 const useStyles = makeStyles((theme) => ({
   separator: {
@@ -28,9 +27,7 @@ function ToolbarLayout1(props) {
         id="fuse-toolbar"
         className="flex relative z-10"
         color="inherit"
-        style={{
-          background: theme.light.toolbar,
-        }}
+        style={{}}
       >
         {/* color="default" */}
         <Toolbar className="p-0">

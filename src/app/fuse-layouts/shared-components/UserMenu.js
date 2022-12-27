@@ -12,7 +12,6 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import * as authActions from "app/auth/store/actions";
 import { Link } from "react-router-dom";
-import { theme } from "../../main/components/AppTheme";
 
 function UserMenu(props) {
   const dispatch = useDispatch();
@@ -30,11 +29,7 @@ function UserMenu(props) {
 
   return (
     <React.Fragment>
-      <Button
-        className="h-64"
-        onClick={userMenuClick}
-        style={{ color: theme.light.toolbarText }}
-      >
+      <Button className="h-64" onClick={userMenuClick} style={{}}>
         {user.data.picture_url ? (
           <Avatar className="" alt="user photo" src={user.data.picture_url} />
         ) : (

@@ -2,7 +2,6 @@ import React from "react";
 import { Icon, IconButton } from "@material-ui/core";
 import * as Actions from "app/store/actions";
 import { useDispatch } from "react-redux";
-import { theme } from "../../main/components/AppTheme";
 
 function NavbarMobileToggleButton(props) {
   const dispatch = useDispatch();
@@ -20,7 +19,7 @@ function NavbarMobileToggleButton(props) {
 }
 
 NavbarMobileToggleButton.defaultProps = {
-  children: <Icon style={{ color: theme.light.toolbarText }}>menu</Icon>,
+  children: <Icon style={{}}>menu</Icon>,
 };
 
 export default NavbarMobileToggleButton;

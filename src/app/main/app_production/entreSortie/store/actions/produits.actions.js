@@ -1,3 +1,0 @@
-export const PRODUIT_COLLECTION = "[PRODUIT] COLLECTION";
-export const LOADING = "[PRODUIT] LOADING";
-export const ERROR = "[PRODUIT] COLLECTION ERROR";

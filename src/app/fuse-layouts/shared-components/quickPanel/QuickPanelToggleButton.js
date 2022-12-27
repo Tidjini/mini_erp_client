@@ -2,7 +2,6 @@ import React from "react";
 import { Icon, IconButton } from "@material-ui/core";
 import * as quickPanelActions from "./store/actions";
 import { useDispatch } from "react-redux";
-import { theme } from "../../../main/components/AppTheme";
 
 function QuickPanelToggleButton(props) {
   const dispatch = useDispatch();
@@ -18,9 +17,7 @@ function QuickPanelToggleButton(props) {
 }
 
 QuickPanelToggleButton.defaultProps = {
-  children: (
-    <Icon style={{ color: theme.light.toolbarText }}>format_list_bulleted</Icon>
-  ),
+  children: <Icon style={{}}>format_list_bulleted</Icon>,
 };
 
 export default QuickPanelToggleButton;

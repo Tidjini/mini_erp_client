@@ -1,9 +1,0 @@
-export const ARTICLE_COLLECTION = "[ARTICLE] COLLECTION";
-export const LOADING = "[ARTICLE] LOADING";
-export const ERROR = "[ARTICLE] COLLECTION ERROR";
-export const RETRIEVE = "[ARTICLE] RETRIEVE";
-export const RETRIEVE_ERROR = "[ARTICLE] RETRIEVE ERROR";
-export const SAVE = "[ARTICLE] SAVE";
-export const SAVE_ERROR = "[ARTICLE] SAVE ERROR";
-export const DELETE = "[ARTICLE] DELETE";
-export const DELETE_ERROR = "[ARTICLE] DELETE ERROR";

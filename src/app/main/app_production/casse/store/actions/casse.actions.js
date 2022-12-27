@@ -1,9 +1,0 @@
-export const CASSE_COLLECTION = "[CASSE] COLLECTION";
-export const LOADING = "[CASSE] LOADING";
-export const ERROR = "[CASSE] COLLECTION ERROR";
-export const RETRIEVE = "[CASSE] RETRIEVE";
-export const RETRIEVE_ERROR = "[CASSE] RETRIEVE ERROR";
-export const SAVE = "[CASSE] SAVE";
-export const SAVE_ERROR = "[CASSE] SAVE ERROR";
-export const DELETE = "[CASSE] DELETE";
-export const DELETE_ERROR = "[CASSE] DELETE ERROR";
