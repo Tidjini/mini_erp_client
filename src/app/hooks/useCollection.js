@@ -4,24 +4,20 @@ import history from "@history";
 import ApiService from "app/services/ApiService";
 import { backcolors } from "app/composants.v2/constants";
 import Action from "./Action";
-import useGetCollection from "./useGetCollection";
+import { useCollectionData } from "./common/useCollectionData";
 
 export default function useCollection({
   collection,
   pk = "id",
   defaultfilter = {},
-  pageResponse,
   viewUrl,
 }) {
   const apiService = new ApiService(collection);
   const {
     data: collectionData,
     metadata,
-    handleGet: onGet,
-  } = useGetCollection({
-    api: apiService,
-    pageResponse,
-  });
+    handleGetData: onGet,
+  } = useCollectionData(collection);
 
   React.useEffect(() => {
     setData([...collectionData]);
