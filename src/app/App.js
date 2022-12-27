@@ -14,6 +14,7 @@ import {
   jssPreset,
   createGenerateClassName,
 } from "@material-ui/styles";
+import { getToken } from "./services/Firebase";
 
 const jss = create({
   ...jssPreset(),
@@ -24,6 +25,11 @@ const jss = create({
 const generateClassName = createGenerateClassName();
 
 const App = () => {
+  const [isTokenFound, setTokenFound] = React.useState(false);
+  getToken(setTokenFound);
+
+  // inside the jsx being returned:
+
   return (
     <AppContext.Provider
       value={{

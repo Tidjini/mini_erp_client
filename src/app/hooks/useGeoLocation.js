@@ -14,8 +14,6 @@ export const useGeoLocation = () => {
       //   console.log(res);
       // });
       if ("geolocation" in navigator) {
-        console.log("Available");
-
         navigator.geolocation.getCurrentPosition(function (position) {
           const { longitude, latitude } = position.coords;
           setPosition({
@@ -31,9 +29,7 @@ export const useGeoLocation = () => {
 
           apiService
             .saveItem(localisation)
-            .then((res) => {
-              console.log(res);
-            })
+            .then((res) => {})
             .catch((exception) => {
               console.log(exception);
             });
@@ -42,7 +38,6 @@ export const useGeoLocation = () => {
           // console.log("Longitude is :", position.coords.longitude);
         });
       } else {
-        console.log("Not Available");
       }
     }
     // Add event listener

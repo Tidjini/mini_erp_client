@@ -36,7 +36,6 @@ export default function TaskCollectionView(props) {
 
   const user = useSelector(({ auth }) => auth.user.data);
   const { data: d, metadata, error } = useCollectionData("tasks");
-  console.log("data", d, "metadata,", metadata);
   const location = useGeoLocation();
 
   const actions = [addAction, editAction, deleteAction];
