@@ -12,6 +12,7 @@ import { cells as allCells } from "./Config";
 import { useSelector } from "react-redux";
 import { useGeoLocation } from "app/hooks/useGeoLocation";
 import { useCollectionData } from "app/hooks/common/useCollectionData";
+import TestNotif from "./TestNotif";
 
 export default function TaskCollectionView(props) {
   const {
@@ -75,6 +76,8 @@ export default function TaskCollectionView(props) {
     }
   }, [user]);
 
+  const [open, setOpen] = React.useState(true);
+
   return (
     <div style={{ margin: margins.default }}>
       <div
@@ -105,6 +108,8 @@ export default function TaskCollectionView(props) {
       >
         {TaskRow}
       </CollectionTable>
+
+      <TestNotif open={open} setOpen={setOpen} />
     </div>
   );
 }
