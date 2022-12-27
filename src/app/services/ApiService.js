@@ -158,6 +158,4 @@ export class ApiService extends FuseUtils.EventEmitter {
   };
 }
 
-const instance = new ApiService();
-
-export default instance;
+export default ApiService;

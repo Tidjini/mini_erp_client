@@ -1,5 +1,5 @@
 import React from "react";
-import api from "app/services/ApiService";
+import ApiService from "app/services/ApiService";
 /**
  * special to get collection data from server, not pagination
  */
@@ -9,7 +9,7 @@ export function useCollectionData(collection, params) {
   const [metadata, setMetadata] = React.useState();
   const [error, setError] = React.useState();
 
-  api.initialize(collection);
+  const api = new ApiService(collection);
 
   const handleSettingData = (response) => {
     if (Array.isArray(response)) {

@@ -1,7 +1,7 @@
 import React from "react";
 import history from "@history";
 
-import apiService from "app/services/ApiService";
+import ApiService from "app/services/ApiService";
 import { backcolors } from "app/composants.v2/constants";
 import Action from "./Action";
 import useGetCollection from "./useGetCollection";
@@ -13,7 +13,7 @@ export default function useCollection({
   pageResponse,
   viewUrl,
 }) {
-  apiService.initialize(collection, pk);
+  const apiService = new ApiService(collection);
   const {
     data: collectionData,
     metadata,

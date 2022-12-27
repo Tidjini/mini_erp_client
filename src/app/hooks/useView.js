@@ -2,7 +2,7 @@ import React from "react";
 import history from "@history";
 
 import { useForm } from "@fuse/hooks";
-import apiService from "app/services/ApiService";
+import ApiService from "app/services/ApiService";
 import Action from "./Action";
 import { backcolors } from "app/composants.v2/constants";
 
@@ -13,6 +13,8 @@ export default function useView({
   primary,
   pk = "id",
 }) {
+  const apiService = new ApiService(name, pk);
+
   const { form, handleChange, setForm } = useForm(defaultData);
   const [title, setTitle] = React.useState(defaultTitle);
 
@@ -48,8 +50,6 @@ export default function useView({
     }
 
     function initialize() {
-      apiService.initialize(name, pk);
-
       if (!Boolean(primary) || primary === "nouveau") return;
 
       apiService

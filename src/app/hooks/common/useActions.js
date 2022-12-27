@@ -1,7 +1,7 @@
 import React from "react";
 import history from "@history";
 
-import api from "app/services/ApiService";
+import ApiService from "app/services/ApiService";
 
 export function useNew(viewUrl) {
   const handleNew = () => {
@@ -25,7 +25,7 @@ export function useEdit(viewUrl, identifiant) {
 //delete in collection, -> clean data and remove from server
 //delete in view -> remove from server than return to view
 export function useDelete(collection, item) {
-  api.initialize(collection);
+  const api = new ApiService(collection);
 
   const handleDelete = (callback, handleException) => {
     if (!Boolean(item)) return;
