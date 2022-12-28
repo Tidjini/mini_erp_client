@@ -11,11 +11,8 @@ import TaskRow from "./TaskRow";
 import { cells as allCells } from "./Config";
 import { useSelector } from "react-redux";
 import { useGeoLocation } from "app/hooks/useGeoLocation";
-import { useCollectionData } from "app/hooks/common/useCollectionData";
-import TestNotif from "./TestNotif";
-// import { send, init } from "app/hooks/services/useOneSignal";
-import { Button } from "@material-ui/core";
-import usePieSocket from "app/hooks/services/usePiesocket";
+import TaskNotification from "./TaskNotification";
+import usePieSocket from "app/hooks/services/usePieSocket";
 
 export default function TaskCollectionView(props) {
   const {
@@ -38,8 +35,6 @@ export default function TaskCollectionView(props) {
 
   const user = useSelector(({ auth }) => auth.user.data);
   useGeoLocation();
-
-  usePieSocket();
 
   const actions = [addAction, editAction, deleteAction];
 
@@ -82,7 +77,15 @@ export default function TaskCollectionView(props) {
     }
   }, [user]);
 
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+
+  const { task } = usePieSocket();
+
+  React.useEffect(() => {
+    if (!Boolean(task)) return;
+
+    setOpen(true);
+  }, [task]);
 
   return (
     <div style={{ margin: margins.default }}>
@@ -111,8 +114,7 @@ export default function TaskCollectionView(props) {
       >
         {TaskRow}
       </CollectionTable>
-
-      <TestNotif open={open} setOpen={setOpen} />
+      {task && <TaskNotification open={open} setOpen={setOpen} data={task} />}
     </div>
   );
 }
