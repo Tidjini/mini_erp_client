@@ -14,7 +14,7 @@ export default function Generic({ open, setOpen, data, onClick }) {
       vertical: "top",
       horizontal: "right",
     },
-    autoHideDuration: 10000,
+    autoHideDuration: 5000,
     message: "Test notification pour firebase, coool?",
     variant: null,
   };

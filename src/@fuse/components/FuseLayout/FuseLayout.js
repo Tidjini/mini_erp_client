@@ -10,6 +10,7 @@ import history from "@history";
 import AppContext from "app/AppContext";
 import { default as Notification } from "app/composants.v2/notification/Generic";
 import usePieSocket from "app/hooks/services/usePieSocket";
+import ReactHowler from "react-howler";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,8 +84,15 @@ function FuseLayout(props) {
   const { task } = usePieSocket();
 
   React.useEffect(() => {
-    setOpen(true);
+    if (task) {
+      setOpen(true);
+      if (howlerRef.current) {
+        howlerRef.current.seek(0);
+        howlerRef.current.play();
+      }
+    }
   }, [task]);
+  const howlerRef = React.useRef(null);
 
   return (
     <Layout classes={{ root: classes.root }} {...props}>
@@ -97,13 +105,15 @@ function FuseLayout(props) {
             if (task.id) {
               history.push(`/task/${task.id}`);
             }
+            setOpen(false);
           }}
         />
       )}
-      {/* <ReactHowler
-                    src="assets/sounds/notification-03.mp3"
-                    ref={howlerRef}
-                  /> */}
+      <ReactHowler
+        src="assets/sounds/notification-03.mp3"
+        ref={howlerRef}
+        playing={open}
+      />
     </Layout>
   );
 }
