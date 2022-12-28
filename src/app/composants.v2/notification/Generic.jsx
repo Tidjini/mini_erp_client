@@ -22,16 +22,15 @@ export default function Generic({ open, setOpen, data, onClick }) {
   return (
     <Snackbar
       {...options}
-      style={{ marginTop: 50 }}
+      style={{ marginTop: 68 }}
       open={open}
-      onClose={() => setOpen(false)}
+      // onClose={() => setOpen(false)}
     >
       <Paper
         style={{
           backgroundColor: "#edede9",
           padding: 0,
-          minWidth: 300,
-          maxHeight: 500,
+
           width: 400,
           borderRadius: 4,
           cursor: "pointer",
