@@ -21,8 +21,8 @@ export default function usePieSocket() {
         const { id, label, description } = data;
         setTask({
           id,
-          label,
-          description,
+          title: label,
+          message: description,
         });
       });
     });

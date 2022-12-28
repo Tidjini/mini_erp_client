@@ -34,6 +34,7 @@ export default function Generic({ open, setOpen, data, onClick }) {
           maxHeight: 500,
           width: 400,
           borderRadius: 4,
+          cursor: "pointer",
         }}
         onClick={onClick}
       >
@@ -55,7 +56,10 @@ export default function Generic({ open, setOpen, data, onClick }) {
           <IconButton
             key="close"
             aria-label="Close"
-            onClick={() => setOpen(false)}
+            onClick={(event) => {
+              setOpen(false);
+              event.stopPropagation();
+            }}
             style={{
               width: 16,
               height: 16,

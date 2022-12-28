@@ -6,7 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import * as Actions from "app/store/actions";
 import { FuseLayouts } from "@fuse";
 import _ from "@lodash";
+import history from "@history";
 import AppContext from "app/AppContext";
+import { default as Notification } from "app/composants.v2/notification/Generic";
+import usePieSocket from "app/hooks/services/usePieSocket";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,8 +79,33 @@ function FuseLayout(props) {
   //
 
   const Layout = FuseLayouts[settings.layout.style];
+  const [open, setOpen] = React.useState(false);
+  const { task } = usePieSocket();
 
-  return <Layout classes={{ root: classes.root }} {...props}></Layout>;
+  React.useEffect(() => {
+    setOpen(true);
+  }, [task]);
+
+  return (
+    <Layout classes={{ root: classes.root }} {...props}>
+      {task && (
+        <Notification
+          data={task}
+          open={open}
+          setOpen={setOpen}
+          onClick={(event) => {
+            if (task.id) {
+              history.push(`/task/${task.id}`);
+            }
+          }}
+        />
+      )}
+      {/* <ReactHowler
+                    src="assets/sounds/notification-03.mp3"
+                    ref={howlerRef}
+                  /> */}
+    </Layout>
+  );
 }
 
 export default withRouter(React.memo(FuseLayout));

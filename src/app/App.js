@@ -14,8 +14,6 @@ import {
   jssPreset,
   createGenerateClassName,
 } from "@material-ui/styles";
-import { requestForToken, onMessageListener } from "./services/Firebase";
-import { default as Notification } from "app/composants.v2/notification/Generic";
 
 const jss = create({
   ...jssPreset(),
@@ -26,23 +24,6 @@ const jss = create({
 const generateClassName = createGenerateClassName();
 
 const App = () => {
-  const [isTokenFound, setTokenFound] = React.useState(false);
-  const [open, setOpen] = React.useState(true);
-
-  requestForToken(setTokenFound);
-
-  onMessageListener()
-    .then((payload) => {
-      // setNotification({
-      //   title: payload.notification.title,
-      //   body: payload.notification.body,
-      // });
-      console.log("notificaitoin", payload);
-    })
-    .catch((err) => console.log("failed: ", err));
-
-  // inside the jsx being returned:
-
   return (
     <AppContext.Provider
       value={{
@@ -56,15 +37,6 @@ const App = () => {
               <FuseAuthorization>
                 <FuseTheme>
                   <FuseLayout />
-                  {/* <ReactHowler
-                    src="assets/sounds/notification-03.mp3"
-                    ref={howlerRef}
-                  /> */}
-                  <Notification
-                    data={{ title: "t", message: "m" }}
-                    open={open}
-                    setOpen={setOpen}
-                  />
                 </FuseTheme>
               </FuseAuthorization>
             </Router>
