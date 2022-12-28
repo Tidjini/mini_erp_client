@@ -13,6 +13,9 @@ import { useSelector } from "react-redux";
 import { useGeoLocation } from "app/hooks/useGeoLocation";
 import { useCollectionData } from "app/hooks/common/useCollectionData";
 import TestNotif from "./TestNotif";
+// import { send, init } from "app/hooks/services/useOneSignal";
+import { Button } from "@material-ui/core";
+import usePieSocket from "app/hooks/services/usePiesocket";
 
 export default function TaskCollectionView(props) {
   const {
@@ -34,8 +37,9 @@ export default function TaskCollectionView(props) {
   });
 
   const user = useSelector(({ auth }) => auth.user.data);
-  const { data: d, metadata, error } = useCollectionData("tasks");
-  const location = useGeoLocation();
+  useGeoLocation();
+
+  usePieSocket();
 
   const actions = [addAction, editAction, deleteAction];
 
@@ -89,6 +93,7 @@ export default function TaskCollectionView(props) {
         }}
       >
         <Header title="Collection des Tâches" />
+
         <CollectionActions actions={actions} />
       </div>
       <CollectionFilters onFilter={search} filter={filter}>
