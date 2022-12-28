@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
-import { Card, CardContent, darken, Tab, Typography } from "@material-ui/core";
+import {
+  Card,
+  CardContent,
+  darken,
+  Tab,
+  Typography,
+  Hidden,
+} from "@material-ui/core";
 import clsx from "clsx";
 import { FuseAnimate } from "@fuse";
 import { Link } from "react-router-dom";
@@ -32,46 +39,45 @@ export default function Login(props) {
         <FuseAnimate animation="transition.expandIn">
           <img
             className="w-128 mb-32"
-            src="assets/images/compta/account.png"
+            src="assets/images/logos/logo.png"
             alt="logo"
           />
         </FuseAnimate>
 
-        <FuseAnimate animation="transition.slideUpIn" delay={300}>
-          <Typography variant="h3" color="inherit" className="font-light">
-            Bienvenue chez Group AMRY
-          </Typography>
-        </FuseAnimate>
-
-        <FuseAnimate delay={400}>
-          <Typography
-            variant="subtitle1"
-            color="inherit"
-            className="max-w-512 mt-16"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-            ullamcorper nisl erat, vel convallis elit fermentum pellentesque.
-            Sed mollis velit facilisis facilisis.
-          </Typography>
-        </FuseAnimate>
+        <Hidden smDown>
+          <FuseAnimate animation="transition.slideUpIn" delay={300}>
+            <Typography
+              variant="h3"
+              color="inherit"
+              className="font-light md:flex-0"
+            >
+              GROUPE AMRY
+            </Typography>
+          </FuseAnimate>
+          <FuseAnimate delay={400}>
+            <Typography
+              variant="subtitle1"
+              color="inherit"
+              className="max-w-512 mt-16"
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+              ullamcorper nisl erat, vel convallis elit fermentum pellentesque.
+              Sed mollis velit facilisis facilisis.
+            </Typography>
+          </FuseAnimate>
+        </Hidden>
       </div>
 
       <FuseAnimate animation={{ translateX: [0, "100%"] }}>
-        <Card className="w-full max-w-400 mx-auto m-16 md:m-0" square>
+        <Card
+          className="w-full max-w-400 mx-auto m-16 md:m-0"
+          square
+          style={{ borderRadius: 15 }}
+        >
           <CardContent className="flex flex-col items-center justify-center p-32 md:p-48 md:pt-128 ">
             <Typography variant="h6" className="text-center md:w-full mb-48">
               CONNECTEZ-VOUS À VOTRE COMPTE
             </Typography>
-            <Tab
-              icon={
-                <img
-                  className="h-40 p-4 bg-black rounded-12"
-                  src="assets/images/compta/account.png"
-                  alt="firebase"
-                />
-              }
-              className="min-w-0"
-            />
 
             <LoginPhone />
           </CardContent>

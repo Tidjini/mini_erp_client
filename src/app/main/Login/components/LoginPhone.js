@@ -101,12 +101,6 @@ export default function LoginPhone() {
           Connexion
         </Button>
       </Formsy>
-
-      <div className="flex flex-col items-center pt-24">
-        <Typography className="text-14 font-600 py-8">
-          GROUPE AMRY SERVICE
-        </Typography>
-      </div>
     </div>
   );
 }
