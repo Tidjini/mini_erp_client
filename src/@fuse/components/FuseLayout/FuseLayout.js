@@ -11,6 +11,7 @@ import AppContext from "app/AppContext";
 import { default as Notification } from "app/composants.v2/notification/Generic";
 import usePieSocket from "app/hooks/services/usePieSocket";
 import ReactHowler from "react-howler";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -93,7 +94,29 @@ function FuseLayout(props) {
     }
   }, [task]);
   const howlerRef = React.useRef(null);
-
+  const actions = () => {
+    return (
+      <div
+        style={{
+          padding: 0,
+          width: "100%",
+          display: "flex",
+          flexDirection: "row-reverse",
+        }}
+      >
+        <Button
+          style={{
+            backgroundColor: "#0a9396",
+            color: "white",
+            fontSize: 11,
+            textTransform: "none",
+          }}
+        >
+          Accepter
+        </Button>
+      </div>
+    );
+  };
   return (
     <Layout classes={{ root: classes.root }} {...props}>
       {task && (
@@ -107,7 +130,9 @@ function FuseLayout(props) {
             }
             setOpen(false);
           }}
-        />
+        >
+          {actions()}
+        </Notification>
       )}
       <ReactHowler
         src="assets/sounds/notification-03.mp3"

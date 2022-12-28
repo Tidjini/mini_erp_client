@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@material-ui/core";
 
-export default function Generic({ open, setOpen, data, onClick }) {
+export default function Generic({ open, setOpen, data, onClick, children }) {
   const options = {
     anchorOrigin: {
       vertical: "top",
@@ -20,12 +20,7 @@ export default function Generic({ open, setOpen, data, onClick }) {
   };
 
   return (
-    <Snackbar
-      {...options}
-      style={{ marginTop: 68 }}
-      open={open}
-      // onClose={() => setOpen(false)}
-    >
+    <Snackbar {...options} style={{ marginTop: 68 }} open={open}>
       <Paper
         style={{
           backgroundColor: "#edede9",
@@ -80,6 +75,7 @@ export default function Generic({ open, setOpen, data, onClick }) {
           <Typography style={{ fontSize: 12, fontWeight: "300" }}>
             {data.message}
           </Typography>
+          {children}
         </div>
       </Paper>
     </Snackbar>
