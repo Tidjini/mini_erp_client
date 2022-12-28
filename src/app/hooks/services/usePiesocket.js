@@ -32,19 +32,13 @@ export default function usePieSocket() {
       });
     }
 
-    // subscribeToAdmin(pieSocket);
-    // subscribe(pieSocket);
-    // function unsubscribe(pieSocket) {
-    //   pieSocket.unsubscribe(token);
+    return () => {
+      pieSocket.unsubscribe("tasks");
 
-    //   if (is_admin || is_stuff) {
-    //     pieSocket.subscribe("admin").then((channel) => {
-    //       console.log("Channel is ready");
-    //     });
-    //   }
-    // }
-
-    // return () => {};
+      if (is_admin || is_stuff) {
+        pieSocket.unsubscribe("admin");
+      }
+    };
   }, [user]);
 
   return { task };

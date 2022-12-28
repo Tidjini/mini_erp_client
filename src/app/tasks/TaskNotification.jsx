@@ -18,8 +18,6 @@ export default function TaskNotification({ open, setOpen, data }) {
     variant: null,
   };
 
-  console.log(data);
-
   return (
     <Snackbar
       {...options}
