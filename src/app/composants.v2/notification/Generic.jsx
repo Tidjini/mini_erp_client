@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   Icon,
   IconButton,
@@ -5,9 +7,8 @@ import {
   Snackbar,
   Typography,
 } from "@material-ui/core";
-import React from "react";
 
-export default function TaskNotification({ open, setOpen, data }) {
+export default function Generic({ open, setOpen, data, onClick }) {
   const options = {
     anchorOrigin: {
       vertical: "top",
@@ -34,6 +35,7 @@ export default function TaskNotification({ open, setOpen, data }) {
           width: 400,
           borderRadius: 4,
         }}
+        onClick={onClick}
       >
         <div
           style={{
@@ -48,7 +50,7 @@ export default function TaskNotification({ open, setOpen, data }) {
           }}
         >
           <Typography style={{ fontSize: 14, fontWeight: "600" }}>
-            {data.label}
+            {data.title}
           </Typography>
           <IconButton
             key="close"
@@ -73,7 +75,7 @@ export default function TaskNotification({ open, setOpen, data }) {
           }}
         >
           <Typography style={{ fontSize: 12, fontWeight: "300" }}>
-            {data.description}
+            {data.message}
           </Typography>
         </div>
       </Paper>
