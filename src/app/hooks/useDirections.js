@@ -24,7 +24,6 @@ export default function useDirections() {
         (result, status) => {
           if (status === mapInstance.DirectionsStatus.OK) {
             setDirections(result);
-            console.log(result.routes[0].legs[0]);
           } else {
             console.error(`error fetching directions ${result}`);
             setDirections(null);

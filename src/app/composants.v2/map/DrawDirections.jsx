@@ -2,7 +2,6 @@ import React from "react";
 
 import { DirectionsRenderer, Polyline } from "@react-google-maps/api";
 import TypedMarker from "./Marker";
-import useDirections from "app/hooks/useDirections";
 export default function DrawDirection({
   maps,
   origin,
