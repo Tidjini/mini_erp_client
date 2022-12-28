@@ -5,8 +5,8 @@ export default function usePieSocket() {
   // const []
   React.useEffect(() => {
     const pieSocket = new PieSocket({
-      clusterId: "s8153.nyc1",
-      apiKey: "Y42tEqSEf35expzZEpyjnBOycrk2MWK5RBrcjjZD",
+      clusterId: process.env.REACT_APP_PIESOCKET_CLUSTER_ID,
+      apiKey: process.env.REACT_APP_PIESOCKET_API_KEY,
       notifySelf: true,
     });
     pieSocket.subscribe("chat-room").then((channel) => {
