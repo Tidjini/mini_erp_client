@@ -156,9 +156,7 @@ export default function TaskMapView({ onSave, path }) {
             maps={maps}
             origin={origin}
             destination={destination}
-            onClick={(event) => {
-              console.log(event);
-            }}
+            onClick={(event) => {}}
             directions={directions}
           />
           <div

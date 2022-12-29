@@ -11,7 +11,6 @@ export const useGeoLocation = () => {
   React.useEffect(() => {
     function handleGeoPosition() {
       // navigator.permissions.query({ name: "geolocation" }).then((res) => {
-      //   console.log(res);
       // });
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -31,11 +30,8 @@ export const useGeoLocation = () => {
             .saveItem(localisation)
             .then((res) => {})
             .catch((exception) => {
-              console.log(exception);
+              console.error(exception);
             });
-
-          // console.log("Latitude is :", position.coords.latitude);
-          // console.log("Longitude is :", position.coords.longitude);
         });
       } else {
       }

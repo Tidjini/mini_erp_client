@@ -17,7 +17,6 @@ export default function CollectionResponse(props) {
       .getCollection(1, filters)
       .then((response) => {
         setData(response);
-        console.log(response);
       })
       .catch((exception) => {});
   };

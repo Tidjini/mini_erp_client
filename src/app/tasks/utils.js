@@ -24,8 +24,6 @@ export const useLocalisation = (id) => {
   }, [taskId]);
 
   const handleAdd = (origin, destination, distance, duration) => {
-    // console.log("origin", origin);
-    // console.log("destination", destination);
     const item = {
       origin_lat: origin.lat,
       origin_lng: origin.lng,
@@ -72,7 +70,6 @@ export const useLocalisation = (id) => {
         afterSave && afterSave(results);
       })
       .catch((exceptions) => {
-        console.log(exceptions);
         catchException && catchException(exceptions);
       });
   };

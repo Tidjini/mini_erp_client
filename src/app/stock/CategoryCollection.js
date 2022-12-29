@@ -17,7 +17,6 @@ export default function CategoryCollection() {
   );
 
   React.useEffect(() => {
-    console.log("init");
     // setTimeout(() => {
     //   tvas.deleteItem({
     //     id: 2,

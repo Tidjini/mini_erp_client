@@ -59,7 +59,6 @@ export default function Collectionfilter(props) {
               background: backcolors.add,
             }}
             onClick={(event) => {
-              console.log("Apply filter");
               onClose();
             }}
           >

@@ -53,7 +53,7 @@ export default function useGetCollection({
           return getCollection(response);
         })
         .catch((exception) => {
-          console.log("[handleGet] EXCEPTION ", exception);
+          console.error("[handleGet] EXCEPTION ", exception);
         });
   };
 

@@ -69,7 +69,6 @@ export default function MapView(props) {
           setDirections(result);
         } else {
           console.error(`error fetching directions ${result}`);
-          console.log("SD, service", result);
         }
       }
     );

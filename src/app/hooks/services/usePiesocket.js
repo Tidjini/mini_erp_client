@@ -19,7 +19,6 @@ export default function usePieSocket() {
     pieSocket.subscribe("tasks").then((channel) => {
       channel.listen(token, (data, meta) => {
         const { id, label, description, statue, statue_label } = data;
-        console.log(data);
         setTask({
           id,
           title: label,
@@ -32,9 +31,7 @@ export default function usePieSocket() {
       });
     });
     if (is_admin || is_stuff) {
-      pieSocket.subscribe("admin").then((channel) => {
-        console.log("Channel is ready");
-      });
+      pieSocket.subscribe("admin").then((channel) => {});
     }
 
     return () => {

@@ -80,8 +80,6 @@ class ApiService {
     return new Promise((resolve, reject) => {
       request
         .then((response) => {
-          console.log("in the request item");
-
           if (response.data) {
             resolve(response.data);
           } else {

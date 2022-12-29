@@ -8,7 +8,6 @@ export const LOGIN_ERROR = "LOGIN_ERROR";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 
 export function submitLogin({ username, password }) {
-  console.log("LOGIN", process.env.REACT_APP_PORT);
   return (dispatch) =>
     authService
       .signIn({ username, password })
