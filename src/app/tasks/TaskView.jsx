@@ -26,6 +26,7 @@ export default function TaskView(props) {
     handleAdd: onPathAdd,
     handleSave: onSavePaths,
     handleDelete: onDeleteLocalisation,
+    setTaskId: onTaskIdChanged,
   } = useLocalisation(id);
 
   const {
@@ -81,7 +82,7 @@ export default function TaskView(props) {
       apiService
         .saveItem(form)
         .then((response) => {
-          onSavePaths();
+          onSavePaths(response.id);
         })
         .catch((exception) => {
           goBack();

@@ -4,8 +4,9 @@ import { ApiService } from "app/services/ApiService";
 
 const api = new ApiService("task-localisations");
 
-export const useLocalisation = (taskId) => {
+export const useLocalisation = (id) => {
   //all locations
+  const [taskId, setTaskId] = React.useState(id);
   const [localisations, setLocalisations] = React.useState([]);
   const [collectionToDelete, setCollectionToDelete] = React.useState([]);
 
@@ -51,14 +52,14 @@ export const useLocalisation = (taskId) => {
       setCollectionToDelete([...collectionToDelete]);
     }
   };
-  const handleSave = (afterSave, catchException) => {
+  const handleSave = (taskId, afterSave, catchException) => {
     const collectionToSave = localisations.filter(
       (item) => !Boolean(item.id) || item.id === 0
     );
     const responses = [];
 
     collectionToSave.forEach((item) => {
-      item.task = taskId;
+      item.task = Number(taskId);
       responses.push(api.saveItem(item));
     });
 
@@ -76,5 +77,12 @@ export const useLocalisation = (taskId) => {
       });
   };
 
-  return { localisations, getCollection, handleAdd, handleDelete, handleSave };
+  return {
+    localisations,
+    getCollection,
+    handleAdd,
+    handleDelete,
+    handleSave,
+    setTaskId,
+  };
 };
