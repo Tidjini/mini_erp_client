@@ -14,7 +14,7 @@ import {
   jssPreset,
   createGenerateClassName,
 } from "@material-ui/styles";
-import TaskNofitication from "app/composants.v2/notification/TaskNofitication";
+// import TaskNofitication from "app/composants.v2/notification/TaskNofitication";
 
 const jss = create({
   ...jssPreset(),
