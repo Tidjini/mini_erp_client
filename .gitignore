@@ -18,6 +18,7 @@ node_modules.rar
 .env.production.local
 
 .env
+.env.prod
 
 /.idea
 /.vscode
