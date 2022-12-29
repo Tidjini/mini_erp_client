@@ -18,11 +18,16 @@ export default function usePieSocket() {
     });
     pieSocket.subscribe("tasks").then((channel) => {
       channel.listen(token, (data, meta) => {
-        const { id, label, description } = data;
+        const { id, label, description, statue, statue_label } = data;
+        console.log(data);
         setTask({
           id,
           title: label,
           message: description,
+          statue: {
+            statue,
+            statue_label,
+          },
         });
       });
     });
