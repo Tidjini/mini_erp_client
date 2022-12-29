@@ -127,10 +127,9 @@ function FuseLayout(props) {
     return (
       <div
         style={{
-          padding: 0,
+          paddingTop: 20,
           width: "100%",
           display: "flex",
-          flexDirection: "row-reverse",
           justifyContent: "space-between",
         }}
       >
