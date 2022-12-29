@@ -1,7 +1,7 @@
 import React from "react";
 
 import { default as Notification } from "./Generic";
-import usePieSocket from "app/hooks/services/usePieSocket";
+import useNotificationService from "app/hooks/services/useNotificationService";
 import ReactHowler from "react-howler";
 
 import { Button, Typography } from "@material-ui/core";
@@ -9,7 +9,7 @@ import history from "@history";
 
 export default function TaskNofitication() {
   const [open, setOpen] = React.useState(false);
-  const { task } = usePieSocket();
+  const { task } = useNotificationService();
 
   React.useEffect(() => {
     if (task) {
