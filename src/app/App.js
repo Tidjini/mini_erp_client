@@ -37,7 +37,7 @@ const App = () => {
             <Router history={history}>
               <FuseAuthorization>
                 <FuseTheme>
-                  <TaskNofitication />
+                  {/* <TaskNofitication /> */}
                   <FuseLayout />
                 </FuseTheme>
               </FuseAuthorization>
