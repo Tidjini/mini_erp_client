@@ -12,7 +12,7 @@ import clsx from "clsx";
 import AppContext from "app/AppContext";
 
 import { default as Notification } from "app/composants.v2/notification/Generic";
-import usePieSocket from "app/hooks/services/usePieSocket";
+import usePieSocket from "../../../app/hooks/services/usePieSocket";
 import ReactHowler from "react-howler";
 
 import { Button, Typography } from "@material-ui/core";

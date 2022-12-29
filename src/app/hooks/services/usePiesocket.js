@@ -2,7 +2,7 @@ import React from "react";
 import PieSocket from "piesocket-js";
 import { useSelector } from "react-redux";
 
-export default function usePieSocket() {
+export default usePieSocket = () => {
   const [task, setTask] = React.useState();
   const user = useSelector(({ auth }) => auth.user.data);
 
@@ -47,4 +47,4 @@ export default function usePieSocket() {
   }, [user]);
 
   return { task };
-}
+};
