@@ -12,7 +12,7 @@ import { cells as allCells } from "./Config";
 import { useSelector } from "react-redux";
 import { useGeoLocation } from "app/hooks/useGeoLocation";
 import TaskNofitication from "app/composants.v2/notification/TaskNofitication";
-import { CircularProgress, Typography } from "@material-ui/core";
+import Loader from "app/composants.v2/Loader";
 
 export default function TaskCollectionView(props) {
   const {
@@ -80,25 +80,7 @@ export default function TaskCollectionView(props) {
 
   return (
     <div>
-      <div
-        style={{
-          backgroundColor: "#26465350",
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-          display: loading ? "flex" : "none",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          zIndex: 5,
-        }}
-      >
-        <Typography className="text-18 mb-16" color="textSecondary">
-          Loading...
-        </Typography>
-        {/* <LinearProgress className="w-xs" color="secondary" /> */}
-        <CircularProgress color="inherit" size={36} />
-      </div>
+      <Loader isLoading={loading} />
       <div style={{ margin: margins.default }}>
         <div
           style={{
