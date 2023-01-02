@@ -11,6 +11,7 @@ import Action from "app/hooks/Action";
 import { backcolors } from "app/composants.v2/constants";
 import { useSelector } from "react-redux";
 import { useGetCollection } from "app/hooks/useRequest";
+import UtilisateurInfoWindow from "./UtilisateurInfoWindow";
 //center for oran
 const defaultCenter = {
   lat: 35.6976541,
@@ -88,9 +89,7 @@ export default function TaskMapView({ onSave, path }) {
       });
     }
   }, [path]);
-  const onLoad = (infoBox) => {
-    console.log("infoBox: ", infoBox);
-  };
+
   return (
     <Grid item xl={6} lg={6} md={12} sm={12} xs={12} style={{ paddingTop: 20 }}>
       <Paper style={{ width: "100%", borderRadius: 15 }}>
@@ -193,60 +192,15 @@ export default function TaskMapView({ onSave, path }) {
             )}
           </div>
 
-          {displayInfo && displayInfo.display && (
-            <InfoWindow
-              onLoad={onLoad}
-              position={displayInfo.position}
-              onCloseClick={(e) => {
-                setDisplayInfo({
-                  ...displayInfo,
-                  display: false,
-                });
-              }}
-              options={{ height: 300 }}
-            >
-              <div
-                style={{
-                  padding: 5,
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <img
-                  src="assets/images/man.png"
-                  style={{
-                    width: 56,
-                    height: 56,
-                    borderRadius: 28,
-                    marginRight: 14,
-                  }}
-                />
-                <div>
-                  <Typography
-                    style={{
-                      padding: "5px 5px",
-                      fontWeight: "700",
-                    }}
-                  >
-                    {displayInfo.user.name}
-                  </Typography>
-                  <Typography
-                    style={{
-                      padding: "5px 20px",
-                      borderRadius: 15,
-                      backgroundColor: "#2a9d8f20",
-                      color: "#2a9d8f",
-                      fontSize: 11,
-                      fontWeight: "700",
-                      textAlign: "center",
-                    }}
-                  >
-                    ACTIVE
-                  </Typography>
-                </div>
-              </div>
-            </InfoWindow>
-          )}
+          <UtilisateurInfoWindow
+            information={displayInfo}
+            onCloseClick={(e) => {
+              setDisplayInfo({
+                ...displayInfo,
+                display: false,
+              });
+            }}
+          />
         </MapView>
       </Paper>
     </Grid>

@@ -1,9 +1,13 @@
 import React from "react";
+import Typography from "@material-ui/core/Typography";
+import { InfoWindow } from "@react-google-maps/api";
 
-export default function UtilisateurInfoWindow({ information }) {
-  const { display, user, position, onCloseClick } = displayInfo;
+export default function UtilisateurInfoWindow({ information, onCloseClick }) {
+  const { display, user, position } = information;
   const { name } = user;
-
+  const onLoad = (infoBox) => {
+    console.log("infoBox: ", infoBox);
+  };
   return (
     display && (
       <InfoWindow
