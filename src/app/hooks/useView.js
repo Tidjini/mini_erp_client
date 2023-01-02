@@ -16,6 +16,7 @@ export default function useView({
   const apiService = new ApiService(name, pk);
 
   const { form, handleChange, setForm } = useForm(defaultData);
+  const [loading, setLoading] = React.useState(false);
   const [title, setTitle] = React.useState(defaultTitle);
 
   const deleteAction = new Action("Supprimer", () => handleDelete(), "delete", {
@@ -50,16 +51,22 @@ export default function useView({
     }
 
     function initialize() {
-      if (!Boolean(primary) || primary === "nouveau") return;
+      if (!Boolean(primary) || primary === "nouveau") {
+        setLoading(false);
+        return;
+      }
 
       apiService
         .getItem(primary)
         .then((data) => {
           setForm(data);
+          setLoading(false);
         })
-        .catch((exception) => {});
+        .catch((exception) => {
+          setLoading(false);
+        });
     }
-
+    setLoading(true);
     handleTitleChanges();
     initialize();
   }, []);
@@ -95,6 +102,7 @@ export default function useView({
   return {
     title,
     form,
+    loading,
     handleChange,
     handleGoBack,
     handleDelete,
