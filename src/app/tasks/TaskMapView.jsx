@@ -1,5 +1,5 @@
 import { Grid, Paper, Typography } from "@material-ui/core";
-import { InfoBox, useLoadScript } from "@react-google-maps/api";
+import { InfoBox, InfoWindow, useLoadScript } from "@react-google-maps/api";
 import DrawDirection from "app/composants.v2/map/DrawDirections";
 import MapView from "app/composants.v2/map/MapView";
 import TypedMarker from "app/composants.v2/map/Marker";
@@ -20,6 +20,14 @@ const libs = ["places"];
 
 export default function TaskMapView({ onSave, path }) {
   const [maps, setMaps] = React.useState();
+  const [displayInfo, setDisplayInfo] = React.useState({
+    display: false,
+    position: {
+      lat: 35.6976541,
+      lng: -0.6337376,
+    },
+    user: {},
+  });
 
   const user = useSelector(({ auth }) => auth.user.data);
 
@@ -80,7 +88,9 @@ export default function TaskMapView({ onSave, path }) {
       });
     }
   }, [path]);
-
+  const onLoad = (infoBox) => {
+    console.log("infoBox: ", infoBox);
+  };
   return (
     <Grid item xl={6} lg={6} md={12} sm={12} xs={12} style={{ paddingTop: 20 }}>
       <Paper style={{ width: "100%", borderRadius: 15 }}>
@@ -139,6 +149,16 @@ export default function TaskMapView({ onSave, path }) {
                     lat: latitude,
                     lng: longitude,
                   }}
+                  onClick={(e) => {
+                    setDisplayInfo({
+                      display: true,
+                      position: {
+                        lat: latitude,
+                        lng: longitude,
+                      },
+                      user: { ...t },
+                    });
+                  }}
                 />
               );
             })}
@@ -172,6 +192,61 @@ export default function TaskMapView({ onSave, path }) {
               <CollectionActions actions={[saveAction]} />
             )}
           </div>
+
+          {displayInfo && displayInfo.display && (
+            <InfoWindow
+              onLoad={onLoad}
+              position={displayInfo.position}
+              onCloseClick={(e) => {
+                setDisplayInfo({
+                  ...displayInfo,
+                  display: false,
+                });
+              }}
+              options={{ height: 300 }}
+            >
+              <div
+                style={{
+                  padding: 5,
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <img
+                  src="assets/images/man.png"
+                  style={{
+                    width: 56,
+                    height: 56,
+                    borderRadius: 28,
+                    marginRight: 14,
+                  }}
+                />
+                <div>
+                  <Typography
+                    style={{
+                      padding: "5px 5px",
+                      fontWeight: "700",
+                    }}
+                  >
+                    {displayInfo.user.name}
+                  </Typography>
+                  <Typography
+                    style={{
+                      padding: "5px 20px",
+                      borderRadius: 15,
+                      backgroundColor: "#2a9d8f20",
+                      color: "#2a9d8f",
+                      fontSize: 11,
+                      fontWeight: "700",
+                      textAlign: "center",
+                    }}
+                  >
+                    ACTIVE
+                  </Typography>
+                </div>
+              </div>
+            </InfoWindow>
+          )}
         </MapView>
       </Paper>
     </Grid>
