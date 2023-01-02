@@ -4,10 +4,50 @@ import { InfoWindow } from "@react-google-maps/api";
 
 export default function UtilisateurInfoWindow({ information, onCloseClick }) {
   const { display, user, position } = information;
-  const { name } = user;
+  const { name, statue } = user;
+
+  const [stateInfo, setStateInfo] = React.useState({
+    color: "#414962",
+    backgroundColor: "#41496220",
+    text: "undefined",
+  });
   const onLoad = (infoBox) => {
     console.log("infoBox: ", infoBox);
   };
+
+  React.useEffect(() => {
+    switch (statue) {
+      case "a":
+        setStateInfo({
+          color: "#2a9d8f",
+          backgroundColor: "#2a9d8f20",
+          text: "Active",
+        });
+        break;
+      case "n":
+        setStateInfo({
+          color: "#e63946",
+          backgroundColor: "#e6394620",
+          text: "Non Active",
+        });
+        break;
+      case "ab":
+        setStateInfo({
+          color: "#231942",
+          backgroundColor: "#23194220",
+          text: "Absent(e)",
+        });
+        break;
+
+      default:
+        setStateInfo({
+          color: "#414962",
+          backgroundColor: "#41496220",
+          text: "undefined",
+        });
+        break;
+    }
+  }, [statue]);
   return (
     display && (
       <InfoWindow
@@ -45,14 +85,14 @@ export default function UtilisateurInfoWindow({ information, onCloseClick }) {
               style={{
                 padding: "5px 20px",
                 borderRadius: 15,
-                backgroundColor: "#2a9d8f20",
-                color: "#2a9d8f",
+
                 fontSize: 11,
                 fontWeight: "700",
                 textAlign: "center",
+                ...stateInfo,
               }}
             >
-              ACTIVE
+              {stateInfo.text.toUpperCase()}
             </Typography>
           </div>
         </div>
