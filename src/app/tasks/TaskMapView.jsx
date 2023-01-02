@@ -1,10 +1,14 @@
-import { Grid, Paper, Typography } from "@material-ui/core";
-import { InfoBox, InfoWindow, useLoadScript } from "@react-google-maps/api";
+import React from "react";
+import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+
+import { useLoadScript } from "@react-google-maps/api";
 import DrawDirection from "app/composants.v2/map/DrawDirections";
 import MapView from "app/composants.v2/map/MapView";
 import TypedMarker from "app/composants.v2/map/Marker";
 import useDirections from "app/hooks/useDirections";
-import React from "react";
+
 import TaskMapInputs from "./TaskMapInputs";
 import CollectionActions from "app/composants.v2/collection/CollectionActions";
 import Action from "app/hooks/Action";
