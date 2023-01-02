@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { useGetCollection } from "app/hooks/useRequest";
 import UtilisateurInfoWindow from "./UtilisateurInfoWindow";
 import useWindowSize from "app/hooks/useWindowSize";
+import { Icon } from "@material-ui/core";
 //center for oran
 const defaultCenter = {
   lat: 35.6976541,
@@ -24,6 +25,7 @@ const libs = ["places"];
 export default function TaskCollectionMapView({ onSave, path }) {
   const [maps, setMaps] = React.useState();
   const { width, height } = useWindowSize();
+  const [pathInfo, setPathInfo] = React.useState();
   const [displayInfo, setDisplayInfo] = React.useState({
     display: false,
     position: {
@@ -69,6 +71,14 @@ export default function TaskCollectionMapView({ onSave, path }) {
     }
   }, [path]);
 
+  React.useEffect(() => {
+    function changePathInformation() {
+      const { distance, duration } = directions.routes[0].legs[0];
+      setPathInfo({ distance: distance.text, duration: duration.text });
+    }
+    directions && changePathInformation();
+  }, [directions]);
+
   return (
     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
       <Paper
@@ -88,26 +98,46 @@ export default function TaskCollectionMapView({ onSave, path }) {
         >
           Tâches Directions / Localisation
         </Typography>
-        <div
-          style={{
-            padding: "10px 20px 20px 15px",
-            width: "50%",
-          }}
-        >
-          <TaskMapInputs
-            isLoaded={isLoaded}
-            originAddress={origin && origin.address}
-            destinaitonAddress={destination && destination.address}
-            onOriginChanged={(depart) => {
-              setCenter({ ...depart });
-              setOrigin({ ...depart });
+        <div style={{ display: "flex", width: "100%", alignItems: "end" }}>
+          <div
+            style={{
+              padding: "10px 20px 20px 15px",
+              width: "50%",
             }}
-            onDestinationChanged={(destination) => {
-              setCenter({ ...destination });
-              setDestination({ ...destination });
-            }}
-          />
+          >
+            <TaskMapInputs
+              isLoaded={isLoaded}
+              originAddress={origin && origin.address}
+              destinaitonAddress={destination && destination.address}
+              onOriginChanged={(depart) => {
+                setCenter({ ...depart });
+                setOrigin({ ...depart });
+              }}
+              onDestinationChanged={(destination) => {
+                setCenter({ ...destination });
+                setDestination({ ...destination });
+              }}
+            />
+          </div>
+          {pathInfo && (
+            <div style={{ display: "flex", padding: "10px 20px 25px 15px" }}>
+              <Icon style={{ color: "#005f73", margin: "0 10px" }}>
+                watch_later
+              </Icon>
+              <Typography style={{ fontSize: 16, fontWeight: "700" }}>
+                {pathInfo.duration}
+              </Typography>
+
+              <Icon style={{ color: "#5e548e", margin: "0 10px" }}>
+                directions
+              </Icon>
+              <Typography style={{ fontSize: 16, fontWeight: "700" }}>
+                {pathInfo.distance}
+              </Typography>
+            </div>
+          )}
         </div>
+
         <MapView
           center={center}
           isLoaded={isLoaded}
