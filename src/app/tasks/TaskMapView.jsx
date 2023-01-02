@@ -62,7 +62,7 @@ export default function TaskMapView({ onSave, path }) {
           duration = directions.routes[0].legs[0].duration.value;
         }
 
-        onSave(origin, destination, distance, duration);
+        onSave && onSave(origin, destination, distance, duration);
       }
 
       setCenter(defaultCenter);
