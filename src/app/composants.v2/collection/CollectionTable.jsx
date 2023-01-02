@@ -21,6 +21,7 @@ export default function CollectionTable(props) {
     order,
     onSort,
     data,
+    isLoading,
     children,
     itemHandlers,
     selectedItem,
@@ -33,7 +34,10 @@ export default function CollectionTable(props) {
     <Paper style={{ ...style }}>
       <div
         className="flex flex-1 flex-col items-center justify-center  p-10"
-        style={{ backgroundColor: "#94d2bd20" }}
+        style={{
+          backgroundColor: "#94d2bd20",
+          display: isLoading ? "flex" : "none",
+        }}
       >
         <Typography className="text-18 mb-16" color="textSecondary">
           Loading...

@@ -6,6 +6,8 @@ import ApiService from "app/services/ApiService";
 
 export function useCollectionData(collection, params) {
   const [data, setData] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+
   const [metadata, setMetadata] = React.useState();
   const [error, setError] = React.useState();
 
@@ -25,19 +27,22 @@ export function useCollectionData(collection, params) {
   };
 
   const handleGetData = (params) => {
+    setLoading(true);
     api
       .getGeneric(params)
       .then((response) => {
         handleSettingData(response);
+        setLoading(false);
       })
       .catch((exception) => {
         console.error("Use Data Exception ", exception);
         setError(exception);
+        setLoading(false);
       });
   };
 
   React.useEffect(() => {
     handleGetData(params);
   }, []);
-  return { data, metadata, error, handleGetData };
+  return { loading, data, metadata, error, handleGetData };
 }

@@ -97,6 +97,7 @@ export default function TaskCollectionView(props) {
         order={order}
         orderBy={orderBy}
         data={data}
+        isLoading={false}
         itemHandlers={{ onClick: onSelect, onDoubleClick: onEdit }}
         selectedItem={selectedItem}
         style={{ marginTop: 10 }}
