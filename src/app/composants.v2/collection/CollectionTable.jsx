@@ -6,7 +6,7 @@ import Paper from "@material-ui/core/Paper";
 import CollectionHeader from "app/composants.v2/collection/CollectionHeader";
 import CollectionBody from "./CollectionBody";
 import CollectionPagination from "./CollectionPagination";
-import { CircularProgress, Typography } from "@material-ui/core";
+import Loader from "app/composants.v2/Loader";
 
 const useStyles = makeStyles({
   table: {
@@ -32,19 +32,7 @@ export default function CollectionTable(props) {
 
   return (
     <Paper style={{ ...style }}>
-      <div
-        className="flex flex-1 flex-col items-center justify-center  p-10"
-        style={{
-          backgroundColor: "#94d2bd20",
-          display: isLoading ? "flex" : "none",
-        }}
-      >
-        <Typography className="text-18 mb-16" color="textSecondary">
-          Loading...
-        </Typography>
-        {/* <LinearProgress className="w-xs" color="secondary" /> */}
-        <CircularProgress color="inherit" size={36} />
-      </div>
+      <Loader isLoading={isLoading} />
       <TableContainer style={{ maxHeight: 900 }}>
         <Table
           className={classes.table}
