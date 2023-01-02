@@ -9,13 +9,12 @@ import MapView from "app/composants.v2/map/MapView";
 import TypedMarker from "app/composants.v2/map/Marker";
 import useDirections from "app/hooks/useDirections";
 
-import TaskMapInputs from "./TaskMapInputs";
 import { useSelector } from "react-redux";
 import { useGetCollection } from "app/hooks/useRequest";
 import UtilisateurInfoWindow from "./UtilisateurInfoWindow";
 import useWindowSize from "app/hooks/useWindowSize";
 import Icon from "@material-ui/core/Icon";
-import { Button, IconButton } from "@material-ui/core";
+import IconButton from "@material-ui/core/IconButton";
 import TaskLocationItemV2 from "./TaskLocationItem.v2";
 //center for oran
 const defaultCenter = {
@@ -212,20 +211,20 @@ export default function TaskCollectionMapView({ onSave, path }) {
         sm={12}
         xs={12}
       >
-        {tasks.map((item, index) => {
+        {/* {tasks.map((item, index) => {
           return (
             <TaskLocationItemV2
               key={index}
               data={item}
               onClick={(event) => {
-                setSelectedPath(item);
+                //setSelectedPath(item);
               }}
               onDelete={(event) => {
-                onDeleteLocalisation(index);
+                //onDeleteLocalisation(index);
               }}
             />
           );
-        })}
+        })} */}
       </Grid>
     </Grid>
   );

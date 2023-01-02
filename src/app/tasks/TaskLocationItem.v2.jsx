@@ -1,3 +1,5 @@
+import { Icon, IconButton, Typography } from "@material-ui/core";
+import useUserStateInfo from "app/hooks/useUserStateInfo";
 import React from "react";
 
 export default function TaskLocationItemV2({ data, onDelete, onClick }) {
@@ -10,6 +12,9 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
   } = data;
 
   const { name, statue } = user;
+
+  const { stateInfo } = useUserStateInfo(statue);
+
   return (
     <div
       style={{
@@ -28,6 +33,46 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
       onClick={onClick}
     >
       <div style={{ display: "flex", alignItems: "center" }}>
+        <div
+          style={{
+            padding: 5,
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src="assets/images/man.png"
+            style={{
+              width: 56,
+              height: 56,
+              borderRadius: 28,
+              marginRight: 14,
+            }}
+          />
+          <div>
+            <Typography
+              style={{
+                padding: "5px 5px",
+                fontWeight: "700",
+              }}
+            >
+              {name}
+            </Typography>
+            <Typography
+              style={{
+                padding: "5px 20px",
+                borderRadius: 15,
+
+                fontSize: 11,
+                fontWeight: "700",
+                textAlign: "center",
+                ...stateInfo,
+              }}
+            >
+              {stateInfo.text.toUpperCase()}
+            </Typography>
+          </div>
+        </div>
         <div>
           <img
             src="assets/images/maps/start.svg"
@@ -67,6 +112,7 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
             {humain_duration}
           </Typography>
         </div>
+
         <IconButton
           style={{
             backgroundColor: "transparent",
