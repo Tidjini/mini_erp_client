@@ -34,6 +34,7 @@ export default function TaskView(props) {
   const {
     title,
     form,
+    loading,
     handleSave: onSave,
     handleChange: onFormChanged,
     handleFormChanged: onInFormChanged,
@@ -43,6 +44,7 @@ export default function TaskView(props) {
     defaultTitle: "Tâche",
     primary: id,
     data: defaultItem,
+    backUrl: "/tasks",
   });
 
   const apiService = new ApiService("tasks");
@@ -95,8 +97,26 @@ export default function TaskView(props) {
       backgroundColor: backcolors.add,
     }
   );
+  const saveReturnAction = new Action(
+    "Sauv. Retour",
+    () => {
+      apiService
+        .saveItem(form)
+        .then((response) => {
+          onSavePaths(response.id);
+          goBack();
+        })
+        .catch((exception) => {
+          goBack();
+        });
+    },
+    "save",
+    {
+      backgroundColor: "#FFB703",
+    }
+  );
 
-  const actions = [saveAction, accepteAction, terminerAction, cancelAction];
+  const actions = [saveAction, saveReturnAction];
 
   const [selectedPath, setSelectedPath] = React.useState();
 

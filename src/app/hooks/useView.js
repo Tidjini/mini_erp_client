@@ -29,7 +29,7 @@ export default function useView({
   });
 
   const handleGoBack = () => {
-    backUrl ? history.replace(backUrl) : history.goBack();
+    const d = backUrl ? history.replace(backUrl) : history.goBack();
   };
 
   const handleFormChanged = React.useCallback(
