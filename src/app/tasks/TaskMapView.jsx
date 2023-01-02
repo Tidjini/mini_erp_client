@@ -19,7 +19,7 @@ const defaultCenter = {
 };
 const libs = ["places"];
 
-export default function TaskMapView({ onSave, path }) {
+export default function TaskMapView({ onSave, path, style, mapStyle }) {
   const [maps, setMaps] = React.useState();
   const [displayInfo, setDisplayInfo] = React.useState({
     display: false,
@@ -91,7 +91,15 @@ export default function TaskMapView({ onSave, path }) {
   }, [path]);
 
   return (
-    <Grid item xl={6} lg={6} md={12} sm={12} xs={12} style={{ paddingTop: 20 }}>
+    <Grid
+      item
+      xl={(style && style.xl) || 6}
+      lg={(style && style.lg) || 6}
+      md={12}
+      sm={12}
+      xs={12}
+      style={{ paddingTop: 20 }}
+    >
       <Paper style={{ width: "100%", borderRadius: 15 }}>
         <Typography
           style={{
@@ -131,6 +139,7 @@ export default function TaskMapView({ onSave, path }) {
           loadError={loadError}
           style={{
             borderRadius: "0px 0px 15px 15px",
+            ...mapStyle,
           }}
           onLoad={(instance) => {
             setMaps(window.google.maps);

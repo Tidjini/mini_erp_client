@@ -14,6 +14,10 @@ export const TaskConfig = {
       path: "/task/:id",
       component: React.lazy(() => import("./TaskView")),
     },
+    {
+      path: "/tasks-map-view/",
+      component: React.lazy(() => import("./TaskCollectionMapView")),
+    },
   ],
   navigation: {
     id: "tasks",
