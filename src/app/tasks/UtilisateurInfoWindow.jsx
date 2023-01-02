@@ -9,7 +9,7 @@ export default function UtilisateurInfoWindow({ information, onCloseClick }) {
   const [stateInfo, setStateInfo] = React.useState({
     color: "#414962",
     backgroundColor: "#41496220",
-    text: "undefined",
+    text: "Non Définie",
   });
   const onLoad = (infoBox) => {
     console.log("infoBox: ", infoBox);
@@ -43,7 +43,7 @@ export default function UtilisateurInfoWindow({ information, onCloseClick }) {
         setStateInfo({
           color: "#414962",
           backgroundColor: "#41496220",
-          text: "undefined",
+          text: "Non Définie",
         });
         break;
     }
