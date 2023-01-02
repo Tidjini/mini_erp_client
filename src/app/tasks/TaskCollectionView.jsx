@@ -12,6 +12,7 @@ import { cells as allCells } from "./Config";
 import { useSelector } from "react-redux";
 import { useGeoLocation } from "app/hooks/useGeoLocation";
 import TaskNofitication from "app/composants.v2/notification/TaskNofitication";
+import { CircularProgress, Typography } from "@material-ui/core";
 
 export default function TaskCollectionView(props) {
   const {
@@ -78,35 +79,56 @@ export default function TaskCollectionView(props) {
   }, [user]);
 
   return (
-    <div style={{ margin: margins.default }}>
+    <div>
       <div
         style={{
-          display: "flex",
-          justifyContent: "space-between",
+          backgroundColor: "#26465350",
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          display: loading ? "flex" : "none",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 5,
         }}
       >
-        <Header title="Collection des Tâches" />
-
-        <CollectionActions actions={actions} />
+        <Typography className="text-18 mb-16" color="textSecondary">
+          Loading...
+        </Typography>
+        {/* <LinearProgress className="w-xs" color="secondary" /> */}
+        <CircularProgress color="inherit" size={36} />
       </div>
-      <CollectionFilters onFilter={search} filter={filter}>
-        <Filter filter={filter} onFilterChange={onFilterChange} />
-      </CollectionFilters>
-      <CollectionTable
-        cells={cells}
-        onSort={handleSorting}
-        order={order}
-        orderBy={orderBy}
-        data={data}
-        isLoading={loading}
-        itemHandlers={{ onClick: onSelect, onDoubleClick: onEdit }}
-        selectedItem={selectedItem}
-        style={{ marginTop: 10 }}
-      >
-        {TaskRow}
-      </CollectionTable>
+      <div style={{ margin: margins.default }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Header title="Collection des Tâches" />
 
-      <TaskNofitication />
+          <CollectionActions actions={actions} />
+        </div>
+        <CollectionFilters onFilter={search} filter={filter}>
+          <Filter filter={filter} onFilterChange={onFilterChange} />
+        </CollectionFilters>
+        <CollectionTable
+          cells={cells}
+          onSort={handleSorting}
+          order={order}
+          orderBy={orderBy}
+          data={data}
+          isLoading={loading}
+          itemHandlers={{ onClick: onSelect, onDoubleClick: onEdit }}
+          selectedItem={selectedItem}
+          style={{ marginTop: 10 }}
+        >
+          {TaskRow}
+        </CollectionTable>
+
+        <TaskNofitication />
+      </div>
     </div>
   );
 }
