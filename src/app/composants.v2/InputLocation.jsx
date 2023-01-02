@@ -51,6 +51,7 @@ function LocationInput({ value, onChange, label, style, disabled }) {
     <div style={{ ...style, width: "100%" }}>
       {label && <Typography style={{ fontWeight: "bold" }}>{label}</Typography>}
       <Autocomplete
+        size="small"
         filterOptions={(x) => x}
         options={data}
         // defaultValue={{ place_id: "0", description: value }}
