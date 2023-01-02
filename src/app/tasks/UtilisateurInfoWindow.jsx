@@ -1,53 +1,17 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { InfoWindow } from "@react-google-maps/api";
+import useUserStateInfo from "app/hooks/useUserStateInfo";
 
 export default function UtilisateurInfoWindow({ information, onCloseClick }) {
   const { display, user, position } = information;
   const { name, statue } = user;
 
-  const [stateInfo, setStateInfo] = React.useState({
-    color: "#414962",
-    backgroundColor: "#41496220",
-    text: "Non Définie",
-  });
+  const { stateInfo } = useUserStateInfo(statue);
   const onLoad = (infoBox) => {
     console.log("infoBox: ", infoBox);
   };
 
-  React.useEffect(() => {
-    switch (statue) {
-      case "a":
-        setStateInfo({
-          color: "#2a9d8f",
-          backgroundColor: "#2a9d8f20",
-          text: "Active",
-        });
-        break;
-      case "n":
-        setStateInfo({
-          color: "#e63946",
-          backgroundColor: "#e6394620",
-          text: "Non Active",
-        });
-        break;
-      case "ab":
-        setStateInfo({
-          color: "#231942",
-          backgroundColor: "#23194220",
-          text: "Absent(e)",
-        });
-        break;
-
-      default:
-        setStateInfo({
-          color: "#414962",
-          backgroundColor: "#41496220",
-          text: "Non Définie",
-        });
-        break;
-    }
-  }, [statue]);
   return (
     display && (
       <InfoWindow
