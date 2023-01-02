@@ -16,6 +16,7 @@ import useWindowSize from "app/hooks/useWindowSize";
 import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import TaskLocationItemV2 from "./TaskLocationItem.v2";
+import { useCollectionData } from "app/hooks/common/useCollectionData";
 //center for oran
 const defaultCenter = {
   lat: 35.6976541,
@@ -23,7 +24,9 @@ const defaultCenter = {
 };
 const libs = ["places"];
 
-export default function TaskCollectionMapView({ onSave, path }) {
+export default function TaskCollectionMapView({ onSave }) {
+  const [path, setPath] = React.useState();
+
   const [maps, setMaps] = React.useState();
   const { width, height } = useWindowSize();
   const [pathInfo, setPathInfo] = React.useState({
@@ -43,6 +46,13 @@ export default function TaskCollectionMapView({ onSave, path }) {
 
   const { data: transporters, handleGet: getUserCollection } =
     useGetCollection("profiles");
+
+  const {
+    data: tasks,
+    loading,
+    metadata,
+    handleGetData: onGet,
+  } = useCollectionData("task-localisations");
 
   const [center, setCenter] = React.useState(defaultCenter);
   const [origin, setOrigin] = React.useState();
@@ -194,6 +204,7 @@ export default function TaskCollectionMapView({ onSave, path }) {
           }}
         />
       </MapView>
+
       <Grid
         item
         container
@@ -211,20 +222,21 @@ export default function TaskCollectionMapView({ onSave, path }) {
         sm={12}
         xs={12}
       >
-        {/* {tasks.map((item, index) => {
+        {tasks.map((item, index) => {
           return (
             <TaskLocationItemV2
               key={index}
               data={item}
               onClick={(event) => {
-                //setSelectedPath(item);
+                console.log(item);
+                setPath(item);
               }}
               onDelete={(event) => {
                 //onDeleteLocalisation(index);
               }}
             />
           );
-        })} */}
+        })}
       </Grid>
     </Grid>
   );

@@ -1,5 +1,4 @@
 import { Icon, IconButton, Typography } from "@material-ui/core";
-import useUserStateInfo from "app/hooks/useUserStateInfo";
 import React from "react";
 
 export default function TaskLocationItemV2({ data, onDelete, onClick }) {
@@ -8,12 +7,8 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
     destination_address,
     humain_distance,
     humain_duration,
-    user,
+    receiver,
   } = data;
-
-  const { name, statue } = user;
-
-  const { stateInfo } = useUserStateInfo(statue);
 
   return (
     <div
@@ -40,15 +35,17 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
             alignItems: "center",
           }}
         >
-          <img
-            src="assets/images/man.png"
-            style={{
-              width: 56,
-              height: 56,
-              borderRadius: 28,
-              marginRight: 14,
-            }}
-          />
+          {receiver && (
+            <img
+              src="assets/images/man.png"
+              style={{
+                width: 56,
+                height: 56,
+                borderRadius: 28,
+                marginRight: 14,
+              }}
+            />
+          )}
           <div>
             <Typography
               style={{
@@ -56,20 +53,7 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
                 fontWeight: "700",
               }}
             >
-              {name}
-            </Typography>
-            <Typography
-              style={{
-                padding: "5px 20px",
-                borderRadius: 15,
-
-                fontSize: 11,
-                fontWeight: "700",
-                textAlign: "center",
-                ...stateInfo,
-              }}
-            >
-              {stateInfo.text.toUpperCase()}
+              {receiver}
             </Typography>
           </div>
         </div>
