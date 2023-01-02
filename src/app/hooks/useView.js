@@ -12,6 +12,7 @@ export default function useView({
   defaultData = {},
   primary,
   pk = "id",
+  backUrl,
 }) {
   const apiService = new ApiService(name, pk);
 
@@ -28,7 +29,7 @@ export default function useView({
   });
 
   const handleGoBack = () => {
-    history.goBack();
+    backUrl ? history.replace(backUrl) : history.goBack();
   };
 
   const handleFormChanged = React.useCallback(
