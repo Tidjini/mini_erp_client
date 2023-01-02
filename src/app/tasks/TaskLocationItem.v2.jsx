@@ -1,4 +1,4 @@
-import { Icon, IconButton, Typography } from "@material-ui/core";
+import { Grid, Icon, IconButton, Typography } from "@material-ui/core";
 import React from "react";
 
 export default function TaskLocationItemV2({ data, onDelete, onClick }) {
@@ -11,23 +11,23 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
   } = data;
 
   return (
-    <div
+    <Grid
+      container
+      spacing={2}
       style={{
         width: "100%",
         backgroundColor: "#8d99ae01",
         borderColor: "#8d99ae20",
         borderWidth: 1,
         borderRadius: 15,
-        padding: "10px",
-        margin: 5,
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: "center",
         alignItems: "center",
         cursor: "pointer",
       }}
       onClick={onClick}
     >
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <Grid item style={{ display: "flex", alignItems: "center" }}>
         <div
           style={{
             padding: 5,
@@ -57,7 +57,9 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
             </Typography>
           </div>
         </div>
-        <div>
+      </Grid>
+      <Grid item>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <img
             src="assets/images/maps/start.svg"
             style={{
@@ -65,25 +67,24 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
               height: 14,
               marginRight: 16,
               display: "block",
-              marginBottom: 8,
             }}
           />
+          <Typography style={{ fontWeight: "500", fontSize: 12 }}>
+            {origin_address}
+          </Typography>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", marginTop: 8 }}>
           <img
             src="assets/images/maps/end.svg"
             style={{ width: 14, height: 14, marginRight: 16, display: "block" }}
           />
-        </div>
-
-        <div>
-          <Typography style={{ fontWeight: "500", fontSize: 12 }}>
-            {origin_address}
-          </Typography>
           <Typography style={{ fontWeight: "500", fontSize: 12 }}>
             {destination_address}
           </Typography>
         </div>
-      </div>
-      <div style={{ display: "flex", alignItems: "center" }}>
+      </Grid>
+
+      <Grid item style={{ display: "flex", alignItems: "center" }}>
         <div>
           <Typography
             style={{ fontWeight: "700", fontSize: 12, marginRight: 16 }}
@@ -110,7 +111,7 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
         >
           <Icon>delete</Icon>
         </IconButton>
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 }

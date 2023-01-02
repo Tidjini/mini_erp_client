@@ -17,6 +17,7 @@ import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import TaskLocationItemV2 from "./TaskLocationItem.v2";
 import { useCollectionData } from "app/hooks/common/useCollectionData";
+import { Dialog, DialogContent, Slide } from "@material-ui/core";
 //center for oran
 const defaultCenter = {
   lat: 35.6976541,
@@ -24,8 +25,13 @@ const defaultCenter = {
 };
 const libs = ["places"];
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 export default function TaskCollectionMapView({ onSave }) {
   const [path, setPath] = React.useState();
+  const [openCollection, setOpenCollection] = React.useState(false);
 
   const [maps, setMaps] = React.useState();
   const { width, height } = useWindowSize();
@@ -133,6 +139,9 @@ export default function TaskCollectionMapView({ onSave }) {
               margin: 10,
               padding: 10,
             }}
+            onClick={(event) => {
+              setOpenCollection(true);
+            }}
           >
             <Icon style={{ color: "white" }}>list_alt</Icon>
           </IconButton>
@@ -204,40 +213,42 @@ export default function TaskCollectionMapView({ onSave }) {
           }}
         />
       </MapView>
-
-      <Grid
-        item
-        container
-        spacing={1}
-        style={{
-          alignItems: "flex-start",
-          backgroundColor: "#8d99ae01",
-          boxShadow: "1px 3px 3px 3px #9E9E9E20",
-          borderRadius: 15,
-          padding: "30px 20px",
+      <Dialog
+        open={openCollection}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={(e) => {
+          setOpenCollection(false);
         }}
-        xl={6}
-        lg={6}
-        md={12}
-        sm={12}
-        xs={12}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        fullWidth
+        maxWidth="md"
       >
-        {tasks.map((item, index) => {
-          return (
-            <TaskLocationItemV2
-              key={index}
-              data={item}
-              onClick={(event) => {
-                console.log(item);
-                setPath(item);
-              }}
-              onDelete={(event) => {
-                //onDeleteLocalisation(index);
-              }}
-            />
-          );
-        })}
-      </Grid>
+        <DialogContent
+          style={{
+            backgroundColor: "#8d99ae01",
+            boxShadow: "1px 3px 3px 3px #9E9E9E20",
+            borderRadius: 15,
+            padding: 20,
+          }}
+        >
+          {tasks.map((item, index) => {
+            return (
+              <TaskLocationItemV2
+                key={index}
+                data={item}
+                onClick={(event) => {
+                  setPath(item);
+                }}
+                onDelete={(event) => {
+                  //onDeleteLocalisation(index);
+                }}
+              />
+            );
+          })}
+        </DialogContent>
+      </Dialog>
     </Grid>
   );
 }
