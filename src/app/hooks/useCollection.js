@@ -17,6 +17,7 @@ export default function useCollection({
   //data
   const {
     data: collectionData,
+    loading,
     metadata,
     handleGetData: onGet,
   } = useCollectionData(collection);
@@ -86,6 +87,7 @@ export default function useCollection({
   return {
     metadata,
     data,
+    loading,
     filter,
     setPage,
     setOrdering,

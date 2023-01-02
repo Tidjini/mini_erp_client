@@ -23,6 +23,7 @@ export default function TaskCollectionView(props) {
     handleEdit: onEdit,
     filter,
     data,
+    loading,
     selectedItem,
   } = useCollection({
     collection: "tasks",
@@ -97,7 +98,7 @@ export default function TaskCollectionView(props) {
         order={order}
         orderBy={orderBy}
         data={data}
-        isLoading={false}
+        isLoading={loading}
         itemHandlers={{ onClick: onSelect, onDoubleClick: onEdit }}
         selectedItem={selectedItem}
         style={{ marginTop: 10 }}
