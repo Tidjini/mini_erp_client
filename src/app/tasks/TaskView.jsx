@@ -49,37 +49,6 @@ export default function TaskView(props) {
 
   const apiService = new ApiService("tasks");
 
-  const accepteAction = new Action(
-    "Accepter",
-    () => {
-      console.log("On Accept Clicked");
-    },
-    "verified_user",
-    {
-      backgroundColor: "#FFB703",
-    }
-  );
-  const terminerAction = new Action(
-    "Terminer",
-    () => {
-      console.log("On Accept Clicked");
-    },
-    "done_all",
-    {
-      backgroundColor: "#52b69a",
-    }
-  );
-  const cancelAction = new Action(
-    "Annuler",
-    () => {
-      console.log("On Accept Clicked");
-    },
-    "cancel",
-    {
-      backgroundColor: "#E63946",
-    }
-  );
-
   const saveAction = new Action(
     "Sauvgarder",
     () => {
