@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import { useGetCollection } from "app/hooks/useRequest";
 import UtilisateurInfoWindow from "./UtilisateurInfoWindow";
 import useWindowSize from "app/hooks/useWindowSize";
-import { Icon } from "@material-ui/core";
+import Icon from "@material-ui/core/Icon";
 //center for oran
 const defaultCenter = {
   lat: 35.6976541,
@@ -25,7 +25,10 @@ const libs = ["places"];
 export default function TaskCollectionMapView({ onSave, path }) {
   const [maps, setMaps] = React.useState();
   const { width, height } = useWindowSize();
-  const [pathInfo, setPathInfo] = React.useState();
+  const [pathInfo, setPathInfo] = React.useState({
+    distance: "distance",
+    duration: "duration",
+  });
   const [displayInfo, setDisplayInfo] = React.useState({
     display: false,
     position: {
@@ -99,11 +102,13 @@ export default function TaskCollectionMapView({ onSave, path }) {
           Tâches Directions / Localisation
         </Typography>
         <div style={{ display: "flex", width: "100%", alignItems: "end" }}>
-          <div
+          <Grid
+            item
+            container
             style={{
               padding: "10px 20px 20px 15px",
-              width: "50%",
             }}
+            spacing={2}
           >
             <TaskMapInputs
               isLoaded={isLoaded}
@@ -117,25 +122,39 @@ export default function TaskCollectionMapView({ onSave, path }) {
                 setCenter({ ...destination });
                 setDestination({ ...destination });
               }}
+              style={{
+                xl: 6,
+                lg: 6,
+              }}
             />
-          </div>
-          {pathInfo && (
-            <div style={{ display: "flex", padding: "10px 20px 25px 15px" }}>
-              <Icon style={{ color: "#005f73", margin: "0 10px" }}>
-                watch_later
-              </Icon>
-              <Typography style={{ fontSize: 16, fontWeight: "700" }}>
-                {pathInfo.duration}
-              </Typography>
+            {pathInfo && (
+              <Grid
+                item
+                container
+                xl={4}
+                lg={4}
+                md={12}
+                sm={12}
+                xs={12}
+                alignItems="flex-end"
+                style={{ padding: "15px 0" }}
+              >
+                <Icon style={{ color: "#005f73", margin: "0 10px" }}>
+                  watch_later
+                </Icon>
+                <Typography style={{ fontSize: 16, fontWeight: "700" }}>
+                  {pathInfo.duration}
+                </Typography>
 
-              <Icon style={{ color: "#5e548e", margin: "0 10px" }}>
-                directions
-              </Icon>
-              <Typography style={{ fontSize: 16, fontWeight: "700" }}>
-                {pathInfo.distance}
-              </Typography>
-            </div>
-          )}
+                <Icon style={{ color: "#5e548e", margin: "0 10px" }}>
+                  directions
+                </Icon>
+                <Typography style={{ fontSize: 16, fontWeight: "700" }}>
+                  {pathInfo.distance}
+                </Typography>
+              </Grid>
+            )}
+          </Grid>
         </div>
 
         <MapView

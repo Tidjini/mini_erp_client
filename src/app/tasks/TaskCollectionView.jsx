@@ -13,8 +13,10 @@ import { useSelector } from "react-redux";
 import { useGeoLocation } from "app/hooks/useGeoLocation";
 import TaskNofitication from "app/composants.v2/notification/TaskNofitication";
 import Loader from "app/composants.v2/Loader";
+import Action from "app/hooks/Action";
 
 export default function TaskCollectionView(props) {
+  const { history } = props;
   const {
     addAction,
     editAction,
@@ -37,7 +39,15 @@ export default function TaskCollectionView(props) {
   const user = useSelector(({ auth }) => auth.user.data);
   useGeoLocation();
 
-  const actions = [addAction, editAction, deleteAction];
+  const goToMapView = new Action(
+    "Map View",
+    () => history.push("/tasks-map-view/"),
+    "map",
+    {
+      backgroundColor: "#264653",
+    }
+  );
+  const actions = [addAction, goToMapView, editAction, deleteAction];
 
   const [cells, setCells] = React.useState(allCells);
 

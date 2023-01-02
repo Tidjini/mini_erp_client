@@ -10,12 +10,23 @@ export default function TaskMapInputs({
   onDestinationChanged,
   destinaitonAddress,
   changeDirection,
+
+  style,
 }) {
   const user = useSelector(({ auth }) => auth.user.data);
 
   return (
     isLoaded && (
-      <Grid item container spacing={1} xs={12}>
+      <Grid
+        item
+        container
+        spacing={1}
+        xl={(style && style.xl) || 6}
+        lg={(style && style.lg) || 6}
+        md={(style && style.md) || 12}
+        sm={(style && style.sm) || 12}
+        xs={(style && style.xs) || 12}
+      >
         <Grid item xs={12} sm={6} md={6}>
           <LocationInput
             label="Départ"

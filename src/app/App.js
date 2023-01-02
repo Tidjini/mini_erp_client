@@ -24,6 +24,10 @@ const jss = create({
 const generateClassName = createGenerateClassName();
 
 const App = () => {
+  // React.useEffect(() => {
+  //   window.scrollTo(0, 100);
+  //   console.log("applyed");
+  // }, []);
   return (
     <AppContext.Provider
       value={{
