@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { ApiService } from "app/services/ApiService";
-import useGetCollection from "./useGetCollection";
+import { useGetCollection } from "./useRequest";
 
 export const useGeoLocation = () => {
   const [position, setPosition] = React.useState();
@@ -50,7 +50,13 @@ export const useGetUserLoacalisations = () => {
   const { data, handleGet: getUserCollection } = useGetCollection("profiles");
 
   React.useEffect(() => {
-    const interval = setInterval(getUserCollection, 1 * 30 * 1000);
+    function refresh() {
+      console.log("Refresh users");
+      getUserCollection();
+    }
+
+    const interval = setInterval(refresh, 1 * 10 * 1000);
+    refresh();
     return () => clearInterval(interval);
   }, []);
 

@@ -19,6 +19,7 @@ import { useCollectionData } from "app/hooks/common/useCollectionData";
 import { Dialog, DialogContent, DialogTitle, Slide } from "@material-ui/core";
 import Loader from "app/composants.v2/Loader";
 import AddressInfoWindow from "./AddressInfoWindow";
+import { useGetUserLoacalisations } from "app/hooks/useGeoLocation";
 
 //center for oran
 const defaultCenter = {
@@ -61,6 +62,8 @@ export default function TaskCollectionMapView({ onSave }) {
   });
   const user = useSelector(({ auth }) => auth.user.data);
 
+  const { data: transporters } = useGetUserLoacalisations();
+
   const {
     data: tasks,
     loading,
@@ -81,7 +84,6 @@ export default function TaskCollectionMapView({ onSave }) {
 
   React.useEffect(() => {
     onChangeDirection({ mapInstance: maps, origin, destination });
-    getUserCollection();
   }, [origin, destination]);
 
   React.useEffect(() => {
