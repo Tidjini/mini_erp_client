@@ -16,6 +16,7 @@ import { backcolors } from "app/composants.v2/constants";
 import { useSelector } from "react-redux";
 import { useGetCollection } from "app/hooks/useRequest";
 import UtilisateurInfoWindow from "./UtilisateurInfoWindow";
+import AddressInfoWindow from "./AddressInfoWindow";
 //center for oran
 const defaultCenter = {
   lat: 35.6976541,
@@ -32,6 +33,15 @@ export default function TaskMapView({ onSave, path, style, mapStyle }) {
       lng: -0.6337376,
     },
     user: {},
+  });
+  const [displayAddress, setDisplayAddress] = React.useState({
+    display: false,
+    position: {
+      lat: 35.6976541,
+      lng: -0.6337376,
+    },
+    address: "",
+    type: 1,
   });
 
   const user = useSelector(({ auth }) => auth.user.data);
@@ -200,6 +210,7 @@ export default function TaskMapView({ onSave, path, style, mapStyle }) {
             destination={destination}
             onClick={(event) => {}}
             directions={directions}
+            on
           />
           <div
             style={{
@@ -220,6 +231,15 @@ export default function TaskMapView({ onSave, path, style, mapStyle }) {
             onCloseClick={(e) => {
               setDisplayInfo({
                 ...displayInfo,
+                display: false,
+              });
+            }}
+          />
+          <AddressInfoWindow
+            information={displayAddress}
+            onCloseClick={(e) => {
+              setDisplayAddress({
+                ...displayAddress,
                 display: false,
               });
             }}
