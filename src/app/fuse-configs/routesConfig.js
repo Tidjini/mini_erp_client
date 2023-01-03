@@ -5,8 +5,9 @@ import { FuseUtils } from "@fuse";
 import { LoginConfig } from "app/main/Login/LoginConfig";
 
 import { TaskConfig } from "app/tasks/Config";
+import { ProfileConfig } from "app/profile/Config";
 
-const routeConfigs = [LoginConfig, TaskConfig];
+const routeConfigs = [LoginConfig, TaskConfig, ProfileConfig];
 
 const routes = [
   ...FuseUtils.generateRoutesFromConfigs(routeConfigs),
