@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { ApiService } from "app/services/ApiService";
+import useGetCollection from "./useGetCollection";
 
 export const useGeoLocation = () => {
   const [position, setPosition] = React.useState();
@@ -43,4 +44,17 @@ export const useGeoLocation = () => {
     // Remove event listener on cleanup
     return () => clearInterval(interval);
   }, [user]);
+};
+
+export const useGetUserLoacalisations = () => {
+  const { data, handleGet: getUserCollection } = useGetCollection("profiles");
+
+  React.useEffect(() => {
+    const interval = setInterval(getUserCollection, 1 * 30 * 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return {
+    data,
+  };
 };

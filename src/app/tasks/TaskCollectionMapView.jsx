@@ -61,9 +61,6 @@ export default function TaskCollectionMapView({ onSave }) {
   });
   const user = useSelector(({ auth }) => auth.user.data);
 
-  const { data: transporters, handleGet: getUserCollection } =
-    useGetCollection("profiles");
-
   const {
     data: tasks,
     loading,
