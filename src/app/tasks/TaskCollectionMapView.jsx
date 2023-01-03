@@ -16,7 +16,7 @@ import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import TaskLocationItemV2 from "./TaskLocationItem.v2";
 import { useCollectionData } from "app/hooks/common/useCollectionData";
-import { Dialog, DialogContent, DialogTitle, Slide } from "@material-ui/core";
+import { Dialog, DialogContent, Slide } from "@material-ui/core";
 //center for oran
 const defaultCenter = {
   lat: 35.6976541,
@@ -224,13 +224,6 @@ export default function TaskCollectionMapView({ onSave }) {
         fullWidth
         maxWidth="md"
       >
-        <DialogTitle>
-          <Typography
-            style={{ color: "#001d3d", fontWeight: "600", fontSize: 18 }}
-          >
-            Tâches d'Aujourd'hui
-          </Typography>
-        </DialogTitle>
         <DialogContent
           style={{
             backgroundColor: "#8d99ae01",
