@@ -195,10 +195,10 @@ export default function TaskMapView({ onSave, path, style, mapStyle }) {
                 setDisplayInfo({
                   display: true,
                   position: {
-                    lat: latitude,
-                    lng: longitude,
+                    lat: user.localisation.latitude,
+                    lng: user.localisation.longitude,
                   },
-                  user: { ...t },
+                  user: { ...user },
                 });
               }}
             />
@@ -210,7 +210,28 @@ export default function TaskMapView({ onSave, path, style, mapStyle }) {
             destination={destination}
             onClick={(event) => {}}
             directions={directions}
-            on
+            onOriginClick={(e) => {
+              setDisplayAddress({
+                display: true,
+                type: 1,
+                address: origin.address,
+                position: {
+                  lat: origin.lat,
+                  lng: origin.lng,
+                },
+              });
+            }}
+            onDestinationClick={(e) => {
+              setDisplayAddress({
+                display: true,
+                type: 2,
+                address: destination.address,
+                position: {
+                  lat: destination.lat,
+                  lng: destination.lng,
+                },
+              });
+            }}
           />
           <div
             style={{

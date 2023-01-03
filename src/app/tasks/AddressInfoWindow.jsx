@@ -17,34 +17,45 @@ export default function AddressInfoWindow({ information, onCloseClick }) {
         onCloseClick={onCloseClick}
         options={{ height: 300 }}
       >
-        <div
-          style={{
-            padding: 5,
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <img
-            src={
-              type === 1
-                ? "assets/images/maps/start.svg"
-                : "assets/images/maps/end.svg"
-            }
-            style={{
-              width: 14,
-              height: 14,
-              marginRight: 16,
-              display: "block",
-            }}
-          />
+        <div>
           <Typography
             style={{
               padding: "5px 5px",
               fontWeight: "700",
             }}
           >
-            {address}
+            {type === 1 ? "Départ" : "Destination"}
           </Typography>
+
+          <div
+            style={{
+              padding: 5,
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src={
+                type === 1
+                  ? "assets/images/maps/start.svg"
+                  : "assets/images/maps/end.svg"
+              }
+              style={{
+                width: 14,
+                height: 14,
+                marginRight: 16,
+                display: "block",
+              }}
+            />
+            <Typography
+              style={{
+                padding: "5px 5px",
+                fontWeight: "700",
+              }}
+            >
+              {address}
+            </Typography>
+          </div>
         </div>
       </InfoWindow>
     )
