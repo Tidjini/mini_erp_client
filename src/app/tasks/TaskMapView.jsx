@@ -181,6 +181,16 @@ export default function TaskMapView({ onSave, path, style, mapStyle }) {
                 lat: user.localisation.latitude,
                 lng: user.localisation.longitude,
               }}
+              onClick={(e) => {
+                setDisplayInfo({
+                  display: true,
+                  position: {
+                    lat: latitude,
+                    lng: longitude,
+                  },
+                  user: { ...t },
+                });
+              }}
             />
           )}
 

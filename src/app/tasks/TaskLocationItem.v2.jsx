@@ -21,7 +21,7 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
         borderWidth: 1,
         borderRadius: 15,
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
         cursor: "pointer",
       }}
@@ -98,7 +98,7 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
           </Typography>
         </div>
 
-        <IconButton
+        {/* <IconButton
           style={{
             backgroundColor: "transparent",
             borderColor: "#da2c38",
@@ -110,7 +110,7 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
           onClick={onDelete}
         >
           <Icon>delete</Icon>
-        </IconButton>
+        </IconButton> */}
       </Grid>
     </Grid>
   );
