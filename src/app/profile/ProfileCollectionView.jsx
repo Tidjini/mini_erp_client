@@ -57,7 +57,7 @@ export default function ProfileCollectionView(props) {
             justifyContent: "space-between",
           }}
         >
-          <Header title="Collection des Tâches" />
+          <Header title="Collection des Profiles" />
 
           <CollectionActions actions={[]} />
         </div>

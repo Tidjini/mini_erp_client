@@ -57,21 +57,53 @@ export default function ProfileRow(props) {
           {stateInfo.text.toUpperCase()}
         </Typography>
       </TableCell>
-      <TableCell align={"right"}>
-        <Icon>directions</Icon>
-        <Typography
-          style={{ fontSize: 12, fontWeight: "700", color: "#414962" }}
+      <TableCell>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyItems: "flex-end",
+          }}
         >
-          {item.distance}
-        </Typography>
+          <Typography
+            style={{
+              fontWeight: "700",
+              color: "#355070",
+              marginRight: 14,
+            }}
+          >
+            {"150 KM"}
+          </Typography>
+          <Icon
+            style={{
+              color: "#355070",
+            }}
+          >
+            directions
+          </Icon>
+        </div>
       </TableCell>
       <TableCell align={"right"}>
-        <Icon>directions</Icon>
-        <Typography
-          style={{ fontSize: 12, fontWeight: "700", color: "#414962" }}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyItems: "flex-end",
+          }}
         >
-          {item.duration}
-        </Typography>
+          <Typography
+            style={{ fontWeight: "700", color: "#355070", marginRight: 14 }}
+          >
+            {"60 h et 20 min"}
+          </Typography>
+          <Icon
+            style={{
+              color: "#fca311",
+            }}
+          >
+            access_time
+          </Icon>
+        </div>
       </TableCell>
       <TableCell align={"right"}>
         <Typography
