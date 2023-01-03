@@ -17,6 +17,8 @@ import IconButton from "@material-ui/core/IconButton";
 import TaskLocationItemV2 from "./TaskLocationItem.v2";
 import { useCollectionData } from "app/hooks/common/useCollectionData";
 import { Dialog, DialogContent, DialogTitle, Slide } from "@material-ui/core";
+import Loader from "app/composants.v2/Loader";
+
 //center for oran
 const defaultCenter = {
   lat: 35.6976541,
