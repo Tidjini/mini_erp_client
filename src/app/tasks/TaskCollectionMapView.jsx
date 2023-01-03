@@ -18,6 +18,7 @@ import TaskLocationItemV2 from "./TaskLocationItem.v2";
 import { useCollectionData } from "app/hooks/common/useCollectionData";
 import { Dialog, DialogContent, DialogTitle, Slide } from "@material-ui/core";
 import Loader from "app/composants.v2/Loader";
+import AddressInfoWindow from "./AddressInfoWindow";
 
 //center for oran
 const defaultCenter = {
@@ -49,6 +50,15 @@ export default function TaskCollectionMapView({ onSave }) {
     user: {},
   });
 
+  const [displayAddress, setDisplayAddress] = React.useState({
+    display: false,
+    position: {
+      lat: 35.6976541,
+      lng: -0.6337376,
+    },
+    address: "",
+    type: 1,
+  });
   const user = useSelector(({ auth }) => auth.user.data);
 
   const { data: transporters, handleGet: getUserCollection } =
@@ -193,6 +203,16 @@ export default function TaskCollectionMapView({ onSave }) {
               lat: user.localisation.latitude,
               lng: user.localisation.longitude,
             }}
+            onClick={(e) => {
+              setDisplayInfo({
+                display: true,
+                position: {
+                  lat: user.localisation.latitude,
+                  lng: user.localisation.longitude,
+                },
+                user: { ...user },
+              });
+            }}
           />
         )}
 
@@ -202,6 +222,28 @@ export default function TaskCollectionMapView({ onSave }) {
           destination={destination}
           onClick={(event) => {}}
           directions={directions}
+          onOriginClick={(e) => {
+            setDisplayAddress({
+              display: true,
+              type: 1,
+              address: origin.address,
+              position: {
+                lat: origin.lat,
+                lng: origin.lng,
+              },
+            });
+          }}
+          onDestinationClick={(e) => {
+            setDisplayAddress({
+              display: true,
+              type: 2,
+              address: destination.address,
+              position: {
+                lat: destination.lat,
+                lng: destination.lng,
+              },
+            });
+          }}
         />
 
         <UtilisateurInfoWindow
@@ -209,6 +251,15 @@ export default function TaskCollectionMapView({ onSave }) {
           onCloseClick={(e) => {
             setDisplayInfo({
               ...displayInfo,
+              display: false,
+            });
+          }}
+        />
+        <AddressInfoWindow
+          information={displayAddress}
+          onCloseClick={(e) => {
+            setDisplayAddress({
+              ...displayAddress,
               display: false,
             });
           }}
