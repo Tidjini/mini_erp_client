@@ -7,6 +7,8 @@ export default function DrawDirection({
   origin,
   destination,
   onClick,
+  onOriginClick,
+  onDestinationClick,
   onChange,
   directions,
 }) {
@@ -40,8 +42,20 @@ export default function DrawDirection({
         </div>
       )}
 
-      {origin && <TypedMarker position={origin} type={0}></TypedMarker>}
-      {destination && <TypedMarker position={destination} type={1} />}
+      {origin && (
+        <TypedMarker
+          position={origin}
+          type={0}
+          onClick={onOriginClick}
+        ></TypedMarker>
+      )}
+      {destination && (
+        <TypedMarker
+          position={destination}
+          type={1}
+          onClick={onDestinationClick}
+        />
+      )}
     </div>
   );
 }
