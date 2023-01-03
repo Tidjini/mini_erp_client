@@ -16,7 +16,13 @@ import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import TaskLocationItemV2 from "./TaskLocationItem.v2";
 import { useCollectionData } from "app/hooks/common/useCollectionData";
-import { Dialog, DialogContent, DialogTitle, Slide } from "@material-ui/core";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Slide,
+} from "@material-ui/core";
 import Loader from "app/composants.v2/Loader";
 import AddressInfoWindow from "./AddressInfoWindow";
 import { useGetUserLoacalisations } from "app/hooks/useGeoLocation";
@@ -32,7 +38,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function TaskCollectionMapView({ onSave }) {
+export default function TaskCollectionMapView(props) {
+  const { history } = props;
   const [path, setPath] = React.useState();
   const [openCollection, setOpenCollection] = React.useState(false);
 
@@ -128,20 +135,38 @@ export default function TaskCollectionMapView({ onSave }) {
             justifyContent: "space-between",
             alignItems: "center",
             backgroundColor: "white",
-            margin: 10,
+            margin: "10px 0",
+            paddingLeft: 20,
             boxShadow: "1px 5px 5px #9E9E9E20",
             borderRadius: 58,
           }}
         >
+          <img
+            src="assets/images/to-do-list.png"
+            style={{ width: 36, height: 36 }}
+          />
           <Typography
             style={{
               padding: "15px 25px",
               fontSize: 14,
-              fontWeight: "600",
+              fontWeight: "700",
+              textTransform: "uppercase",
             }}
           >
-            Tâches Directions / Localisation
+            Directions
           </Typography>
+          <Button
+            style={{
+              backgroundColor: "#fca311",
+              margin: 10,
+              padding: "5px 20px",
+            }}
+            onClick={(event) => {
+              setOpenCollection(true);
+            }}
+          >
+            Tâches
+          </Button>
           <IconButton
             style={{
               backgroundColor: "#2a9d8f",
@@ -150,7 +175,7 @@ export default function TaskCollectionMapView({ onSave }) {
               padding: 10,
             }}
             onClick={(event) => {
-              setOpenCollection(true);
+              history.replace("/tasks/");
             }}
           >
             <Icon style={{ color: "white" }}>list_alt</Icon>
