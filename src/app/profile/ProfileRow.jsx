@@ -6,11 +6,13 @@ import { withStyles } from "@material-ui/core/styles";
 import { Icon, Typography } from "@material-ui/core";
 import { forecolors } from "app/composants.v2/constants";
 import { useSelector } from "react-redux";
+import useUserStateInfo from "app/hooks/useUserStateInfo";
 
 export default function ProfileRow(props) {
   const { data: item, onClick, onDoubleClick, selectedItem } = props;
 
   const user = useSelector(({ auth }) => auth.user.data);
+  const { stateInfo } = useUserStateInfo(item.statue);
 
   return (
     <TableRow
@@ -24,39 +26,60 @@ export default function ProfileRow(props) {
             : "transparent",
       }}
     >
-      <StatueComponent item={item} selectedItem={selectedItem} />
-      <TableCell align={"left"} style={{ minWidth: 100 }}>
-        <Typography style={{ fontSize: 12, fontWeight: "700" }}>
-          {item.label}
+      <TableCell align={"left"} style={{ width: 72, alignItems: "center" }}>
+        <img
+          style={{
+            width: 48,
+            height: 42,
+            borderRadius: 24,
+          }}
+          src="assets/images/man.png"
+        />
+      </TableCell>
+      <TableCell align={"left"}>
+        <Typography style={{ fontSize: 14, fontWeight: "700" }}>
+          {item.name}
         </Typography>
       </TableCell>
-      <TableCell align={"left"} style={{ minWidth: 200 }}>
-        <Typography style={{ fontSize: 12, fontWeight: "600" }}>
-          {item.description}
-        </Typography>
-      </TableCell>
-      {(user.is_admin || user.is_staff) && (
-        <TableCell align={"left"}>
-          <Typography
-            style={{ fontSize: 12, fontWeight: "700", color: "#414962" }}
-          >
-            {item.creator_name}
-          </Typography>
-        </TableCell>
-      )}
+      <TableCell align={"left"}>
+        <Typography
+          style={{
+            padding: "5px 20px",
+            borderRadius: 15,
+            width: 150,
 
-      {(user.is_admin || user.is_staff) && (
-        <TableCell align={"left"}>
-          <Typography
-            style={{ fontSize: 12, fontWeight: "700", color: "#B61F1F" }}
-          >
-            {item.receiver_name}
-          </Typography>
-        </TableCell>
-      )}
-      {/* <StatueComponent item={item} /> */}
-      <DateTime item={item} />
-      {(user.is_admin || user.is_staff) && <Closed item={item} />}
+            fontSize: 11,
+            fontWeight: "700",
+            textAlign: "center",
+            ...stateInfo,
+          }}
+        >
+          {stateInfo.text.toUpperCase()}
+        </Typography>
+      </TableCell>
+      <TableCell align={"right"}>
+        <Icon>directions</Icon>
+        <Typography
+          style={{ fontSize: 12, fontWeight: "700", color: "#414962" }}
+        >
+          {item.distance}
+        </Typography>
+      </TableCell>
+      <TableCell align={"right"}>
+        <Icon>directions</Icon>
+        <Typography
+          style={{ fontSize: 12, fontWeight: "700", color: "#414962" }}
+        >
+          {item.duration}
+        </Typography>
+      </TableCell>
+      <TableCell align={"right"}>
+        <Typography
+          style={{ fontSize: 12, fontWeight: "700", color: "#414962" }}
+        >
+          {item.tasks}
+        </Typography>
+      </TableCell>
     </TableRow>
   );
 }

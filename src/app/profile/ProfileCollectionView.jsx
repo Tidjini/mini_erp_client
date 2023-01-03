@@ -8,6 +8,7 @@ import Loader from "app/composants.v2/Loader";
 import useCollection from "app/hooks/useCollection";
 import { margins } from "app/composants.v2/constants";
 import { profileCell } from "./Config";
+import ProfileRow from "./ProfileRow";
 
 export default function ProfileCollectionView(props) {
   const { history } = props;
@@ -73,7 +74,7 @@ export default function ProfileCollectionView(props) {
           selectedItem={selectedItem}
           style={{ marginTop: 10 }}
         >
-          {TaskRow}
+          {ProfileRow}
         </CollectionTable>
       </div>
     </div>
