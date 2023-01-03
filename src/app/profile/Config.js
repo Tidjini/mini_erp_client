@@ -26,3 +26,11 @@ export const ProfileConfig = {
     ],
   },
 };
+export const profileCell = [
+  { label: "-", id: "photo" },
+  { ordering: true, label: "Nom Complet", id: "name" },
+  { label: "Statue", id: "statue" },
+  { ordering: true, label: "Distance", id: "distance" },
+  { ordering: true, label: "Duration", id: "duration" },
+  { ordering: true, label: "Tâches", id: "tasks" },
+];
