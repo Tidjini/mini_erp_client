@@ -51,11 +51,10 @@ export const useGetUserLoacalisations = () => {
 
   React.useEffect(() => {
     function refresh() {
-      console.log("Refresh users");
       getUserCollection();
     }
 
-    const interval = setInterval(refresh, 1 * 10 * 1000);
+    const interval = setInterval(refresh, 1 * 60 * 1000);
     refresh();
     return () => clearInterval(interval);
   }, []);
