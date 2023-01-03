@@ -239,6 +239,8 @@ export default function TaskCollectionMapView({ onSave }) {
             padding: 20,
           }}
         >
+          <Loader isLoading={loading} />
+
           {tasks.length === 0 && (
             <div
               style={{
@@ -262,7 +264,6 @@ export default function TaskCollectionMapView({ onSave }) {
               </Typography>
             </div>
           )}
-          <Loader isLoading={loading} />
           {tasks.map((item, index) => {
             return (
               <TaskLocationItemV2
