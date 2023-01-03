@@ -72,7 +72,7 @@ export default function ProfileRow(props) {
               marginRight: 14,
             }}
           >
-            {"150 KM"}
+            {item.distance}
           </Typography>
           <Icon
             style={{
@@ -94,7 +94,7 @@ export default function ProfileRow(props) {
           <Typography
             style={{ fontWeight: "700", color: "#355070", marginRight: 14 }}
           >
-            {"60 h et 20 min"}
+            {item.duration}
           </Typography>
           <Icon
             style={{
