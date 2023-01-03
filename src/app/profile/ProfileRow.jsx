@@ -105,11 +105,22 @@ export default function ProfileRow(props) {
           </Icon>
         </div>
       </TableCell>
-      <TableCell align={"right"}>
+      <TableCell>
         <Typography
-          style={{ fontSize: 12, fontWeight: "700", color: "#414962" }}
+          style={{
+            fontSize: 14,
+            fontWeight: "700",
+            color: "#2b2d42",
+            width: 36,
+            height: 36,
+            borderRadius: 28,
+            backgroundColor: "#90e0ef50",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
-          {item.tasks}
+          {item.task_count}
         </Typography>
       </TableCell>
     </TableRow>
