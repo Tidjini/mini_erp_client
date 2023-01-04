@@ -7,12 +7,15 @@ import { Icon, Typography } from "@material-ui/core";
 import { forecolors } from "app/composants.v2/constants";
 import { useSelector } from "react-redux";
 import useUserStateInfo from "app/hooks/useUserStateInfo";
+import InputSelector from "app/composants.v2/InputSelector";
 
 export default function ProfileRow(props) {
   const { data: item, onClick, onDoubleClick, selectedItem } = props;
 
   const user = useSelector(({ auth }) => auth.user.data);
   const { stateInfo } = useUserStateInfo(item.statue);
+
+  const [form, setForm] = React.useState(item);
 
   return (
     <TableRow
@@ -42,6 +45,14 @@ export default function ProfileRow(props) {
         </Typography>
       </TableCell>
       <TableCell align={"left"}>
+        <InputSelector
+          label="Catégorie"
+          name="closed"
+          value={filter.closed}
+          options={categories}
+          onChange={handleFilterEvent}
+          style={{ display: user.is_admin || user.is_staff ? "block" : "none" }}
+        />
         <Typography
           style={{
             padding: "5px 20px",
