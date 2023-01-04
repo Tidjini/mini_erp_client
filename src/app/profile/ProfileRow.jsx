@@ -11,16 +11,36 @@ import InputSelector from "app/composants.v2/InputSelector";
 
 export default function ProfileRow(props) {
   const { data: item, onClick, onDoubleClick, selectedItem } = props;
+  const [form, setForm] = React.useState(item);
+  const [changeForm, setChangeForm] = React.useState(false);
 
   const user = useSelector(({ auth }) => auth.user.data);
-  const { stateInfo } = useUserStateInfo(item.statue);
+  const { stateInfo } = useUserStateInfo(form);
 
-  const [form, setForm] = React.useState(item);
+  const statues = [
+    { display: "Non Définie", value: "u" },
+    { display: "Active", value: "a" },
+    { display: "Non Active", value: "n" },
+    { display: "Absent", value: "ab" },
+  ];
+
+  const handleChange = React.useCallback(
+    (event) => {
+      const { name, value } = event.target;
+      const newForm = { ...form };
+      newForm[name] = value;
+      setForm({ ...newForm });
+    },
+    [form]
+  );
+
+  React.useEffect(() => {
+    setChangeForm(false);
+  }, [selectedItem]);
 
   return (
     <TableRow
       onClick={() => onClick(item)}
-      onDoubleClick={() => onDoubleClick()}
       style={{
         cursor: "pointer",
         backgroundColor:
@@ -45,28 +65,35 @@ export default function ProfileRow(props) {
         </Typography>
       </TableCell>
       <TableCell align={"left"}>
-        <InputSelector
-          label="Catégorie"
-          name="closed"
-          value={filter.closed}
-          options={categories}
-          onChange={handleFilterEvent}
-          style={{ display: user.is_admin || user.is_staff ? "block" : "none" }}
-        />
-        <Typography
-          style={{
-            padding: "5px 20px",
-            borderRadius: 15,
-            width: 150,
+        {!changeForm && (
+          <Typography
+            style={{
+              padding: "5px 20px",
+              borderRadius: 15,
+              width: 150,
 
-            fontSize: 11,
-            fontWeight: "700",
-            textAlign: "center",
-            ...stateInfo,
-          }}
-        >
-          {stateInfo.text.toUpperCase()}
-        </Typography>
+              fontSize: 11,
+              fontWeight: "700",
+              textAlign: "center",
+              ...stateInfo,
+            }}
+            onClick={(e) => {
+              const change = selectedItem && selectedItem.id === item.id;
+              setChangeForm(change);
+            }}
+          >
+            {stateInfo.text.toUpperCase()}
+          </Typography>
+        )}
+        {changeForm && (
+          <InputSelector
+            name="closed"
+            value={form.statue}
+            options={statues}
+            onChange={handleChange}
+            style={{ width: 100 }}
+          />
+        )}
       </TableCell>
       <TableCell>
         <div
