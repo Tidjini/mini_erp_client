@@ -153,7 +153,7 @@ export default function TaskCollectionMapView(props) {
               textTransform: "uppercase",
             }}
           >
-            Directions
+            Itinéraires
           </Typography>
           <Button
             style={{
