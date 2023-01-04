@@ -8,6 +8,7 @@ import { forecolors } from "app/composants.v2/constants";
 import { useSelector } from "react-redux";
 import useUserStateInfo from "app/hooks/useUserStateInfo";
 import InputSelector from "app/composants.v2/InputSelector";
+import BaseButton from "app/composants.v2/Button";
 
 export default function ProfileRow(props) {
   const { data: item, onClick, onDoubleClick, selectedItem } = props;
@@ -86,13 +87,22 @@ export default function ProfileRow(props) {
           </Typography>
         )}
         {changeForm && (
-          <InputSelector
-            name="closed"
-            value={form.statue}
-            options={statues}
-            onChange={handleChange}
-            style={{ width: 100 }}
-          />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+            }}
+          >
+            <InputSelector
+              name="statue"
+              value={form.statue}
+              options={statues}
+              onChange={handleChange}
+              style={{ width: 50 }}
+            />
+            <BaseButton>Sauvgarder</BaseButton>
+          </div>
         )}
       </TableCell>
       <TableCell>
