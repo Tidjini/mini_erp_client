@@ -1,4 +1,5 @@
 import React from "react";
+
 //thirds
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
@@ -6,6 +7,7 @@ import { Icon, IconButton, Typography } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import useUserStateInfo from "app/hooks/useUserStateInfo";
 import InputSelector from "app/composants.v2/InputSelector";
+import { ApiServiceGeneric } from "app/services/ApiService";
 
 export default function ProfileRow(props) {
   const { data: item, onClick, onDoubleClick, selectedItem } = props;
@@ -35,6 +37,23 @@ export default function ProfileRow(props) {
   React.useEffect(() => {
     setChangeForm(false);
   }, [selectedItem]);
+
+  const onSave = React.useCallback(
+    (event) => {
+      const { statue, id: pk } = form;
+      ApiServiceGeneric.patch("api/profile/update-state/", {
+        statue,
+        pk,
+      })
+        .then((res) => {
+          setChangeForm(false);
+        })
+        .catch((err) => {
+          setChangeForm(false);
+        });
+    },
+    [form]
+  );
 
   return (
     <TableRow
@@ -98,7 +117,10 @@ export default function ProfileRow(props) {
               onChange={handleChange}
               style={{ marginRight: 14 }}
             />
-            <IconButton style={{ backgroundColor: "#2a9d8f20" }}>
+            <IconButton
+              style={{ backgroundColor: "#2a9d8f20" }}
+              onClick={onSave}
+            >
               <Icon style={{ color: "#264653" }}>save</Icon>
             </IconButton>
           </div>

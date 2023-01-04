@@ -1,6 +1,23 @@
 import axios from "axios";
 import FuseUtils from "@fuse/FuseUtils";
 
+export class ApiServiceGeneric {
+  API_URL = process.env.REACT_APP_API_URL;
+
+  patch(path, data, config) {
+    return new Promise((resolve, reject) => {
+      axios
+        .patch(`${this.API_URL}/${path}`, data, config)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((exception) => {
+          reject(exception);
+        });
+    });
+  }
+}
+
 export class ApiService extends FuseUtils.EventEmitter {
   API_URL = process.env.REACT_APP_API_URL;
 
@@ -29,7 +46,7 @@ export class ApiService extends FuseUtils.EventEmitter {
           if (response.data) {
             resolve(response.data);
           } else {
-            reject(response.data.error);
+            // reject(response.data.error);
           }
           this.setLoading(false);
         })
