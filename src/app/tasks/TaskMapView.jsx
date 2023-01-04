@@ -171,6 +171,7 @@ export default function TaskMapView({ onSave, path, style, mapStyle }) {
                     lat: latitude,
                     lng: longitude,
                   }}
+                  state={t.statue}
                   onClick={(e) => {
                     setDisplayInfo({
                       display: true,
@@ -201,6 +202,7 @@ export default function TaskMapView({ onSave, path, style, mapStyle }) {
                   user: { ...user },
                 });
               }}
+              state={user.statue}
             />
           )}
 

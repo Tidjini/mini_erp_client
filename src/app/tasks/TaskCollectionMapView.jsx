@@ -238,6 +238,7 @@ export default function TaskCollectionMapView(props) {
                 user: { ...user },
               });
             }}
+            state={user.statue}
           />
         )}
 
