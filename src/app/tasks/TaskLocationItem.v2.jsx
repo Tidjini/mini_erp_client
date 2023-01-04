@@ -8,6 +8,7 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
     humain_distance,
     humain_duration,
     receiver,
+    task_label,
   } = data;
 
   return (
@@ -51,9 +52,18 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
               style={{
                 padding: "5px 5px",
                 fontWeight: "700",
+                fontSize: 12,
               }}
             >
               {receiver}
+            </Typography>
+            <Typography
+              style={{
+                padding: "5px 5px",
+                fontWeight: "300",
+              }}
+            >
+              {"Tache : " + task_label}
             </Typography>
           </div>
         </div>
@@ -98,19 +108,20 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
           </Typography>
         </div>
 
-        {/* <IconButton
+        <IconButton
           style={{
             backgroundColor: "transparent",
-            borderColor: "#da2c38",
-            border: "#da2c38 solid 2px",
-            color: "#da2c38",
+            border: "2px solid #2a9d8f",
+            color: "#2a9d8f",
             width: 48,
             height: 48,
           }}
-          onClick={onDelete}
+          onClick={(event) => {
+            event.stopPropagation();
+          }}
         >
-          <Icon>delete</Icon>
-        </IconButton> */}
+          <Icon>edit</Icon>
+        </IconButton>
       </Grid>
     </Grid>
   );
