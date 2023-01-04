@@ -2,13 +2,10 @@ import React from "react";
 //thirds
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
-import { withStyles } from "@material-ui/core/styles";
-import { Icon, Typography } from "@material-ui/core";
-import { forecolors } from "app/composants.v2/constants";
+import { Icon, IconButton, Typography } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import useUserStateInfo from "app/hooks/useUserStateInfo";
 import InputSelector from "app/composants.v2/InputSelector";
-import BaseButton from "app/composants.v2/Button";
 
 export default function ProfileRow(props) {
   const { data: item, onClick, onDoubleClick, selectedItem } = props;
@@ -91,7 +88,7 @@ export default function ProfileRow(props) {
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "flex-start",
+              width: 200,
             }}
           >
             <InputSelector
@@ -99,9 +96,11 @@ export default function ProfileRow(props) {
               value={form.statue}
               options={statues}
               onChange={handleChange}
-              style={{ width: 50 }}
+              style={{ marginRight: 14 }}
             />
-            <BaseButton>Sauvgarder</BaseButton>
+            <IconButton style={{ backgroundColor: "#2a9d8f20" }}>
+              <Icon style={{ color: "#264653" }}>save</Icon>
+            </IconButton>
           </div>
         )}
       </TableCell>
