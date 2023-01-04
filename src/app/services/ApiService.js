@@ -17,6 +17,7 @@ export class ApiServiceGeneric {
     });
   }
 }
+export const generic = new ApiServiceGeneric();
 
 export class ApiService extends FuseUtils.EventEmitter {
   API_URL = process.env.REACT_APP_API_URL;

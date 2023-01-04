@@ -7,7 +7,7 @@ import { Icon, IconButton, Typography } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import useUserStateInfo from "app/hooks/useUserStateInfo";
 import InputSelector from "app/composants.v2/InputSelector";
-import { ApiServiceGeneric } from "app/services/ApiService";
+import { generic } from "app/services/ApiService";
 
 export default function ProfileRow(props) {
   const { data: item, onClick, onDoubleClick, selectedItem } = props;
@@ -15,7 +15,7 @@ export default function ProfileRow(props) {
   const [changeForm, setChangeForm] = React.useState(false);
 
   const user = useSelector(({ auth }) => auth.user.data);
-  const { stateInfo } = useUserStateInfo(form);
+  const { stateInfo, changeStateInfo } = useUserStateInfo(form.statue);
 
   const statues = [
     { display: "Non Définie", value: "u" },
@@ -35,16 +35,21 @@ export default function ProfileRow(props) {
   );
 
   React.useEffect(() => {
+    changeStateInfo(form.statue);
+  }, [form]);
+
+  React.useEffect(() => {
     setChangeForm(false);
   }, [selectedItem]);
 
   const onSave = React.useCallback(
     (event) => {
       const { statue, id: pk } = form;
-      ApiServiceGeneric.patch("api/profile/update-state/", {
-        statue,
-        pk,
-      })
+      generic
+        .patch("profile/update-state/", {
+          statue,
+          pk,
+        })
         .then((res) => {
           setChangeForm(false);
         })
