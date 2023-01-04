@@ -1,5 +1,6 @@
-import { Grid, Icon, IconButton, Typography } from "@material-ui/core";
 import React from "react";
+import history from "@history";
+import { Grid, Icon, IconButton, Typography } from "@material-ui/core";
 
 export default function TaskLocationItemV2({ data, onDelete, onClick }) {
   const {
@@ -9,6 +10,7 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
     humain_duration,
     receiver,
     task_label,
+    task,
   } = data;
 
   return (
@@ -118,6 +120,7 @@ export default function TaskLocationItemV2({ data, onDelete, onClick }) {
           }}
           onClick={(event) => {
             event.stopPropagation();
+            history.replace(`/task/${task}/`);
           }}
         >
           <Icon>edit</Icon>
