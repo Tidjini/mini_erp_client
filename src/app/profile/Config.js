@@ -13,13 +13,13 @@ export const ProfileConfig = {
   ],
   navigation: {
     id: "profiles_app",
-    title: "Gestion des Profile",
+    title: "Utilisateurs",
     type: "group",
     children: [
       {
         id: "profile",
-        title: "Profile Collection",
-        icon: "assignment_turned_in",
+        title: "Gestion Profiles",
+        icon: "account_circle",
         type: "item",
         url: collectionPath,
       },
