@@ -1,10 +1,14 @@
 import React from "react";
 import { Marker } from "@react-google-maps/api";
 
-export default function TypedMarker({ position, type, onClick }) {
+export default function TypedMarker({ position, type, onClick, state }) {
   const getIcon = (type) => {
     switch (type) {
       default:
+        if (state === "a") return "/assets/images/maps/car_active.svg";
+
+        if (state === "n") return "/assets/images/maps/car_busy.svg";
+
         return "/assets/images/maps/car_inactive.svg";
       case 0:
         return "/assets/images/maps/start.svg";
