@@ -207,6 +207,7 @@ export default function TaskCollectionMapView(props) {
                   lat: latitude,
                   lng: longitude,
                 }}
+                state={t.statue}
                 onClick={(e) => {
                   setDisplayInfo({
                     display: true,
