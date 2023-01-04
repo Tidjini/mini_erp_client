@@ -65,22 +65,22 @@ export default function ProfileRow(props) {
             justifyItems: "flex-end",
           }}
         >
-          <Typography
+          <Icon
             style={{
-              fontWeight: "700",
               color: "#355070",
               marginRight: 14,
             }}
           >
-            {item.distance}
-          </Typography>
-          <Icon
+            directions
+          </Icon>
+          <Typography
             style={{
+              fontWeight: "700",
               color: "#355070",
             }}
           >
-            directions
-          </Icon>
+            {item.distance}
+          </Typography>
         </div>
       </TableCell>
       <TableCell align={"right"}>
@@ -91,18 +91,17 @@ export default function ProfileRow(props) {
             justifyItems: "flex-end",
           }}
         >
-          <Typography
-            style={{ fontWeight: "700", color: "#355070", marginRight: 14 }}
-          >
-            {item.duration}
-          </Typography>
           <Icon
             style={{
               color: "#fca311",
+              marginRight: 14,
             }}
           >
             access_time
           </Icon>
+          <Typography style={{ fontWeight: "700", color: "#355070" }}>
+            {item.duration}
+          </Typography>
         </div>
       </TableCell>
       <TableCell>
