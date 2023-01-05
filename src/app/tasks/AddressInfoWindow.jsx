@@ -5,9 +5,7 @@ import { InfoWindow } from "@react-google-maps/api";
 export default function AddressInfoWindow({ information, onCloseClick }) {
   const { display, address, type, position } = information;
 
-  const onLoad = (infoBox) => {
-    //console.log("infoBox: ", infoBox);
-  };
+  const onLoad = (infoBox) => {};
 
   return (
     display && (

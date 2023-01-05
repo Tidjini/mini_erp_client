@@ -8,9 +8,7 @@ export default function UtilisateurInfoWindow({ information, onCloseClick }) {
   const { name, statue } = user;
 
   const { stateInfo } = useUserStateInfo(statue);
-  const onLoad = (infoBox) => {
-    console.log("infoBox: ", infoBox);
-  };
+  const onLoad = (infoBox) => {};
 
   return (
     display && (
