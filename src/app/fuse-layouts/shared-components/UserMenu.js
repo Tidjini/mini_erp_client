@@ -14,6 +14,8 @@ import { useSelector, useDispatch } from "react-redux";
 import * as authActions from "app/auth/store/actions";
 import { Link } from "react-router-dom";
 
+import { generic } from "app/services/ApiService";
+
 function UserMenu(props) {
   const dispatch = useDispatch();
   const user = useSelector(({ auth }) => auth.user);
@@ -30,8 +32,17 @@ function UserMenu(props) {
     setUserMenu(null);
     if (saveData) {
       setSaveData(false);
+
+      const { statue, id: pk } = userData;
+      generic
+        .patch("profile/update-state/", {
+          statue,
+          pk,
+        })
+        .then((res) => {})
+        .catch((err) => {});
     }
-  }, [saveData]);
+  }, [saveData, userData]);
 
   const switchUserState = React.useCallback(
     (statue) => {
