@@ -14,6 +14,7 @@ import {
   jssPreset,
   createGenerateClassName,
 } from "@material-ui/styles";
+import TaskNofitication from "./composants.v2/notification/TaskNofitication";
 
 const jss = create({
   ...jssPreset(),
@@ -36,6 +37,7 @@ const App = () => {
             <Router history={history}>
               <FuseAuthorization>
                 <FuseTheme>
+                  <TaskNofitication />
                   <FuseLayout />
                 </FuseTheme>
               </FuseAuthorization>
@@ -48,3 +50,7 @@ const App = () => {
 };
 
 export default App;
+
+// const notification = () => {
+//   return <TaskNofitication />;
+// };

@@ -118,7 +118,7 @@ export default function TaskCollectionView(props) {
           {TaskRow}
         </CollectionTable>
 
-        <TaskNofitication />
+        {/* <TaskNofitication /> */}
       </div>
     </div>
   );
