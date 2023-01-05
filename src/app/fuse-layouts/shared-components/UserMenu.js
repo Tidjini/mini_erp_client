@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 function UserMenu(props) {
   const dispatch = useDispatch();
   const user = useSelector(({ auth }) => auth.user);
+  const userData = useSelector(({ auth }) => auth.user.data);
 
   const [userMenu, setUserMenu] = useState(null);
 
@@ -85,22 +86,13 @@ function UserMenu(props) {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            {/* <MenuItem
-              component={Link}
-              to="/pages/profile"
-              onClick={userMenuClose}
-            >
+            <MenuItem component={Link} to="/profiles/" onClick={userMenuClose}>
               <ListItemIcon className="min-w-40">
                 <Icon>account_circle</Icon>
               </ListItemIcon>
-              <ListItemText className="pl-0" primary="My Profile" />
+              <ListItemText className="pl-0" primary={userData.name} />
             </MenuItem>
-            <MenuItem component={Link} to="/apps/mail" onClick={userMenuClose}>
-              <ListItemIcon className="min-w-40">
-                <Icon>mail</Icon>
-              </ListItemIcon>
-              <ListItemText className="pl-0" primary="Inbox" />
-            </MenuItem> */}
+
             <MenuItem
               onClick={() => {
                 dispatch(authActions.logoutUser());
@@ -108,9 +100,9 @@ function UserMenu(props) {
               }}
             >
               <ListItemIcon className="min-w-40">
-                <Icon>exit_to_app</Icon>
+                <Icon>lock</Icon>
               </ListItemIcon>
-              <ListItemText className="pl-0" primary="Logout" />
+              <ListItemText className="pl-0" primary="Déconnexion" />
             </MenuItem>
           </React.Fragment>
         )}
