@@ -50,7 +50,3 @@ const App = () => {
 };
 
 export default App;
-
-// const notification = () => {
-//   return <TaskNofitication />;
-// };
