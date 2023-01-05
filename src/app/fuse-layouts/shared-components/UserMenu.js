@@ -126,16 +126,19 @@ function UserMenu(props) {
               </ListItemIcon>
               <ListItemText className="pl-0" primary="Tâches" />
             </MenuItem>
-            <MenuItem
-              component={Link}
-              to="/tasks-map-view/"
-              onClick={userMenuClose}
-            >
-              <ListItemIcon className="min-w-40">
-                <Icon>map</Icon>
-              </ListItemIcon>
-              <ListItemText className="pl-0" primary="Map View" />
-            </MenuItem>
+            {(userData.is_admin || userData.is_staff) && (
+              <MenuItem
+                component={Link}
+                to="/tasks-map-view/"
+                onClick={userMenuClose}
+              >
+                <ListItemIcon className="min-w-40">
+                  <Icon>map</Icon>
+                </ListItemIcon>
+                <ListItemText className="pl-0" primary="Map View" />
+              </MenuItem>
+            )}
+
             <MenuItem
               onClick={(e) => {
                 const state = userData.statue === "a" ? "n" : "a";
