@@ -8,6 +8,7 @@ import {
   Popover,
   MenuItem,
   Typography,
+  Divider,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import * as authActions from "app/auth/store/actions";
@@ -66,7 +67,7 @@ function UserMenu(props) {
           horizontal: "center",
         }}
         classes={{
-          paper: "py-8",
+          paper: "py-0",
         }}
       >
         {!user.role || user.role.length === 0 ? (
@@ -98,8 +99,37 @@ function UserMenu(props) {
               </ListItemIcon>
               <ListItemText className="pl-0" primary="Tâches" />
             </MenuItem>
-
             <MenuItem
+              onClick={(e) => {
+                console.log("on Acivate ");
+              }}
+            >
+              <ListItemIcon className="min-w-40">
+                <Icon
+                  style={{
+                    color: userData.statue === "a" ? "#2a9d8f" : "#fb8500",
+                  }}
+                >
+                  {userData.statue === "a" ? "check_circle" : "highlight_off"}
+                </Icon>
+              </ListItemIcon>
+              <ListItemText
+                style={{
+                  color: userData.statue === "a" ? "#2a9d8f" : "#fb8500",
+                  fontWeight: "700",
+                }}
+                className="pl-0"
+                primary={
+                  userData.statue === "a" ? "Disponible" : "Non Disponible"
+                }
+              />
+            </MenuItem>
+
+            <Divider />
+            <MenuItem
+              style={{
+                backgroundColor: "#e63946",
+              }}
               onClick={() => {
                 dispatch(authActions.logoutUser());
                 userMenuClose();
