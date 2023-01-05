@@ -159,11 +159,35 @@ export default function TaskMapView({ onSave, path, style, mapStyle }) {
             setMaps(window.google.maps);
           }}
         >
-          {(user.is_admin || user.is_staff) &&
-            transporters &&
+          {transporters &&
             transporters.map((t, index) => {
               if (t.localisation === null) return;
               const { longitude, latitude } = t.localisation;
+              if (user.id === t.id)
+                return (
+                  <TypedMarker
+                    key={index}
+                    position={{
+                      lat: latitude,
+                      lng: longitude,
+                    }}
+                    state={t.statue}
+                    onClick={(e) => {
+                      setDisplayInfo({
+                        display: true,
+                        position: {
+                          lat: latitude,
+                          lng: longitude,
+                        },
+                        user: { ...t },
+                      });
+                    }}
+                  />
+                );
+              if (!user.is_admin && !user.is_staff) {
+                return;
+              }
+
               return (
                 <TypedMarker
                   key={index}
@@ -185,26 +209,6 @@ export default function TaskMapView({ onSave, path, style, mapStyle }) {
                 />
               );
             })}
-
-          {!user.is_admin && !user.is_staff && user.localisation && (
-            <TypedMarker
-              position={{
-                lat: user.localisation.latitude,
-                lng: user.localisation.longitude,
-              }}
-              onClick={(e) => {
-                setDisplayInfo({
-                  display: true,
-                  position: {
-                    lat: user.localisation.latitude,
-                    lng: user.localisation.longitude,
-                  },
-                  user: { ...user },
-                });
-              }}
-              state={user.statue}
-            />
-          )}
 
           <DrawDirection
             maps={maps}
