@@ -74,7 +74,7 @@ export const useGeoLocation = () => {
     }
     if (!Boolean(user.id)) return;
     // Add event listener
-    const interval = setInterval(handleGeoPosition, 1 * 10 * 1000);
+    const interval = setInterval(handleGeoPosition, 5 * 60 * 1000);
     // Call handler right away so state gets updated with initial window size
     handleGeoPosition();
     // Remove event listener on cleanup
