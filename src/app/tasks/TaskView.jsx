@@ -15,7 +15,6 @@ import { useLocalisation } from "./utils";
 
 import ApiService from "app/services/ApiService";
 import { useSelector } from "react-redux";
-import TaskNofitication from "app/composants.v2/notification/TaskNofitication";
 import Loader from "app/composants.v2/Loader";
 
 export default function TaskView(props) {
@@ -233,7 +232,6 @@ export default function TaskView(props) {
             })}
           </Grid>
         </Grid>
-        {/* <TaskNofitication /> */}
       </div>
     </div>
   );
