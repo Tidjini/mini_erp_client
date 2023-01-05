@@ -14,9 +14,9 @@ import CollectionActions from "app/composants.v2/collection/CollectionActions";
 import Action from "app/hooks/Action";
 import { backcolors } from "app/composants.v2/constants";
 import { useSelector } from "react-redux";
-import { useGetCollection } from "app/hooks/useRequest";
 import UtilisateurInfoWindow from "./UtilisateurInfoWindow";
 import AddressInfoWindow from "./AddressInfoWindow";
+import { useGetUserLoacalisations } from "app/hooks/useGeoLocation";
 //center for oran
 const defaultCenter = {
   lat: 35.6976541,
@@ -46,8 +46,7 @@ export default function TaskMapView({ onSave, path, style, mapStyle }) {
 
   const user = useSelector(({ auth }) => auth.user.data);
 
-  const { data: transporters, handleGet: getUserCollection } =
-    useGetCollection("profiles");
+  const { data: transporters } = useGetUserLoacalisations();
 
   const [center, setCenter] = React.useState(defaultCenter);
   const [origin, setOrigin] = React.useState();
@@ -62,7 +61,6 @@ export default function TaskMapView({ onSave, path, style, mapStyle }) {
 
   React.useEffect(() => {
     onChangeDirection({ mapInstance: maps, origin, destination });
-    getUserCollection();
   }, [origin, destination]);
 
   const saveAction = new Action(
