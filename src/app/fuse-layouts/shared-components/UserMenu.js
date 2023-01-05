@@ -90,7 +90,13 @@ function UserMenu(props) {
               <ListItemIcon className="min-w-40">
                 <Icon>account_circle</Icon>
               </ListItemIcon>
-              <ListItemText className="pl-0" primary={userData.name} />
+              <ListItemText className="pl-0" primary="Profiles" />
+            </MenuItem>
+            <MenuItem component={Link} to="/tasks/" onClick={userMenuClose}>
+              <ListItemIcon className="min-w-40">
+                <Icon>list_alt</Icon>
+              </ListItemIcon>
+              <ListItemText className="pl-0" primary="Tâches" />
             </MenuItem>
 
             <MenuItem
