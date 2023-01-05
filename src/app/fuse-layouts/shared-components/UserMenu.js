@@ -29,7 +29,6 @@ function UserMenu(props) {
   const userMenuClose = React.useCallback(() => {
     setUserMenu(null);
     if (saveData) {
-      console.log("on save user data");
       setSaveData(false);
     }
   }, [saveData]);
