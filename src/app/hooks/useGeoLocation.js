@@ -31,35 +31,43 @@ export const useGeoLocation = () => {
 
   const user = useSelector(({ auth }) => auth.user.data);
   const apiService = new ApiService("localisations", "user");
+  let oldPosition = undefined;
 
+  const updatePosition = (nPosition) => {
+    const { longitude, latitude } = nPosition;
+
+    if (oldPosition) {
+      //distance converted to metters
+      //if user still in his position do not push update to server
+      if (distance(oldPosition, nPosition) * 1000 <= 5) {
+        return;
+      }
+    }
+
+    setPosition({
+      longitude: longitude,
+      latitude: latitude,
+    });
+    oldPosition = nPosition;
+
+    const localisation = {
+      user: user.id,
+      longitude: longitude,
+      latitude: latitude,
+    };
+
+    apiService
+      .saveItem(localisation)
+      .then((res) => {})
+      .catch((exception) => {
+        console.error(exception);
+      });
+  };
   React.useEffect(() => {
     function handleGeoPosition() {
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function (nPosition) {
-          const { longitude, latitude } = nPosition.coords;
-          console.log("distance in metters", position);
-
-          if (position) {
-            const d = distance(position, nPosition.coords);
-            console.log("distance in metters", d * 1000);
-          }
-          setPosition({
-            longitude: longitude,
-            latitude: latitude,
-          });
-
-          const localisation = {
-            user: user.id,
-            longitude: longitude,
-            latitude: latitude,
-          };
-
-          apiService
-            .saveItem(localisation)
-            .then((res) => {})
-            .catch((exception) => {
-              console.error(exception);
-            });
+          updatePosition(nPosition.coords);
         });
       } else {
       }
