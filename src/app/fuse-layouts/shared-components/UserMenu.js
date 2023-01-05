@@ -34,6 +34,18 @@ function UserMenu(props) {
     }
   }, [saveData]);
 
+  const switchUserState = React.useCallback(
+    (statue) => {
+      dispatch(
+        authActions.setUserData({
+          ...userData,
+          statue,
+        })
+      );
+    },
+    [dispatch, userData]
+  );
+
   return (
     <React.Fragment>
       <Button className="h-64" onClick={userMenuClick} style={{}}>
@@ -106,7 +118,8 @@ function UserMenu(props) {
             </MenuItem>
             <MenuItem
               onClick={(e) => {
-                console.log("on Acivate ");
+                const state = userData.statue === "a" ? "n" : "a";
+                switchUserState(state);
                 setSaveData(true);
               }}
             >
