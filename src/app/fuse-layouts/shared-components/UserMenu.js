@@ -20,14 +20,19 @@ function UserMenu(props) {
   const userData = useSelector(({ auth }) => auth.user.data);
 
   const [userMenu, setUserMenu] = useState(null);
+  const [saveData, setSaveData] = useState(false);
 
   const userMenuClick = (event) => {
     setUserMenu(event.currentTarget);
   };
 
-  const userMenuClose = () => {
+  const userMenuClose = React.useCallback(() => {
     setUserMenu(null);
-  };
+    if (saveData) {
+      console.log("on save user data");
+      setSaveData(false);
+    }
+  }, [saveData]);
 
   return (
     <React.Fragment>
@@ -102,6 +107,7 @@ function UserMenu(props) {
             <MenuItem
               onClick={(e) => {
                 console.log("on Acivate ");
+                setSaveData(true);
               }}
             >
               <ListItemIcon className="min-w-40">
