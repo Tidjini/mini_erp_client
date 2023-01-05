@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { ApiService } from "app/services/ApiService";
 import { useGetCollection } from "./useRequest";
+
 const RADIUS = 6373.0;
 
 function distance(pointA, pointB) {
