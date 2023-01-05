@@ -246,26 +246,6 @@ export default function TaskCollectionMapView(props) {
             );
           })}
 
-        {/* {!user.is_admin && !user.is_staff && user.localisation && (
-          <TypedMarker
-            position={{
-              lat: user.localisation.latitude,
-              lng: user.localisation.longitude,
-            }}
-            onClick={(e) => {
-              setDisplayInfo({
-                display: true,
-                position: {
-                  lat: user.localisation.latitude,
-                  lng: user.localisation.longitude,
-                },
-                user: { ...user },
-              });
-            }}
-            state={user.statue}
-          />
-        )} */}
-
         <DrawDirection
           maps={maps}
           origin={origin}
