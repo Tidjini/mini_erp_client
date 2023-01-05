@@ -11,7 +11,6 @@ import TaskRow from "./TaskRow";
 import { cells as allCells } from "./Config";
 import { useSelector } from "react-redux";
 import { useGeoLocation } from "app/hooks/useGeoLocation";
-import TaskNofitication from "app/composants.v2/notification/TaskNofitication";
 import Loader from "app/composants.v2/Loader";
 import Action from "app/hooks/Action";
 
