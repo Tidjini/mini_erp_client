@@ -15,6 +15,7 @@ import {
   createGenerateClassName,
 } from "@material-ui/styles";
 import TaskNofitication from "./composants.v2/notification/TaskNofitication";
+import { useGeoLocation } from "./hooks/useGeoLocation";
 
 const jss = create({
   ...jssPreset(),
@@ -23,6 +24,17 @@ const jss = create({
 });
 
 const generateClassName = createGenerateClassName();
+
+const Application = ({ children }) => {
+  useGeoLocation();
+
+  return (
+    <React.Fragment>
+      <TaskNofitication />
+      {children}
+    </React.Fragment>
+  );
+};
 
 const App = () => {
   return (
@@ -37,8 +49,9 @@ const App = () => {
             <Router history={history}>
               <FuseAuthorization>
                 <FuseTheme>
-                  <TaskNofitication />
-                  <FuseLayout />
+                  <Application>
+                    <FuseLayout />
+                  </Application>
                 </FuseTheme>
               </FuseAuthorization>
             </Router>

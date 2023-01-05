@@ -11,8 +11,6 @@ export const useGeoLocation = () => {
 
   React.useEffect(() => {
     function handleGeoPosition() {
-      // navigator.permissions.query({ name: "geolocation" }).then((res) => {
-      // });
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function (position) {
           const { longitude, latitude } = position.coords;
@@ -38,7 +36,7 @@ export const useGeoLocation = () => {
       }
     }
     // Add event listener
-    const interval = setInterval(handleGeoPosition, 5 * 60 * 1000);
+    const interval = setInterval(handleGeoPosition, 1 * 5 * 1000);
     // Call handler right away so state gets updated with initial window size
     handleGeoPosition();
     // Remove event listener on cleanup

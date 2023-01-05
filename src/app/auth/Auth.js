@@ -10,7 +10,6 @@ class Auth extends Component {
   constructor(props) {
     super(props);
     this.checkAuthService();
-    // this.apiServiceListener();
   }
 
   checkAuthService = () => {
@@ -40,27 +39,6 @@ class Auth extends Component {
     });
     authService.initialize();
   };
-  // apiServiceListener = () => {
-  //   apiService.on("loading", (loading) => {
-  //     let message = "IS LOADING";
-  //     let color = "success";
-  //     if (!loading) {
-  //       message = "IS NOT LOADING";
-  //       color = "danger";
-  //     }
-  //     this.props.showMessage({
-  //       message: message,
-  //       variant: color,
-  //       autoHideDuration: 600,
-  //       anchorOrigin: {
-  //         vertical: "bottom", //top bottom
-  //         horizontal: "right", //left center right
-  //       },
-  //     });
-  //   });
-
-  //   apiService.initialize();
-  // };
 
   render() {
     const { children } = this.props;

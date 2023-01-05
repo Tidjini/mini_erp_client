@@ -36,7 +36,6 @@ export default function TaskCollectionView(props) {
   });
 
   const user = useSelector(({ auth }) => auth.user.data);
-  useGeoLocation();
 
   const goToMapView = new Action(
     "Map View",
