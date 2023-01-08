@@ -7,15 +7,22 @@ import { Drawer, Typography } from "@material-ui/core";
 import * as Actions from "./store/actions";
 import reducer from "./store/reducers";
 import withReducer from "app/store/withReducer";
+import { makeStyles } from "@material-ui/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: 340,
+  },
+}));
 
 function MessagesPanel() {
   const dispatch = useDispatch();
-  const { open } = useSelector(({ messagesPanel }) => messagesPanel.open);
-
+  const classes = useStyles();
+  const open = useSelector(({ messagesPanel }) => messagesPanel.open);
   return (
     <Drawer
       open={open}
-      style={{ width: 300 }}
+      classes={{ paper: classes.root }}
       anchor="right"
       onClose={(event) => {
         dispatch(Actions.toggleMessagesPanel());
