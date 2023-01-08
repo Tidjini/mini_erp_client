@@ -10,31 +10,38 @@ export default function MessagesHeader() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
+        backgroundColor: "#003049",
+        color: "white",
       }}
     >
       <div
         style={{
-          width: 48,
-          height: 48,
-          borderRadius: 24,
+          width: 36,
+          height: 36,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: "10px 20px",
         }}
       >
         <Icon>message</Icon>
-        {/* <img src="assets/images/man.png" /> */}
       </div>
+
+      {/* <img src="assets/images/man.png" /> */}
+
       <Typography
         style={{
           width: "100%",
           fontSize: 18,
         }}
       >
-        Team Chats
+        Messagerie
       </Typography>
       <IconButton
         style={{
           width: 48,
           height: 48,
-          borderRadius: 24,
+          color: "white",
         }}
       >
         <Icon>close</Icon>
