@@ -1,22 +1,8 @@
-import * as Actions from "../actions";
+import { combineReducers } from "redux";
+import panel from "./panel";
+import profile from "./profile";
 
-const initialState = {
-  open: false,
-};
-
-const messagePanel = function (state = initialState, action) {
-  const { type, payload } = action;
-  switch (type) {
-    case Actions.TOGGLE_MESSAGES_PANEL: {
-      const open = !state.open;
-      return {
-        open: open,
-      };
-    }
-
-    default:
-      return state;
-  }
-};
-
-export default messagePanel;
+export default combineReducers({
+  panel,
+  profile,
+});

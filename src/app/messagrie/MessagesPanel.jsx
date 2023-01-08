@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 function MessagesPanel() {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const open = useSelector(({ messagesPanel }) => messagesPanel.open);
+  const open = useSelector(({ chat }) => chat.panel.open);
   return (
     <Drawer
       open={open}
@@ -38,4 +38,4 @@ function MessagesPanel() {
   );
 }
 
-export default withReducer("messagesPanel", reducer)(MessagesPanel);
+export default withReducer("chat", reducer)(MessagesPanel);

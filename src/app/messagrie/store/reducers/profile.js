@@ -1,4 +1,4 @@
-import { SELECT_PROFILE, selectProfile } from "../actions";
+import { SELECT_PROFILE } from "../actions";
 
 const initialState = {
   selected: undefined,

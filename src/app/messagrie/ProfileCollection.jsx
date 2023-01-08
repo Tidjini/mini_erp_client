@@ -33,6 +33,7 @@ function ProfileAvatar({ profile, onClick }) {
 
 export default function ProfileCollection() {
   const { data: profiles, loading, metadata } = useCollectionData("profiles");
+
   return (
     <div>
       {loading && <Typography>Chargement ...</Typography>}
