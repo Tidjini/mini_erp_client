@@ -1,8 +1,11 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useCollectionData } from "app/hooks/common/useCollectionData";
 import UserAvatar from "app/fuse-layouts/shared-components/UserAvatar";
 import { Badge, Tooltip, Typography } from "@material-ui/core";
 import { useUserStateColor } from "app/hooks/useUserStateInfo";
+
+import { selectProfile } from "./store/actions";
 
 function ProfileAvatar({ profile, onClick }) {
   const { stateInfo } = useUserStateColor(profile.statue);
@@ -32,13 +35,20 @@ function ProfileAvatar({ profile, onClick }) {
 }
 
 export default function ProfileCollection() {
+  const dispatch = useDispatch();
   const { data: profiles, loading, metadata } = useCollectionData("profiles");
 
   return (
     <div>
       {loading && <Typography>Chargement ...</Typography>}
-      {profiles.map((item, index) => (
-        <ProfileAvatar key={index} profile={item} />
+      {profiles.map((profile, index) => (
+        <ProfileAvatar
+          key={index}
+          profile={profile}
+          onClick={(e) => {
+            dispatch(selectProfile(profile));
+          }}
+        />
       ))}
     </div>
   );
