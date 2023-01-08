@@ -83,6 +83,7 @@ export default function TaskCollectionView(props) {
         { ordering: true, label: "Created", id: "created_date" },
       ]);
     }
+    return () => {};
   }, [user]);
 
   return (
