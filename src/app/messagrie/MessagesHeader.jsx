@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import { toggleMessagesPanel } from "./store/actions";
 import reducer from "./store/reducers";
 import withReducer from "app/store/withReducer";
+import ProfileAvatar from "./ProfileAvatar";
 
 function MessagesHeader() {
   const dispatch = useDispatch();
@@ -35,15 +36,7 @@ function MessagesHeader() {
         }}
       >
         {!Boolean(selected) && <Icon>message</Icon>}
-        {selected && (
-          <ProfileAvatar
-            key={index}
-            profile={profile}
-            onClick={(e) => {
-              dispatch(selectProfile(profile));
-            }}
-          />
-        )}
+        {selected && <ProfileAvatar profile={selected} onClick={(e) => {}} />}
       </div>
 
       {!Boolean(selected) && (
@@ -54,6 +47,17 @@ function MessagesHeader() {
           }}
         >
           Messagerie
+        </Typography>
+      )}
+      {selected && (
+        <Typography
+          style={{
+            width: "100%",
+            fontSize: 16,
+            fontWeight: "700",
+          }}
+        >
+          {selected.name}
         </Typography>
       )}
       <IconButton
