@@ -58,7 +58,7 @@ function ToolbarLayout1(props) {
 
             <div className={classes.separator} />
 
-            <QuickPanelToggleButton />
+            {/* <QuickPanelToggleButton /> */}
             <MessagesPanelToggleButton />
           </div>
 
