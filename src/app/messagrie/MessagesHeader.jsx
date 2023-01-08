@@ -12,6 +12,7 @@ export default function MessagesHeader() {
   return (
     <div
       style={{
+        height: 64,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",

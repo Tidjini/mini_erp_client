@@ -1,11 +1,8 @@
 import React from "react";
-import useWindowSize from "app/hooks/useWindowSize";
 import { useCollectionData } from "app/hooks/common/useCollectionData";
 import UserAvatar from "app/fuse-layouts/shared-components/UserAvatar";
 
 export default function ProfileCollection() {
-  const { height } = useWindowSize();
-
   const {
     data: profiles,
     loading,
@@ -13,16 +10,11 @@ export default function ProfileCollection() {
     handleGetData: onGet,
   } = useCollectionData("profiles");
   return (
-    <div
-      style={{
-        height: height,
-        width: 64,
-
-        backgroundColor: "gray",
-      }}
-    >
+    <div>
       {profiles.map((item, index) => (
-        <UserAvatar name={item.name} key={index} />
+        <div style={{ width: 56, height: 56, padding: 6 }} key={index}>
+          <UserAvatar name={item.name} />
+        </div>
       ))}
     </div>
   );
