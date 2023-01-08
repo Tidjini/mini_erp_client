@@ -6,6 +6,7 @@ import NavbarMobileToggleButton from "app/fuse-layouts/shared-components/NavbarM
 import QuickPanelToggleButton from "app/fuse-layouts/shared-components/quickPanel/QuickPanelToggleButton";
 import UserMenu from "app/fuse-layouts/shared-components/UserMenu";
 import { useSelector } from "react-redux";
+import MessagesPanelToggleButton from "app/messagrie/MessagesPanelToggleButton";
 
 const useStyles = makeStyles((theme) => ({
   separator: {
@@ -58,6 +59,7 @@ function ToolbarLayout1(props) {
             <div className={classes.separator} />
 
             <QuickPanelToggleButton />
+            <MessagesPanelToggleButton />
           </div>
 
           {config.navbar.display && config.navbar.position === "right" && (
