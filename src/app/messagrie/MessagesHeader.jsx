@@ -23,6 +23,10 @@ function MessagesHeader() {
         justifyContent: "space-between",
         backgroundColor: "#003049",
         color: "white",
+        position: "fixed",
+        top: 0,
+        width: 340,
+        zIndex: 5,
       }}
     >
       <div

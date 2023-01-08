@@ -11,6 +11,7 @@ export default function MessagesBody() {
       style={{
         height: height ? height - 64 : 10,
         width: 64,
+        marginTop: 64,
       }}
     >
       <ProfileCollection />

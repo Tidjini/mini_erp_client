@@ -30,8 +30,8 @@ function MessagesPanel() {
         dispatch(Actions.toggleMessagesPanel());
       }}
     >
+      <MessagesHeader />
       <FuseScrollbars>
-        <MessagesHeader />
         <MessagesBody />
       </FuseScrollbars>
     </Drawer>
