@@ -13,7 +13,7 @@ export default function MessagesPanel() {
       }}
     >
       <FuseScrollbars>
-        <Typography> Quick Pannel </Typography>
+        <Typography> Messages Pannel </Typography>
       </FuseScrollbars>
     </Drawer>
   );
