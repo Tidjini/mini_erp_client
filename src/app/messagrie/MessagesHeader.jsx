@@ -1,14 +1,18 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Icon from "@material-ui/core/Icon";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 
 import { toggleMessagesPanel } from "./store/actions";
+import reducer from "./store/reducers";
+import withReducer from "app/store/withReducer";
 
-export default function MessagesHeader() {
+function MessagesHeader() {
   const dispatch = useDispatch();
+  const selected = useSelector(({ messagerie }) => messagerie.profile.selected);
+
   return (
     <div
       style={{
@@ -30,19 +34,28 @@ export default function MessagesHeader() {
           margin: "10px 20px",
         }}
       >
-        <Icon>message</Icon>
+        {!Boolean(selected) && <Icon>message</Icon>}
+        {selected && (
+          <ProfileAvatar
+            key={index}
+            profile={profile}
+            onClick={(e) => {
+              dispatch(selectProfile(profile));
+            }}
+          />
+        )}
       </div>
 
-      {/* <img src="assets/images/man.png" /> */}
-
-      <Typography
-        style={{
-          width: "100%",
-          fontSize: 18,
-        }}
-      >
-        Messagerie
-      </Typography>
+      {!Boolean(selected) && (
+        <Typography
+          style={{
+            width: "100%",
+            fontSize: 18,
+          }}
+        >
+          Messagerie
+        </Typography>
+      )}
       <IconButton
         style={{
           width: 48,
@@ -58,3 +71,5 @@ export default function MessagesHeader() {
     </div>
   );
 }
+
+export default withReducer("messagerie", reducer)(MessagesHeader);
