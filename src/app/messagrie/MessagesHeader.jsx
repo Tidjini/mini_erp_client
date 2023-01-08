@@ -1,9 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+
 import Icon from "@material-ui/core/Icon";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 
+import { toggleMessagesPanel } from "./store/actions";
+
 export default function MessagesHeader() {
+  const dispatch = useDispatch();
   return (
     <div
       style={{
@@ -42,6 +47,9 @@ export default function MessagesHeader() {
           width: 48,
           height: 48,
           color: "white",
+        }}
+        onClick={(event) => {
+          dispatch(toggleMessagesPanel());
         }}
       >
         <Icon>close</Icon>
