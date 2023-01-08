@@ -46,3 +46,40 @@ export default function useUserStateInfo(statue) {
 
   return { stateInfo, changeStateInfo };
 }
+
+export function useUserStateColor(statue) {
+  const [stateInfo, setStateInfo] = React.useState({
+    backgroundColor: "#414962",
+  });
+  React.useEffect(() => {
+    changeStateInfo(statue);
+  }, [statue]);
+
+  const changeStateInfo = (state) => {
+    switch (statue) {
+      case "a":
+        setStateInfo({
+          backgroundColor: "#2a9d8f",
+        });
+        break;
+      case "n":
+        setStateInfo({
+          backgroundColor: "#e63946",
+        });
+        break;
+      case "ab":
+        setStateInfo({
+          backgroundColor: "#231942",
+        });
+        break;
+
+      default:
+        setStateInfo({
+          backgroundColor: "#414962",
+        });
+        break;
+    }
+  };
+
+  return { stateInfo, changeStateInfo };
+}

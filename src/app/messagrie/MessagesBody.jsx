@@ -9,7 +9,7 @@ export default function MessagesBody() {
   return (
     <div
       style={{
-        height: height - 64,
+        height: height ? height - 64 : 10,
         width: 64,
       }}
     >

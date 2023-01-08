@@ -2,6 +2,32 @@ import React from "react";
 import { useCollectionData } from "app/hooks/common/useCollectionData";
 import UserAvatar from "app/fuse-layouts/shared-components/UserAvatar";
 import { Badge } from "@material-ui/core";
+import { useUserStateColor } from "app/hooks/useUserStateInfo";
+
+function ProfileAvatar({ item }) {
+  const { stateInfo } = useUserStateColor(item.statue);
+
+  return (
+    <div style={{ width: 56, height: 56, padding: 6 }}>
+      <div style={{ position: "relative" }}>
+        <UserAvatar name={item.name} />
+        <Badge
+          style={{
+            position: "absolute",
+            bottom: "2px",
+            right: "5px",
+            backgroundColor: "#e76f51",
+            width: 11,
+            height: 11,
+            border: "2px solid #FFF",
+            borderRadius: 8,
+            ...stateInfo,
+          }}
+        />
+      </div>
+    </div>
+  );
+}
 
 export default function ProfileCollection() {
   const {
@@ -13,22 +39,7 @@ export default function ProfileCollection() {
   return (
     <div>
       {profiles.map((item, index) => (
-        <div style={{ width: 56, height: 56, padding: 6 }} key={index}>
-          <div style={{ position: "relative" }}>
-            <UserAvatar name={item.name} />
-            <Badge
-              style={{
-                position: "absolute",
-                bottom: "2px",
-                right: "5px",
-                backgroundColor: "red",
-                width: 12,
-                height: 12,
-                borderRadius: 8,
-              }}
-            />
-          </div>
-        </div>
+        <ProfileAvatar key={index} item={item} />
       ))}
     </div>
   );
