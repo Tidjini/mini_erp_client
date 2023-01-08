@@ -9,6 +9,7 @@ import reducer from "./store/reducers";
 import withReducer from "app/store/withReducer";
 import { makeStyles } from "@material-ui/styles";
 import MessagesHeader from "./MessagesHeader";
+import MessagesBody from "./MessagesBody";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +32,7 @@ function MessagesPanel() {
     >
       <FuseScrollbars>
         <MessagesHeader />
-        <Typography> Messages Pannel </Typography>
+        <MessagesBody />
       </FuseScrollbars>
     </Drawer>
   );
