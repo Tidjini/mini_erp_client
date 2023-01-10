@@ -40,7 +40,7 @@ export const useGeoLocation = () => {
     if (oldPosition) {
       //distance converted to metters
       //if user still in his position do not push update to server
-      if (distance(oldPosition, nPosition) * 1000 <= 5) {
+      if (distance(oldPosition, nPosition) * 1000 <= 20) {
         return;
       }
     }
